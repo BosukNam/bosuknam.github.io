@@ -280,10 +280,12 @@
     if (s.period) h += `<div class="period">${L(s.period)}</div>`;
     if (s.intro) h += `<div class="intro">${L(s.intro)}</div>`;
     if (s.card) h += L(s.card).map(p => `<p>${p}</p>`).join('');
-    if (s.projects) h += s.projects.map((p, i) => `<details class="proj" ${i === 0 ? 'open' : ''}><summary><span>${L(p.n)}</span><span class="p">${p.p}</span></summary><div class="r">${L(p.r)}</div><ul>${L(p.b).map(b => `<li>${b}</li>`).join('')}</ul></details>`).join('');
+    if (s.projects) h += s.projects.map((p, i) => `<details class="proj" name="proj" ${i === 0 ? 'open' : ''}><summary><span>${L(p.n)}</span><span class="p">${p.p}</span></summary><div class="r">${L(p.r)}</div><ul>${L(p.b).map(b => `<li>${b}</li>`).join('')}</ul></details>`).join('');
     if (s.idle) h += `<div class="intro" style="margin-top:10px"><b>🎮 ${T('idleTitle')}</b><br>${T('idleBody')}</div>`;
     if (s.dos) h += dosHtml();
     openModal(h);
+    // 아코디언: 하나 열면 나머지는 닫힘 (details name 미지원 브라우저 대비)
+    $('modal-body').querySelectorAll('details.proj').forEach(d => d.addEventListener('toggle', () => { if (d.open) $('modal-body').querySelectorAll('details.proj').forEach(o => { if (o !== d) o.open = false; }); }));
     if (s.dos) initDos();
   }
   function openGoal() {
