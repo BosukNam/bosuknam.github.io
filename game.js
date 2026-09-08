@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   const D = window.DATA;
-  const W = 960, H = 540, GROUND = 432, SCALE = 3;
+  let W = 960; const H = 540, GROUND = 432, SCALE = 3;
   const cv = document.getElementById('game');
   const cx = cv.getContext('2d');
   cx.imageSmoothingEnabled = false;
@@ -385,7 +385,16 @@
   // 타이틀 스프라이트
   (function () { const c = document.getElementById('title-sprite').getContext('2d'); c.imageSmoothingEnabled = false; const save = cx; const rows = HERO[0]; for (let r = 0; r < rows.length; r++) for (let k = 0; k < rows[r].length; k++) { const ch = rows[r][k]; if (ch === '.') continue; c.fillStyle = PAL[ch]; c.fillRect(k * 6, r * 6, 6, 6); } })();
   // 리사이즈: 비율 유지
-  function fit() { const r = Math.min(innerWidth / W, innerHeight / H); cv.style.width = (W * r) + 'px'; cv.style.height = (H * r) + 'px'; }
+  // 화면 비율에 맞춰 논리 폭을 조정: 세로 화면(모바일)은 폭을 줄이고 세로를 꽉 채움 (cover)
+  function fit() {
+    const vw = innerWidth, vh = innerHeight;
+    W = Math.max(400, Math.min(960, Math.round(H * vw / vh)));
+    if (cv.width !== W) cv.width = W;
+    const r = vh / H; // 세로 기준 스케일 (폭이 남으면 가로 크롭)
+    cv.style.width = (W * r) + 'px'; cv.style.height = (H * r) + 'px';
+    cx.imageSmoothingEnabled = false;
+    S.cam = Math.max(0, Math.min(WORLD_W - W, P.x - W * 0.38));
+  }
   addEventListener('resize', fit); fit();
 
   window.__game = { P, S, stages, openObject, start };

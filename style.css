@@ -7,7 +7,7 @@
 html, body { margin: 0; height: 100%; background: #0b1020; color: var(--ink); font-family: var(--pix); overflow: hidden; }
 button { font-family: inherit; cursor: pointer; }
 
-#stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: #0b1020; }
+#stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: #0b1020; overflow: hidden; }
 #game { image-rendering: pixelated; image-rendering: crisp-edges; background: #000; display: block; }
 
 /* ---------- HUD ---------- */
@@ -27,7 +27,7 @@ button { font-family: inherit; cursor: pointer; }
 #touch { position: absolute; inset: 0; pointer-events: none; }
 #touch .tl, #touch .tr { position: absolute; bottom: 28px; display: flex; gap: 12px; pointer-events: auto; }
 #touch .tl { left: 16px; } #touch .tr { right: 16px; }
-.tbtn { width: 60px; height: 60px; border-radius: 50%; border: 3px solid #fff6; background: rgba(20,33,61,.6); color: #fff; font-size: 22px; user-select: none; -webkit-user-select: none; touch-action: none; }
+.tbtn { width: 64px; height: 64px; border-radius: 50%; border: 3px solid #fff6; background: rgba(20,33,61,.6); color: #fff; font-size: 22px; user-select: none; -webkit-user-select: none; touch-action: none; }
 .tbtn.act { background: rgba(246,196,0,.75); color: var(--navy); }
 
 /* ---------- 오버레이/모달 ---------- */
@@ -103,8 +103,12 @@ a.pbtn { text-decoration: none; display: inline-block; }
 @keyframes fade { to { opacity: 0; transform: translateY(-8px); } }
 
 @media (max-width: 640px) {
-  .hud-r { max-width: 70vw; }
+  .hud-r { max-width: 62vw; gap: 4px; }
   .hbtn { font-size: 11px; padding: 4px 7px; }
+  .hud-box { font-size: 11px; padding: 4px 7px; }
+  #btn-text, #btn-sound { display: none; }
+  .title-card { padding: 20px 16px; }
+  .title-help { display: none; }
   .pix-name { font-size: 30px; }
   .card { padding: 18px 16px 16px; }
 }
