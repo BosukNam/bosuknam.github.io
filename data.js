@@ -76,8 +76,8 @@ window.DATA = {
 
     { id: 'univ', year: '2009', theme: 'campus',
       title: { ko: '한양대학교 도시공학과', en: 'Hanyang University, Urban Planning' },
-      card: { ko: ['2009.03 – 2015.02 · 한양대학교 도시공학과 학사 (3.53 / 4.5)', '2011.05 – 2013.02 · 육군 병장 만기전역', '2014.05 · 도시계획기사 취득'],
-              en: ['Mar 2009 – Feb 2015 · B.S. Urban Planning & Engineering, Hanyang University (GPA 3.53 / 4.5)', 'May 2011 – Feb 2013 · Republic of Korea Army, sergeant', 'May 2014 · Engineer Urban Planning certificate'] },
+      card: { ko: ['2009.03 – 2015.02 · 한양대학교 도시공학과 학사', '2011.05 – 2013.02 · 육군 병장 만기전역', '2014.05 · 도시계획기사 취득'],
+              en: ['Mar 2009 – Feb 2015 · B.S. Urban Planning & Engineering, Hanyang University', 'May 2011 – Feb 2013 · Republic of Korea Army, sergeant', 'May 2014 · Engineer Urban Planning certificate'] },
       objects: [{ type: 'univ', label: { ko: '2009 · 한양대학교', en: '2009 · Hanyang Univ.' } }],
       achievements: ['urban'] },
 
@@ -200,8 +200,8 @@ window.DATA = {
   },
 
   education: {
-    ko: ['2009.03 – 2015.02 · 한양대학교 도시공학과 학사 (3.53 / 4.5)', '2014.05 · 도시계획기사', '2016.05 – 2017.02 · 렉토피아 응용 S/W 융합 프로젝트 과정', '2017.03 · TOEIC Speaking 170 (Lv.7)', '2018.08 · Neural Networks and Deep Learning — Coursera', '2019.11 · 정보처리기사'],
-    en: ['2009 – 2015 · B.S. Urban Planning & Engineering, Hanyang University (GPA 3.53 / 4.5)', 'May 2014 · Engineer Urban Planning', '2016 – 2017 · Applied Software Project Course, Lectopia', 'Mar 2017 · TOEIC Speaking 170 (Lv.7)', 'Aug 2018 · Neural Networks and Deep Learning — Coursera', 'Nov 2019 · Engineer Information Processing'],
+    ko: ['2009.03 – 2015.02 · 한양대학교 도시공학과 학사', '2014.05 · 도시계획기사', '2016.05 – 2017.02 · 렉토피아 응용 S/W 융합 프로젝트 과정', '2017.03 · TOEIC Speaking 170 (Lv.7)', '2018.08 · Neural Networks and Deep Learning — Coursera', '2019.11 · 정보처리기사'],
+    en: ['2009 – 2015 · B.S. Urban Planning & Engineering, Hanyang University', 'May 2014 · Engineer Urban Planning', '2016 – 2017 · Applied Software Project Course, Lectopia', 'Mar 2017 · TOEIC Speaking 170 (Lv.7)', 'Aug 2018 · Neural Networks and Deep Learning — Coursera', 'Nov 2019 · Engineer Information Processing'],
   },
   sideProjects: [
     { n: 'lottery', l: 'Rust', u: 'https://github.com/bosuknam/lottery', d: { ko: '로또 당첨 이력을 분석해 번호 조합을 생성. 웹 버전 bosuknam.github.io/lottery', en: 'Generates lottery number combinations from historical draws. Web: bosuknam.github.io/lottery' } },
