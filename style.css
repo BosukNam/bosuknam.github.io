@@ -39,6 +39,7 @@ button { font-family: inherit; cursor: pointer; }
 .pix-tag { font-size: 12px; color: var(--muted); margin-top: 2px; }
 #title-sprite { image-rendering: pixelated; margin: 14px auto 6px; display: block; }
 .title-btns { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 10px; }
+a.pbtn { text-decoration: none; display: inline-block; }
 .pbtn { background: #fff; border: 3px solid var(--navy); padding: 9px 14px; font-size: 14px; font-weight: 700; color: var(--navy); box-shadow: 3px 3px 0 var(--navy); }
 .pbtn:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--navy); }
 .pbtn.primary { background: var(--yellow); }
