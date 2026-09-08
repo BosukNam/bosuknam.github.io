@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bosuk Nam — Backend Developer</title>
+<meta name="description" content="남보석 · Backend Developer (Java/Spring). 카카오 인프라개발팀. 횡스크롤 게임으로 보는 포트폴리오.">
+<meta property="og:title" content="Bosuk Nam — Backend Developer">
+<meta property="og:description" content="Java/Spring 백엔드 개발자 남보석의 포트폴리오. 플레이해서 보세요.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%2314213d'/><rect x='4' y='2' width='8' height='4' fill='%232b2b2b'/><rect x='4' y='6' width='8' height='4' fill='%23f2c9a0'/><rect x='3' y='10' width='10' height='5' fill='%232456c4'/></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="stage">
+  <canvas id="game" width="960" height="540"></canvas>
+
+  <!-- HUD -->
+  <div id="hud" hidden>
+    <div class="hud-l">
+      <span class="hud-box"><span data-ui="world">WORLD</span> <b id="hud-year">1990</b></span>
+      <span class="hud-box">🪙 <b id="hud-coins">0</b>/<span id="hud-coins-max">0</span></span>
+      <span class="hud-box" id="hud-servers-box" hidden>💤 <b id="hud-servers">0</b></span>
+    </div>
+    <div class="hud-r">
+      <button class="hbtn" id="btn-auto" data-ui="auto">자동 진행</button>
+      <button class="hbtn" id="btn-inv" data-ui="inventory">🎒 인벤토리 (I)</button>
+      <button class="hbtn" id="btn-text" data-ui="textMode">📄 텍스트 이력서</button>
+      <button class="hbtn" id="btn-skip" data-ui="skip">⏭ 끝으로</button>
+      <button class="hbtn" id="btn-sound" title="sound">🔇</button>
+      <button class="hbtn" id="btn-lang">EN</button>
+    </div>
+    <div id="progress"><div id="progress-bar"></div><div id="progress-marks"></div></div>
+  </div>
+
+  <!-- 모바일 컨트롤 -->
+  <div id="touch" hidden>
+    <div class="tl"><button class="tbtn" data-k="left">◀</button><button class="tbtn" data-k="right">▶</button></div>
+    <div class="tr"><button class="tbtn" data-k="up">▲</button><button class="tbtn act" data-k="act">●</button></div>
+  </div>
+
+  <!-- 시작 화면 -->
+  <div id="title" class="overlay">
+    <div class="title-card">
+      <div class="pix-name" id="title-name">남보석</div>
+      <div class="pix-sub" id="title-title">Backend Developer · Java / Spring</div>
+      <div class="pix-tag" id="title-tag">인프라개발팀 · Kakao Corp · 2022 –</div>
+      <canvas id="title-sprite" width="72" height="96"></canvas>
+      <div class="title-btns">
+        <button class="pbtn primary" id="btn-start" data-ui="start">▶ 시작 (Enter)</button>
+        <button class="pbtn" id="btn-continue" data-ui="resumeGame" hidden>이어하기</button>
+        <button class="pbtn" id="btn-auto2" data-ui="auto">자동 진행</button>
+        <button class="pbtn" id="btn-text2" data-ui="textMode">📄 텍스트 이력서</button>
+      </div>
+      <div class="title-help" id="title-help" data-ui="controls">← → 이동 · ↑/Space 점프 · 물체 앞에서 ↑ 확인 · I 인벤토리</div>
+      <div class="title-lang"><button class="lnk" id="btn-lang2">English</button></div>
+    </div>
+  </div>
+
+  <!-- 카드 모달 -->
+  <div id="modal" class="overlay" hidden>
+    <div class="card" role="dialog" aria-modal="true">
+      <button class="x" id="modal-x" aria-label="close">✕</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+</div>
+
+<noscript>
+  <div style="padding:24px;font-family:sans-serif">
+    <h1>남보석 · Backend Developer</h1>
+    <p>이 페이지는 JavaScript가 필요합니다. PDF: <a href="portfolio_ko.pdf">국문</a> · <a href="portfolio_en.pdf">English</a></p>
+  </div>
+</noscript>
+
+<script src="data.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
