@@ -70,8 +70,8 @@ window.DATA = {
     { id: 'pc', year: '1995', theme: 'room',
       title: { ko: '486 컴퓨터, DOS에서 Windows 3.1까지', en: '486 PC: from DOS to Windows 3.1' },
       dos: true,
-      card: { ko: ['5살 때 처음 486 컴퓨터를 만졌습니다. C:\\> 프롬프트에서 시작해 Windows 3.1까지.', '초등학생 때는 플래시로 애니메이션을 만들며 "컴퓨터로 무언가를 만드는 일"을 좋아하게 됐습니다.', '아래 프롬프트에 help 를 입력해보세요.'],
-              en: ['First touched a 486 PC at five — starting from the C:\\> prompt up to Windows 3.1.', 'In elementary school I made Flash animations and learned I liked "making things with a computer".', 'Type help in the prompt below.'] },
+      card: { ko: ['5살 때 처음 486 컴퓨터를 만졌습니다. C:\\> 프롬프트에서 시작해 Windows 3.1까지.', '초등학생 때는 플래시로 애니메이션을 만들며 "컴퓨터로 무언가를 만드는 일"을 좋아하게 됐습니다.', '아래 프롬프트에 명령어를 입력해보세요.', '<code>help · dir · whoami · skills · career · contact · win · cls · exit</code>'],
+              en: ['First touched a 486 PC at five — starting from the C:\\> prompt up to Windows 3.1.', 'In elementary school I made Flash animations and learned I liked "making things with a computer".', 'Type a command in the prompt below.', '<code>help · dir · whoami · skills · career · contact · win · cls · exit</code>'] },
       objects: [{ type: 'pc', label: { ko: '486 · DOS / Win 3.1', en: '486 · DOS / Win 3.1' } }] },
 
     { id: 'univ', year: '2009', theme: 'campus',

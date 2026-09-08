@@ -53,6 +53,7 @@ a.pbtn { text-decoration: none; display: inline-block; }
 .card .yr { display: inline-block; font-size: 11px; background: var(--navy); color: #fff; padding: 2px 7px; border-radius: 3px; margin-bottom: 8px; letter-spacing: 1px; }
 .card .period { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
 .card p { margin: 0 0 8px; font-size: 14px; line-height: 1.6; }
+.card p code { font-family: Menlo, Consolas, monospace; font-size: 12px; background: #eef1f6; padding: 2px 6px; border-radius: 3px; color: var(--navy); }
 .card .intro { font-size: 13.5px; color: #333; background: #f3f5f9; padding: 10px 12px; border-left: 4px solid var(--accent); margin-bottom: 12px; line-height: 1.55; }
 .proj { border: 2px solid var(--line); border-radius: 6px; margin-bottom: 8px; }
 .proj summary { cursor: pointer; padding: 9px 12px; font-weight: 800; color: var(--navy); font-size: 14px; display: flex; justify-content: space-between; gap: 10px; list-style: none; }

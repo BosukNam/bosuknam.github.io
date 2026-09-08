@@ -325,7 +325,7 @@
   }
 
   // ------------------------------------------------------------------ DOS 이스터에그
-  function dosHtml() { return `<div class="dos" id="dos"><div id="dos-out">Microsoft(R) MS-DOS(R) Version 6.22\n(C)Copyright 1990-1994.\n\n${T('dosHelp')}\n</div><div class="prompt">C:\\BOSUK&gt;&nbsp;<input id="dos-in" autocomplete="off" spellcheck="false"></div></div><div id="win31"></div>`; }
+  function dosHtml() { return `<div class="dos" id="dos"><div id="dos-out">Microsoft(R) MS-DOS(R) Version 6.22\n(C)Copyright 1990-1994.\n\n</div><div class="prompt">C:\\BOSUK&gt;&nbsp;<input id="dos-in" autocomplete="off" spellcheck="false"></div></div><div id="win31"></div>`; }
   function initDos() {
     const out = $('dos-out'), inp = $('dos-in'); setTimeout(() => inp.focus(), 50); $('dos').onclick = () => inp.focus();
     const m = D.meta, ko = S.lang === 'ko';
