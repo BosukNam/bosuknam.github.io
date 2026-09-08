@@ -11,7 +11,7 @@ window.DATA = {
 
   ui: {
     ko: {
-      start: '▶ 시작 (Enter)', auto: '자동 진행', autoOn: '자동 진행 중', textMode: '📄 텍스트 이력서',
+      start: '▶ 시작 (Enter)', pdfBtn: '📄 PDF 포트폴리오 (국문)', auto: '자동 진행', autoOn: '자동 진행 중', textMode: '📄 텍스트 이력서',
       inventory: '🎒 인벤토리 (I)', skip: '⏭ 끝으로', hint: '↑ 또는 클릭', hintTouch: '탭해서 보기',
       controls: '← → 이동 · ↑/Space 점프 · 물체 앞에서 ↑ 확인 · I 인벤토리',
       skills: '보유 스킬', achievements: '업적', locked: '???', collected: '획득', close: '닫기',
@@ -25,7 +25,7 @@ window.DATA = {
       dosHelp: '명령어: help, dir, whoami, skills, career, contact, win, cls, exit',
     },
     en: {
-      start: '▶ Start (Enter)', auto: 'Auto-play', autoOn: 'Auto-playing', textMode: '📄 Text resume',
+      start: '▶ Start (Enter)', pdfBtn: '📄 PDF Portfolio (English)', auto: 'Auto-play', autoOn: 'Auto-playing', textMode: '📄 Text resume',
       inventory: '🎒 Inventory (I)', skip: '⏭ Skip to end', hint: '↑ or click', hintTouch: 'Tap to open',
       controls: '← → move · ↑/Space jump · ↑ at an object to open · I inventory',
       skills: 'Skills', achievements: 'Achievements', locked: '???', collected: 'collected', close: 'Close',

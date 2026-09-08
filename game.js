@@ -360,6 +360,7 @@
     S.lang = l; localStorage.setItem('lang', l); document.documentElement.lang = l;
     document.querySelectorAll('[data-ui]').forEach(el => { el.textContent = T(el.dataset.ui); });
     $('btn-lang').textContent = l === 'ko' ? 'EN' : '한국어'; $('btn-lang2').textContent = l === 'ko' ? 'English' : '한국어';
+    $('btn-pdf2').href = l === 'ko' ? D.meta.pdf.ko : D.meta.pdf.en;
     $('title-name').textContent = L(D.meta.name); $('title-title').textContent = L(D.meta.title);
     $('title-tag').textContent = l === 'ko' ? '인프라개발팀 · Kakao Corp · 2022 –' : 'Infra Development Team · Kakao Corp · 2022 –';
     syncAuto(); if (S.started) hud();
@@ -370,7 +371,6 @@
   $('btn-start').onclick = () => start(false);
   $('btn-continue').onclick = () => start(false);
   $('btn-auto2').onclick = () => start(true);
-  $('btn-text2').onclick = () => { if (!S.started) start(false); openText(); };
   $('btn-auto').onclick = () => { S.auto = !S.auto; S.target = null; syncAuto(); };
   $('btn-inv').onclick = openInventory; $('btn-text').onclick = openText;
   $('btn-skip').onclick = () => { P.x = WORLD_W - 240; S.cam = WORLD_W - W; S.goalShown = true; openGoal(); };
