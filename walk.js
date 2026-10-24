@@ -418,7 +418,10 @@ joyEl.addEventListener('pointermove', (e) => { if (joy.id === e.pointerId) joyMo
 const joyEnd = (e) => { if (joy.id === e.pointerId) { joy.id = null; joy.dx = joy.dy = 0; knob.style.transform = ''; } };
 joyEl.addEventListener('pointerup', joyEnd); joyEl.addEventListener('pointercancel', joyEnd);
 function joyMove(e) { const r = joyEl.getBoundingClientRect(); let dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2), dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2); const m = Math.hypot(dx, dy); if (m > 1) { dx /= m; dy /= m; } joy.dx = dx; joy.dy = dy; knob.style.transform = `translate(${dx * 36}px, ${dy * 36}px)`; if (S.auto) stopAuto(); }
-$('btn-e').addEventListener('pointerdown', (e) => { e.preventDefault(); doInteract(); });
+let fireHold = null;
+$('btn-fire').addEventListener('pointerdown', (e) => { e.preventDefault(); if (S.crawl) { endCrawl(); return; } if (focus && $('modal').hidden && (['story', 'mini', 'pc', 'portal'].includes(focus.kind) || (focus.kind === 'rack' && focus.rack?.idle)) && focus.pos.distanceTo(new THREE.Vector3(P.x, EYE, P.z)) < 2.6) { blip(); focus.action(); return; } fire(); clearInterval(fireHold); fireHold = setInterval(fire, 140); });
+for (const ev of ['pointerup', 'pointercancel', 'pointerleave']) $('btn-fire').addEventListener(ev, () => { clearInterval(fireHold); fireHold = null; });
+$('btn-jump').addEventListener('pointerdown', (e) => { e.preventDefault(); if (S.crawl) { endCrawl(); return; } jump(); });
 
 function jump() { if (P.y <= 0.001 && P.vy === 0) { P.vy = 5.6; tone(260, 0, 0.06, 'triangle', 0.02); } }
 function roomAt(z) { return rooms.find((r) => z <= r.z0 && z > r.z1) || rooms[rooms.length - 1]; }
@@ -471,7 +474,7 @@ function findFocus() {
   focus = best;
   // 라벨: 거리 비례 크기(화면에서 일정하게 보이도록), 멀면 숨김, 포커스는 강조
   for (const it of interact) { if (!it.lab || !it.obj.visible) continue; const d = it.pos.distanceTo(ppos); it.lab.visible = d < 12; if (it.rack) { it.rack.lab.visible = it.rack.idle && d < 12; it.rack.labOk.visible = !it.rack.idle && S.racks.has(it.id) && d < 12; it.lab = it.rack.idle ? it.rack.lab : it.rack.labOk; if (!it.lab.visible) continue; } if (!it.lab.visible) continue; const k = Math.min(1.9, Math.max(0.45, d / 4.2)) * (it === focus ? 1.25 : 1); it.lab.scale.copy(it.lab.userData.base).multiplyScalar(k); it.lab.material.opacity = Math.min(1, (12 - d) / 3); }
-  const pr = $('prompt'); if (focus && $('modal').hidden) { pr.hidden = false; $('prompt-text').textContent = focus.label(); $('btn-e').classList.add('hot'); } else { pr.hidden = true; $('btn-e').classList.remove('hot'); }
+  const pr = $('prompt'); if (focus && $('modal').hidden) { pr.hidden = false; $('prompt-text').textContent = focus.label(); $('btn-fire').classList.add('hot'); } else { pr.hidden = true; $('btn-fire').classList.remove('hot'); }
   // 근접 자동 획득 (칩/업적)
   for (const it of interact) if (it.near && it.obj.visible && it.pos.distanceTo(ppos) < it.near + 0.3) it.action();
 }
@@ -609,12 +612,12 @@ function showCrawl(r) {
   el.innerHTML = `<div class="c-ep">STAGE ${r.i + 1} · ${esc(st.year)}</div><h1>${esc(L(st.title))}</h1>` + lines.map((l) => `<p>${esc(l)}</p>`).join('');
   clearTimeout(crawlHide); c.hidden = false; c.classList.remove('show', 'done'); $('crawl-skip').textContent = T().skip;
   // 한 문장 = 한 줄: 가장 긴 줄이 폭에 맞도록 글자 크기 조정
-  el.style.fontSize = ''; el.style.transition = 'none'; el.style.transform = 'translate(-50%, 60vh) rotateX(14deg)';
-  const maxW = el.clientWidth; let widest = 0; el.querySelectorAll('p, h1').forEach((n) => { widest = Math.max(widest, n.scrollWidth); });
-  if (widest > maxW) el.style.fontSize = Math.max(0.55, maxW / widest * 0.98) + 'em';
+  const rot = isSmall ? 7 : 14; el.style.fontSize = ''; el.style.transition = 'none'; el.style.transform = `translate(-50%, 60vh) rotateX(${rot}deg)`;
+  const maxW = el.clientWidth; let widest = 0; el.querySelectorAll('p').forEach((n) => { widest = Math.max(widest, n.scrollWidth); });
+  const fitW = maxW * (isSmall ? 0.9 : 0.96); const curPx = parseFloat(getComputedStyle(el).fontSize) || 16; if (widest > fitW) el.style.fontSize = Math.max(6, curPx * fitW / widest) + 'px';
   void el.offsetWidth;
   const dur = Math.min(7, 1.4 + lines.length * 0.7);
-  setTimeout(() => { c.classList.add('show'); el.style.transition = `transform ${dur}s cubic-bezier(.2,.7,.3,1)`; el.style.transform = 'translate(-50%, -50%) rotateX(14deg)'; }, 20);
+  setTimeout(() => { c.classList.add('show'); el.style.transition = `transform ${dur}s cubic-bezier(.2,.7,.3,1)`; el.style.transform = `translate(-50%, -50%) rotateX(${rot}deg)`; }, 20);
   clearTimeout(crawlTimer); crawlTimer = setTimeout(() => { c.classList.add('done'); if (S.auto) crawlTimer = setTimeout(endCrawl, 2500); }, dur * 1000 + 50);
 }
 function endCrawl() {

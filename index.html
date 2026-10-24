@@ -10,7 +10,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%2314213d'/><rect x='4' y='2' width='8' height='4' fill='%232b2b2b'/><rect x='4' y='6' width='8' height='4' fill='%23f2c9a0'/><rect x='3' y='10' width='10' height='5' fill='%232456c4'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;700;900&display=swap">
-<link rel="stylesheet" href="walk.css?v=20261024212305">
+<link rel="stylesheet" href="walk.css?v=20261024213439?v=dev3">
 <script type="importmap">
 { "imports": {
   "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
@@ -65,7 +65,7 @@
 
 <!-- 조준점 / 상호작용 프롬프트 -->
 <div id="reticle"></div>
-<div id="prompt" hidden><kbd>E</kbd> <span id="prompt-text"></span></div>
+<div id="prompt" hidden><kbd class="pc">E</kbd><span class="mob">🔫</span> <span id="prompt-text"></span></div>
 <div id="objective"></div>
 
 <!-- 시작 화면 -->
@@ -97,7 +97,7 @@
 <!-- 모바일 컨트롤 -->
 <div id="touch" hidden>
   <div id="joy"><div id="joy-knob"></div></div>
-  <button id="btn-e">E</button>
+  <div class="tbtns"><button id="btn-jump" aria-label="jump">⤒<small>점프</small></button><button id="btn-fire" aria-label="fire">🔫<small>발사</small></button></div>
 </div>
 
 <!-- 로딩 -->
@@ -121,7 +121,7 @@
   </div>
 </noscript>
 
-<script src="data.js?v=20261024212305"></script>
-<script type="module" src="walk.js?v=20261024212305"></script>
+<script src="data.js?v=20261024213439"></script>
+<script type="module" src="walk.js?v=20261024213439?v=dev3"></script>
 </body>
 </html>

@@ -54,8 +54,12 @@ body.playing #reticle { opacity: .9; }
 #touch[hidden] { display: none; }
 #joy { position: absolute; left: 22px; bottom: 90px; width: 130px; height: 130px; border-radius: 50%; background: rgba(255,255,255,.08); border: 2px solid rgba(255,255,255,.25); pointer-events: auto; touch-action: none; }
 #joy-knob { position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px; border-radius: 50%; background: rgba(255,255,255,.35); border: 2px solid #fff8; }
-#btn-e { position: absolute; right: 26px; bottom: 100px; width: 84px; height: 84px; border-radius: 50%; border: 3px solid rgba(127,231,255,.7); background: rgba(8,12,24,.7); color: var(--cyan); font-family: var(--mono); font-size: 28px; font-weight: 700; pointer-events: auto; touch-action: none; box-shadow: 0 0 20px rgba(127,231,255,.3); }
-#btn-e.hot { background: var(--cyan); color: var(--navy); }
+.tbtns { position: absolute; right: 22px; bottom: 90px; display: flex; flex-direction: column; gap: 14px; align-items: flex-end; pointer-events: auto; }
+.tbtns button { width: 82px; height: 82px; border-radius: 50%; border: 3px solid rgba(255,255,255,.35); background: rgba(8,12,24,.7); color: #fff; font-size: 26px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; touch-action: none; user-select: none; -webkit-user-select: none; }
+.tbtns button small { font: 700 10px var(--mono); color: #aab4c8; letter-spacing: 1px; }
+#btn-fire { width: 96px; height: 96px; border-color: rgba(127,231,255,.7); box-shadow: 0 0 20px rgba(127,231,255,.3); }
+#btn-fire.hot { background: var(--cyan); color: var(--navy); } #btn-fire.hot small { color: var(--navy); }
+#prompt .mob { display: none; } @media (pointer: coarse) { #prompt .pc { display: none; } #prompt .mob { display: inline; } }
 
 /* ---------- 시작 / 로딩 ---------- */
 .overlay { position: fixed; inset: 0; z-index: 10; display: flex; align-items: center; justify-content: center; background: rgba(5,8,20,.72); padding: 16px; backdrop-filter: blur(3px); }
@@ -128,7 +132,7 @@ body.playing #reticle { opacity: .9; }
   .title-card { padding: 20px 18px; } .t-name { font-size: 30px; } .t-controls { display: none; }
   #objective { top: 64px; font-size: 11px; }
   .card { padding: 20px 18px; }
-  #joy { bottom: 120px; } #btn-e { bottom: 130px; }
+  #joy { bottom: 120px; } .tbtns { bottom: 118px; }
 }
 
 /* ---------- 입장 자막 (크롤) ---------- */
@@ -138,14 +142,14 @@ body.playing #reticle { opacity: .9; }
 .crawl-persp { position: absolute; left: 0; right: 0; top: 0; bottom: 0; perspective: 700px; perspective-origin: 50% 30%; overflow: hidden; }
 .crawl-text { position: absolute; left: 50%; top: 50%; width: min(900px, 92vw); transform-origin: 50% 50%; transform: translate(-50%, 60vh) rotateX(14deg); color: #f6c400; text-align: center; font-family: var(--sans); text-shadow: 0 2px 18px rgba(0,0,0,.8); white-space: nowrap; font-size: 1em; }
 .crawl-text .c-ep { font-family: var(--mono); font-size: 18px; letter-spacing: 6px; color: #7fe7ff; margin-bottom: 10px; }
-.crawl-text h1 { font-size: 2.9em; font-weight: 900; margin: 0 0 .6em; line-height: 1.15; color: #fff; }
+.crawl-text h1 { font-size: 2.9em; font-weight: 900; margin: 0 0 .6em; line-height: 1.15; color: #fff; white-space: normal; }
 .crawl-text p { font-size: 1.75em; line-height: 1.5; margin: 0 0 .55em; font-weight: 700; color: #ffd84d; }
 .crawl-text .c-ep { font-size: 1.05em; }
 @keyframes crawl { from { transform: translateX(-50%) rotateX(24deg) translateY(0); } to { transform: translateX(-50%) rotateX(24deg) translateY(-160%); } }
 #crawl-skip { position: fixed; left: 50%; transform: translateX(-50%); bottom: 96px; opacity: 0; transition: opacity .3s; background: rgba(8,12,24,.75); color: #fff; border: 1px solid rgba(255,255,255,.3); padding: 10px 16px; border-radius: 999px; font-size: 13px; z-index: 8; }
 #crawl-skip:hover { background: var(--accent); }
 #crawl.done #crawl-skip { opacity: 1; animation: pulse 1.4s ease-in-out infinite; }
-@media (max-width: 720px) { .crawl-text { font-size: .62em; } #crawl-skip { bottom: 230px; } }
+@media (max-width: 720px) { .crawl-text { font-size: .6em; width: 96vw; } .crawl-text h1 { font-size: 2.3em; } #crawl-skip { bottom: 230px; } }
 
 /* ---------- 미니게임 창 ---------- */
 .mini { margin-top: 10px; }
