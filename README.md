@@ -2,9 +2,10 @@
 
 남보석 (Bosuk Nam) — Backend Developer · Java / Spring
 
-횡스크롤 픽셀 게임 형식의 포트폴리오 사이트입니다. 의존성 없이 순수 HTML/CSS/JS(Canvas)로 만들었습니다.
+서버룸 속 개발자 책상(Three.js 3D)에서 시작해, CRT 모니터를 누르면 횡스크롤 픽셀 게임 포트폴리오로 들어가는 사이트입니다.
 
-- `index.html` / `style.css` / `game.js` — 게임 엔진과 UI
+- `index.html` / `room.css` / `room.js` — 3D 서버룸 입구 (Three.js 0.169, CDN importmap). 책상 위 물건이 핫스팟(경력·스킬·연락처·PDF)
+- `game.html` / `style.css` / `game.js` — 픽셀 게임 엔진과 UI (CRT 안 iframe, LO-FI 버튼으로 직접 열기)
 - `data.js` — 이력 콘텐츠 (국문/영문)
 - `portfolio_ko.pdf` / `portfolio_en.pdf` — PDF 포트폴리오
 

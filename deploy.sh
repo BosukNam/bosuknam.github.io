@@ -3,7 +3,8 @@
 set -e
 cd "$(dirname "$0")"
 V=$(date +%Y%m%d%H%M%S)
-sed -i '' -E "s/(style\.css|data\.js|game\.js)(\?v=[0-9]+)?/\1?v=$V/g" index.html
+sed -i '' -E "s/(style\.css|data\.js|game\.js)(\?v=[0-9]+)?/\1?v=$V/g" game.html
+sed -i '' -E "s/(room\.css|data\.js|room\.js)(\?v=[0-9]+)?/\1?v=$V/g" index.html
 git add -A
 git -c user.name="Bosuk Nam" -c user.email="popman1105@gmail.com" commit -q -m "${1:-update}" || true
 git push -q
