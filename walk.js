@@ -470,7 +470,7 @@ function findFocus() {
   }
   focus = best;
   // 라벨: 거리 비례 크기(화면에서 일정하게 보이도록), 멀면 숨김, 포커스는 강조
-  for (const it of interact) { if (!it.lab || !it.obj.visible) continue; const d = it.pos.distanceTo(ppos); it.lab.visible = d < 12; if (!it.lab.visible) continue; const k = Math.min(1.9, Math.max(0.45, d / 4.2)) * (it === focus ? 1.25 : 1); it.lab.scale.copy(it.lab.userData.base).multiplyScalar(k); it.lab.material.opacity = Math.min(1, (12 - d) / 3); }
+  for (const it of interact) { if (!it.lab || !it.obj.visible) continue; const d = it.pos.distanceTo(ppos); it.lab.visible = d < 12; if (it.rack) { it.rack.lab.visible = it.rack.idle && d < 12; it.rack.labOk.visible = !it.rack.idle && S.racks.has(it.id) && d < 12; it.lab = it.rack.idle ? it.rack.lab : it.rack.labOk; if (!it.lab.visible) continue; } if (!it.lab.visible) continue; const k = Math.min(1.9, Math.max(0.45, d / 4.2)) * (it === focus ? 1.25 : 1); it.lab.scale.copy(it.lab.userData.base).multiplyScalar(k); it.lab.material.opacity = Math.min(1, (12 - d) / 3); }
   const pr = $('prompt'); if (focus && $('modal').hidden) { pr.hidden = false; $('prompt-text').textContent = focus.label(); $('btn-e').classList.add('hot'); } else { pr.hidden = true; $('btn-e').classList.remove('hot'); }
   // 근접 자동 획득 (칩/업적)
   for (const it of interact) if (it.near && it.obj.visible && it.pos.distanceTo(ppos) < it.near + 0.3) it.action();
@@ -531,13 +531,36 @@ function miniSimon(r, mg) {
   $('simon-go').onclick = () => { seq = []; next(); };
   pads.forEach((p) => { p.onclick = () => { if (showing || !seq.length) return; const i = +p.dataset.i; flash(i, 160); if (i !== seq[idx]) { miniMsg(K() ? '틀렸어요 — 시작을 눌러 다시' : 'Wrong — press Start'); seq = []; tone(150, 0, 0.2, 'sawtooth', 0.05); return; } idx++; if (idx === seq.length) { if (seq.length >= 5) miniWin(r, K() ? '길을 다 외웠습니다 🎉' : 'Path memorized 🎉'); else setTimeout(next, 700); } }; });
 }
-// 3x3 슬라이드 퍼즐
+// 3x3 슬라이드 퍼즐: 도로·강이 이어지도록 도시계획도 조각을 맞춘다
+let ROAD_TILES = null;
+function roadTiles() {
+  if (ROAD_TILES) return ROAD_TILES; const S0 = 330, c = document.createElement('canvas'); c.width = c.height = S0; const g = c.getContext('2d');
+  g.fillStyle = '#9ccc7a'; g.fillRect(0, 0, S0, S0);
+  for (let i = 0; i < 400; i++) { g.fillStyle = `rgba(60,120,50,${Math.random() * 0.25})`; g.fillRect(Math.random() * S0, Math.random() * S0, 4, 4); }
+  // 강 (왼쪽 위 → 오른쪽 아래)
+  g.strokeStyle = '#5aa9e6'; g.lineWidth = 26; g.lineCap = 'round'; g.beginPath(); g.moveTo(0, 60); g.bezierCurveTo(120, 40, 140, 200, 220, 230); g.bezierCurveTo(280, 255, 300, 300, 330, 330); g.stroke();
+  g.strokeStyle = '#8fc7f3'; g.lineWidth = 8; g.beginPath(); g.moveTo(0, 60); g.bezierCurveTo(120, 40, 140, 200, 220, 230); g.bezierCurveTo(280, 255, 300, 300, 330, 330); g.stroke();
+  // 도로: 십자 + 회전교차로
+  const road = (fn) => { g.strokeStyle = '#444a52'; g.lineWidth = 34; g.lineCap = 'butt'; g.beginPath(); fn(); g.stroke(); g.strokeStyle = '#f6c400'; g.lineWidth = 3; g.setLineDash([14, 12]); g.beginPath(); fn(); g.stroke(); g.setLineDash([]); };
+  road(() => { g.moveTo(0, 165); g.lineTo(330, 165); }); road(() => { g.moveTo(165, 0); g.lineTo(165, 330); });
+  road(() => { g.moveTo(255, 0); g.quadraticCurveTo(300, 70, 330, 90); });
+  g.fillStyle = '#444a52'; g.beginPath(); g.arc(165, 165, 40, 0, 7); g.fill(); g.fillStyle = '#9ccc7a'; g.beginPath(); g.arc(165, 165, 18, 0, 7); g.fill(); g.strokeStyle = '#f6c400'; g.lineWidth = 3; g.setLineDash([10, 10]); g.beginPath(); g.arc(165, 165, 30, 0, 7); g.stroke(); g.setLineDash([]);
+  // 건물 블록 (각 칸이 서로 다르게 보이도록)
+  const blk = (x, y, w, h, col) => { g.fillStyle = col; g.fillRect(x, y, w, h); g.fillStyle = 'rgba(255,255,255,.35)'; for (let yy = y + 6; yy < y + h - 4; yy += 12) for (let xx = x + 6; xx < x + w - 4; xx += 12) g.fillRect(xx, yy, 6, 6); };
+  blk(30, 200, 60, 50, '#c86b5a'); blk(30, 262, 100, 40, '#8a94a6'); blk(200, 30, 36, 60, '#d9b36a'); blk(240, 200, 60, 40, '#6b7fd6'); blk(290, 120, 30, 30, '#c86b5a'); blk(200, 270, 40, 40, '#8a94a6');
+  g.fillStyle = '#2f8f4e'; for (const [x, y] of [[60, 60], [100, 110], [260, 290], [40, 120]]) { g.beginPath(); g.arc(x, y, 12, 0, 7); g.fill(); }
+  g.fillStyle = '#1c1f26'; g.font = 'bold 13px "Noto Sans KR", sans-serif'; g.fillText('파주 운정 3지구', 190, 322);
+  ROAD_TILES = { full: c.toDataURL(), tiles: [] };
+  for (let k = 0; k < 9; k++) { const t = document.createElement('canvas'); t.width = t.height = 110; t.getContext('2d').drawImage(c, (k % 3) * 110, Math.floor(k / 3) * 110, 110, 110, 0, 0, 110, 110); ROAD_TILES.tiles.push(t.toDataURL()); }
+  return ROAD_TILES;
+}
 function miniSlide(r, mg) {
+  const RT = roadTiles();
   let t = [1, 2, 3, 4, 5, 6, 7, 8, 0]; const nb = (i) => [i - 3, i + 3, i % 3 ? i - 1 : -1, i % 3 !== 2 ? i + 1 : -1].filter((k) => k >= 0 && k < 9);
-  for (let k = 0; k < 60; k++) { const e = t.indexOf(0); const c = nb(e); const m = c[Math.floor(Math.random() * c.length)]; [t[e], t[m]] = [t[m], t[e]]; }
-  miniShell(r, mg, `<div class="grid3 slide" id="slide"></div>`, K() ? '타일을 밀어 1~8 순서로 맞추세요' : 'Slide the tiles into 1–8 order');
+  for (let k = 0; k < 80; k++) { const e = t.indexOf(0); const c = nb(e); const m = c[Math.floor(Math.random() * c.length)]; [t[e], t[m]] = [t[m], t[e]]; }
+  miniShell(r, mg, `<div class="slidewrap"><div class="grid3 slide" id="slide"></div><div class="slide-ref"><img src="${RT.full}" alt=""><span>${K() ? '완성 모습' : 'target'}</span></div></div>`, K() ? '조각을 밀어 도로와 강이 이어지게 맞추세요' : 'Slide the pieces so the roads and river connect');
   const box = $('slide'); let moves = 0;
-  const draw = () => { box.innerHTML = t.map((v, i) => `<button data-i="${i}" class="${v ? 'tile t' + v : 'hole'}">${v || ''}</button>`).join(''); box.querySelectorAll('button').forEach((bt) => { bt.onclick = () => { const i = +bt.dataset.i; const e = t.indexOf(0); if (!nb(e).includes(i)) return; [t[e], t[i]] = [t[i], t[e]]; moves++; blip(); draw(); if (t.join() === '1,2,3,4,5,6,7,8,0') miniWin(r, K() ? `도시계획도 완성! ${moves}수 🎉` : `Plan complete in ${moves} moves 🎉`); }; }); };
+  const draw = () => { box.innerHTML = t.map((v, i) => `<button data-i="${i}" class="${v ? 'tile' : 'hole'}" ${v ? `style="background-image:url(${RT.tiles[v - 1]})"` : ''}></button>`).join(''); box.querySelectorAll('button').forEach((bt) => { bt.onclick = () => { const i = +bt.dataset.i; const e = t.indexOf(0); if (!nb(e).includes(i)) return; [t[e], t[i]] = [t[i], t[e]]; moves++; blip(); draw(); if (t.join() === '1,2,3,4,5,6,7,8,0') { box.querySelector('.hole').style.backgroundImage = `url(${RT.tiles[8]})`; box.querySelector('.hole').className = 'tile'; miniWin(r, K() ? `도로가 이어졌습니다! ${moves}수 🎉` : `Roads connected in ${moves} moves 🎉`); } }; }); };
   draw();
 }
 // 반응속도
@@ -557,15 +580,18 @@ function miniLogs(r, mg) {
   const tm = setInterval(() => { if (!document.getElementById('logs') || over) return clearInterval(tm); t--; show_t(); if (t <= 0) { over = true; clearInterval(tm); miniMsg(K() ? '시간 초과 — 다시 열어 재도전' : 'Time up — reopen to retry'); } }, 1000); show_t();
   el.querySelectorAll('#logs div').forEach((d) => { d.onclick = () => { if (over || d.classList.contains('hit')) return; if (d.dataset.e === '1') { d.classList.add('hit'); left--; blip(); show_t(); if (left === 0) { over = true; clearInterval(tm); miniWin(r, K() ? `장애 원인 5건 모두 발견 🎉 (${t}초 남음)` : `All 5 errors found 🎉`); } } else { d.classList.add('miss'); t -= 2; show_t(); tone(150, 0, 0.15, 'sawtooth', 0.04); } }; });
 }
-// 유휴 서버 두더지
+// 유휴 서버 두더지: 10초, 8마리 잡으면 바로 종료
+const MOLE_SVG = `<svg viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="32" cy="40" rx="20" ry="22" fill="#8a5a36"/><ellipse cx="32" cy="46" rx="12" ry="12" fill="#c9a07a"/><circle cx="24" cy="34" r="3.2" fill="#1c1f26"/><circle cx="40" cy="34" r="3.2" fill="#1c1f26"/><ellipse cx="32" cy="42" rx="4" ry="2.6" fill="#1c1f26"/><path d="M26 48 q6 4 12 0" stroke="#1c1f26" stroke-width="2" fill="none"/><path d="M14 26 l6 6 M50 26 l-6 6" stroke="#8a5a36" stroke-width="4" stroke-linecap="round"/><text x="46" y="18" font-size="14" font-weight="700" fill="#7fe7ff">zZ</text></svg>`;
 function miniWhack(r, mg) {
-  const el = miniShell(r, mg, `<div class="grid4 whack" id="whack">${Array.from({ length: 12 }, (_, i) => `<button data-i="${i}"><span class="led"></span>SRV-${String(i + 1).padStart(2, '0')}</button>`).join('')}</div><div class="mrow"><button class="pbtn primary" id="whack-go">${K() ? '시작 (30초)' : 'Start (30s)'}</button><span id="whack-t" class="sub"></span></div>`, K() ? '💤 로 바뀌는 서버를 재빨리 클릭해 반납하세요 — 15대 이상이면 클리어' : 'Click servers the moment they go 💤 — 15+ to clear');
-  const cells = [...el.querySelectorAll('#whack button')]; let score = 0, t = 30, run = false, timers = [];
+  const GOAL = 8, TIME = 10;
+  const el = miniShell(r, mg, `<div class="grid4 whack" id="whack">${Array.from({ length: 12 }, (_, i) => `<button data-i="${i}"><span class="hole-bg"></span><span class="mole">${MOLE_SVG}</span><span class="quack">${K() ? '꽥!' : 'EEK!'}</span><span class="srv">SRV-${String(i + 1).padStart(2, '0')}</span></button>`).join('')}</div><div class="mrow"><button class="pbtn primary" id="whack-go">${K() ? `시작 (${TIME}초 · 목표 ${GOAL}마리)` : `Start (${TIME}s · goal ${GOAL})`}</button><span id="whack-t" class="sub"></span></div>`, K() ? '구멍에서 올라오는 유휴 서버 두더지를 재빨리 클릭! 8마리를 잡으면 바로 클리어' : 'Whack the idle-server moles as they pop up — catch 8 to clear');
+  const cells = [...el.querySelectorAll('#whack button')]; let score = 0, t = TIME, run = false, timers = [], tick = null;
   const alive = () => !!document.getElementById('whack');
-  const spawn = () => { if (!run || !alive()) return; const free = cells.filter((c) => !c.classList.contains('idle') && !c.classList.contains('ok')); if (free.length) { const c = free[Math.floor(Math.random() * free.length)]; c.classList.add('idle'); c.querySelector('.led').textContent = '💤'; timers.push(setTimeout(() => { c.classList.remove('idle'); c.querySelector('.led').textContent = ''; }, 900 + Math.random() * 600)); } timers.push(setTimeout(spawn, 450 + Math.random() * 350)); };
-  const hud = () => { const e = $('whack-t'); if (e) e.textContent = `⏱ ${t}s · 💤 ${score}`; };
-  $('whack-go').onclick = () => { if (run) return; run = true; score = 0; t = 30; hud(); cells.forEach((c) => { c.classList.remove('idle', 'ok'); c.querySelector('.led').textContent = ''; }); spawn(); const tick = setInterval(() => { if (!alive()) { clearInterval(tick); run = false; timers.forEach(clearTimeout); return; } t--; hud(); if (t <= 0) { clearInterval(tick); run = false; timers.forEach(clearTimeout); cells.forEach((c) => { c.classList.remove('idle'); c.querySelector('.led').textContent = ''; }); S.servers += score; updateHud(); save(); if (score >= 15) miniWin(r, K() ? `${score}대 반납 — 비용 절감 성공 🎉` : `${score} reclaimed 🎉`); else miniMsg(K() ? `${score}대 — 15대 이상이면 클리어, 다시 시작!` : `${score} — need 15+, try again!`); } }, 1000); };
-  cells.forEach((c) => { c.onclick = () => { if (!run || !c.classList.contains('idle')) return; c.classList.remove('idle'); c.classList.add('ok'); c.querySelector('.led').textContent = '✅'; score++; hud(); tone(880, 0, 0.05, 'square', 0.03); setTimeout(() => { c.classList.remove('ok'); c.querySelector('.led').textContent = ''; }, 500); }; });
+  const hud = () => { const e = $('whack-t'); if (e) e.textContent = `⏱ ${t}s · 💤 ${score}/${GOAL}`; };
+  const stop = () => { run = false; timers.forEach(clearTimeout); clearInterval(tick); cells.forEach((c) => c.classList.remove('up')); };
+  const spawn = () => { if (!run || !alive()) return; const free = cells.filter((c) => !c.classList.contains('up') && !c.classList.contains('hit')); if (free.length) { const c = free[Math.floor(Math.random() * free.length)]; c.classList.add('up'); timers.push(setTimeout(() => c.classList.remove('up'), 800 + Math.random() * 500)); } timers.push(setTimeout(spawn, 380 + Math.random() * 300)); };
+  $('whack-go').onclick = () => { if (run) return; run = true; score = 0; t = TIME; hud(); cells.forEach((c) => c.classList.remove('up', 'hit')); spawn(); tick = setInterval(() => { if (!alive()) return stop(); t--; hud(); if (t <= 0) { stop(); S.servers += score; updateHud(); save(); miniMsg(K() ? `${score}마리 — ${GOAL}마리를 채우면 클리어, 다시 시작!` : `${score} — need ${GOAL}, try again!`); } }, 1000); };
+  cells.forEach((c) => { c.onclick = () => { if (!run || !c.classList.contains('up')) return; c.classList.remove('up'); c.classList.add('hit'); score++; hud(); tone(520, 0, 0.05, 'square', 0.04); tone(220, 0.04, 0.12, 'sawtooth', 0.04); setTimeout(() => c.classList.remove('hit'), 450); if (score >= GOAL) { stop(); S.servers += score; updateHud(); save(); miniWin(r, K() ? `${GOAL}마리 모두 반납 — ${TIME - t}초 만에 🎉` : `All ${GOAL} reclaimed in ${TIME - t}s 🎉`); } }; });
 }
 function needsText(r) { const n = []; const c = r.chips.filter((c) => !S.chips.has(c.id)).length; if (c) n.push(T().needChips(c)); return n.join(' + '); }
 function checkRoom(r) { if (!r.chips.length || S.cleared.has(r.st.id)) return; if (r.chips.every((c) => S.chips.has(c.id))) { S.cleared.add(r.st.id); bigToast(T().clear(r.st.year)); chime(true); weaponUp(lang === 'ko' ? '방의 스킬 칩을 모두 모음' : 'all chips in the room'); save(); } }
