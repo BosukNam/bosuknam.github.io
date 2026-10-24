@@ -19,9 +19,9 @@ const UI = {
     sub: 'Backend Developer · Java / Spring · Kakao 인프라개발팀 2022 –', ver: '버전', verWalk: '3D 워크 (1인칭)', verPixel: '2D 픽셀 (이전 버전)',
     nav: { about: '소개', career: '경력', skills: '스킬', contact: '연락처' }, stage: 'STAGE', auto: '🚶 자동 투어', autoOn: '⏸ 투어 중', lang: 'EN', langLink: 'English',
     start: '▶ 시작', cont: '이어하기', tour: '🚶 자동 투어', pdf: '📄 PDF', pixel: '🕹 2D 픽셀 버전(이전 버전)으로 보기', ok: '확인 (Esc)',
-    desc: '연도별로 이어진 10개의 방을 직접 걸어서 지나갑니다. 방마다 <b>카드</b>를 읽고 떠 있는 <b>스킬 칩</b>을 모으면 다음 방 문이 열립니다. 클릭하면 <b>커밋을 발사</b>해서 멀리 있는 칩을 맞히거나 날아다니는 <b>🐛 버그</b>를 잡을 수 있어요.',
+    desc: '연도별로 이어진 10개의 방을 직접 걸어서 지나갑니다. 방에 들어가면 그 시절 이야기가 <b>자막</b>으로 흐르고, 떠 있는 <b>스킬 칩</b>을 모으면 다음 방 문이 열립니다. 클릭하면 <b>커밋을 발사</b>해서 멀리 있는 칩을 맞히거나 날아다니는 <b>🐛 버그</b>를 잡을 수 있어요.',
     controls: '<span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 이동</span><span>마우스 시점</span><span><kbd>E</kbd> 상호작용</span><span>클릭 발사</span><span><kbd>Esc</kbd> 마우스 해제</span>',
-    card: (t) => `카드 읽기 — ${t}`, chip: (n) => `스킬 획득 — ${n}`, ach: (n) => `업적 — ${n}`, door: '다음 방으로', doorLocked: (n) => `잠김 — ${n}`, rack: '유휴 서버 반납 (E)', rackDone: '반납 완료', portal: '다음 스테이지로 (연락처 · PDF)', pc: '486 PC — 명령어 입력',
+    skip: '건너뛰기 (Space)', card: (t) => `카드 읽기 — ${t}`, chip: (n) => `스킬 획득 — ${n}`, ach: (n) => `업적 — ${n}`, door: '다음 방으로', doorLocked: (n) => `잠김 — ${n}`, rack: '유휴 서버 반납 (E)', rackDone: '반납 완료', portal: '다음 스테이지로 (연락처 · PDF)', pc: '486 PC — 명령어 입력',
     needCard: '카드 읽기', needChips: (n) => `스킬 칩 ${n}개`, objective: (s, needs) => needs.length ? `목표: ${needs.join(' + ')} → 문이 열립니다` : `문이 열렸습니다 → ${s}`,
     clear: (y) => `STAGE CLEAR · ${y}`, doorOpen: '🔓 문이 열렸습니다', gotChip: (n) => `⚡ ${n} 획득`, gotAch: (n) => `🏆 ${n}`, reclaimed: (n) => `💤 유휴 서버 반납 · 누적 ${n}대`,
     bug: (n, m) => `🐛 버그 수정! ${n} / ${m}`, clickToPlay: '화면을 클릭하면 마우스로 둘러볼 수 있어요 · 클릭 = 발사', tourOff: '자동 투어 해제', tourOn: '자동 투어 시작 — 아무 키나 누르면 멈춥니다', reset: '처음부터 다시 시작할까요? (진행 상황 삭제)',
@@ -32,9 +32,9 @@ const UI = {
     sub: 'Backend Developer · Java / Spring · Kakao Infra Dev Team 2022 –', ver: 'Version', verWalk: '3D walk (first person)', verPixel: '2D pixel (previous)',
     nav: { about: 'ABOUT', career: 'CAREER', skills: 'SKILLS', contact: 'CONTACT' }, stage: 'STAGE', auto: '🚶 Auto tour', autoOn: '⏸ Touring', lang: '한국어', langLink: '한국어',
     start: '▶ Start', cont: 'Continue', tour: '🚶 Auto tour', pdf: '📄 PDF', pixel: '🕹 Open the 2D pixel version (previous)', ok: 'OK (Esc)',
-    desc: 'Walk through 10 rooms, one per era. Read the <b>card</b> and collect the floating <b>skill chips</b> to unlock the next door. Click to <b>fire a commit</b> at far chips or at the flying <b>🐛 bugs</b>.',
+    desc: 'Walk through 10 rooms, one per era. Each room plays its story as a <b>crawl</b>; collect the floating <b>skill chips</b> to unlock the next door. Click to <b>fire a commit</b> at far chips or at the flying <b>🐛 bugs</b>.',
     controls: '<span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> move</span><span>mouse look</span><span><kbd>E</kbd> interact</span><span>click = fire</span><span><kbd>Esc</kbd> release mouse</span>',
-    card: (t) => `Read card — ${t}`, chip: (n) => `Collect skill — ${n}`, ach: (n) => `Achievement — ${n}`, door: 'Next room', doorLocked: (n) => `Locked — ${n}`, rack: 'Reclaim idle server (E)', rackDone: 'Reclaimed', portal: 'Next stage (contact · PDF)', pc: '486 PC — type a command',
+    skip: 'Skip (Space)', card: (t) => `Read card — ${t}`, chip: (n) => `Collect skill — ${n}`, ach: (n) => `Achievement — ${n}`, door: 'Next room', doorLocked: (n) => `Locked — ${n}`, rack: 'Reclaim idle server (E)', rackDone: 'Reclaimed', portal: 'Next stage (contact · PDF)', pc: '486 PC — type a command',
     needCard: 'read the card', needChips: (n) => `${n} skill chip${n > 1 ? 's' : ''}`, objective: (s, needs) => needs.length ? `Goal: ${needs.join(' + ')} → door opens` : `Door open → ${s}`,
     clear: (y) => `STAGE CLEAR · ${y}`, doorOpen: '🔓 Door unlocked', gotChip: (n) => `⚡ ${n}`, gotAch: (n) => `🏆 ${n}`, reclaimed: (n) => `💤 Idle server reclaimed · total ${n}`,
     bug: (n, m) => `🐛 Bug fixed! ${n} / ${m}`, clickToPlay: 'Click the screen to look around · click = fire', tourOff: 'Auto tour off', tourOn: 'Auto tour — press any key to stop', reset: 'Restart from the beginning? (progress is deleted)',
@@ -93,7 +93,7 @@ function makeLabel(text, { color = '#7fe7ff', bg = 'rgba(8,12,24,.85)', size = 1
 }
 
 // ---------------------------------------------------------------- 월드 데이터
-const ROOM_W = 8, LEN = { default: 13, lgcns: 16, kakao: 19, goal: 11, pc: 12 };
+const H_ROOM = 4.2, ROOM_W = 9, LEN = { default: 13, lgcns: 16, kakao: 19, goal: 11, pc: 12 };
 const EXTRA_COINS = { tmax: ['mysql'] };
 const THEMES = {
   seoul:    { floor: 0x3b2f3a, wall: 0x5a3f55, ceil: 0x2a1e2a, light: 0xffb3a7, i: 2.2, sky: ['#2b1b3d', '#ff8c6b', '#ffd59e'] },
@@ -140,7 +140,7 @@ function buildWorld() {
 
 function buildRoom(r) {
   const th = THEMES[r.st.id] || THEMES.kunhwa; const zc = (r.z0 + r.z1) / 2; const g = new THREE.Group(); world.add(g); r.g = g;
-  const H = 3.2, W = r.w;
+  const H = 4.2, W = r.w;
   // 바닥 / 천장 / 벽
   { const ft = floorTex(FLOOR_KIND[r.st.id] || 'tile', th.floor).clone(); ft.needsUpdate = true; ft.repeat.set(W / 2, r.len / 2); add(g, new THREE.PlaneGeometry(W, r.len), mat(0xffffff, { map: ft, roughness: 0.8 }), 0, 0, zc, [-Math.PI / 2, 0, 0]); }
   // 걸레받이 + 문틀 쪽 기둥
@@ -152,26 +152,14 @@ function buildRoom(r) {
   // 벽화(하늘) — 양쪽 벽 윗부분
   if (th.sky) { const sky = canvasTex(1024, 256, (c, w, h) => { const gr = c.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, th.sky[0]); gr.addColorStop(0.6, th.sky[1]); gr.addColorStop(1, th.sky[2]); c.fillStyle = gr; c.fillRect(0, 0, w, h); }); for (const sx of [-1, 1]) add(g, new THREE.PlaneGeometry(r.len - 0.4, 1.6), new THREE.MeshBasicMaterial({ map: sky }), sx * (W / 2 - 0.02), 2.2, zc, [0, -sx * Math.PI / 2, 0]); }
   // 입구 간판 (방 시작 부분, 플레이어가 -z 방향으로 보며 진입)
-  const sz = r.z0 - 3.4;
-  add(g, new THREE.PlaneGeometry(4.4, 1.1), new THREE.MeshBasicMaterial({ map: textTex([L(r.st.title)], { bg: '#14213d', fg: '#ffffff', font: 'bold 54px "Noto Sans KR", sans-serif', sub: `${r.st.year} · STAGE ${r.i + 1} / ${D.stages.length}` }), toneMapped: false }), 0, 2.3, sz, [-0.18, 0, 0]);
-  add(g, new THREE.BoxGeometry(4.6, 1.3, 0.08), mat(0x0b1020), 0, 2.3, sz - 0.05, [-0.18, 0, 0]);
-  for (const sx of [-2, 2]) add(g, new THREE.CylinderGeometry(0.02, 0.02, 0.45, 6), mat(0x888), sx, 3.0, sz - 0.12);
+  const sz = r.z0 - 4.5;
+  add(g, new THREE.PlaneGeometry(3.0, 0.75), new THREE.MeshBasicMaterial({ map: textTex([L(r.st.title)], { bg: '#14213d', fg: '#ffffff', font: 'bold 54px "Noto Sans KR", sans-serif', sub: `${r.st.year} · STAGE ${r.i + 1} / ${D.stages.length}` }), toneMapped: false }), 0, 3.35, sz, [-0.22, 0, 0]);
+  add(g, new THREE.BoxGeometry(3.15, 0.9, 0.06), mat(0x0b1020), 0, 3.35, sz - 0.04, [-0.22, 0, 0]);
+  for (const sx of [-1.4, 1.4]) add(g, new THREE.CylinderGeometry(0.015, 0.015, 0.5, 6), mat(0x888), sx, H - 0.25, sz - 0.1);
   // 천장 조명 바
   for (const sx of [-1.6, 1.6]) add(g, new THREE.BoxGeometry(0.14, 0.04, r.len - 3), new THREE.MeshStandardMaterial({ color: th.light, emissive: th.light, emissiveIntensity: 0.7 }), sx, H - 0.03, zc);
   // 테마 소품
   (PROPS[r.st.id] || PROPS.office)(g, r, th);
-  // 카드 단말 (방 중앙 약간 앞)
-  if (!r.st.goal) {
-    const pz = r.st.id === 'pc' ? r.z0 - 5.2 : zc + 1.0, px = r.st.id === 'pc' ? 0 : -1.6;
-    const pod = new THREE.Group(); pod.position.set(px, 0, pz); g.add(pod);
-    add(pod, new THREE.CylinderGeometry(0.22, 0.3, 1.0, 12), mat(0x1c2233, { metalness: 0.5, roughness: 0.4 }), 0, 0.5, 0);
-    const holo = add(pod, new THREE.PlaneGeometry(0.9, 0.6), new THREE.MeshBasicMaterial({ map: textTex(['📄 CARD'], { bg: '#06203a', fg: '#7fe7ff', font: 'bold 70px "IBM Plex Mono", monospace', w: 512, h: 340, sub: L(r.st.title).slice(0, 26) }), transparent: true, opacity: 0.92, toneMapped: false, side: THREE.DoubleSide }), 0, 1.45, 0);
-    spinners.push({ m: holo, bob: 1.45, spin: 0.6 });
-    const lab = makeLabel('📄 ' + T().card(L(r.st.title)).split(' — ')[0], { color: '#7fe7ff' }); lab.position.set(0, 2.15, 0); pod.add(lab);
-    interact.push({ kind: 'card', r, obj: pod, mesh: holo, lab, pos: new THREE.Vector3(px, 1.3, pz), rad: 2.6, label: () => '📄 ' + T().card(L(r.st.title)), action: () => openStageCard(r) });
-    colliders.push({ x: px, z: pz, rad: 0.45 });
-    r.needs.push('card');
-  }
   // 스킬 칩
   const coins = [...(r.st.coins || []), ...(EXTRA_COINS[r.st.id] || [])];
   coins.forEach((id, k) => {
@@ -272,10 +260,10 @@ const P = { x: 0, z: -0.9, yaw: 0, pitch: 0, vx: 0, vz: 0, bob: 0 };
 if (S.savePos) { P.x = S.savePos.x; P.z = S.savePos.z; P.yaw = S.savePos.yaw || 0; }
 const EYE = 1.6, SPEED = 3.0, RADIUS = 0.35;
 const keys = {};
-addEventListener('keydown', (e) => { if (e.repeat) return; keys[e.code] = true; if (S.auto && !['Escape', 'KeyE'].includes(e.code)) stopAuto(); if (e.code === 'KeyE' || e.code === 'Enter') { if (!$('modal').hidden) closeCard(); else if (S.playing) doInteract(); } if (e.code === 'Escape') { if (!$('modal').hidden) closeCard(); } if (e.code === 'KeyR' && e.shiftKey) resetAll(); });
+addEventListener('keydown', (e) => { if (e.repeat) return; keys[e.code] = true; if (S.crawl && ['Space', 'Enter', 'KeyE', 'Escape'].includes(e.code)) { e.preventDefault(); endCrawl(); return; } if (S.auto && !['Escape', 'KeyE'].includes(e.code)) stopAuto(); if (e.code === 'KeyE' || e.code === 'Enter') { if (!$('modal').hidden) closeCard(); else if (S.playing) doInteract(); } if (e.code === 'Escape') { if (!$('modal').hidden) closeCard(); } if (e.code === 'KeyR' && e.shiftKey) resetAll(); });
 addEventListener('keyup', (e) => { keys[e.code] = false; });
 const canvas = renderer.domElement;
-canvas.addEventListener('click', () => { if (!S.playing || !$('modal').hidden) return; if (S.locked) { fire(); return; } if (!isTouch && canvas.requestPointerLock) canvas.requestPointerLock().catch?.(() => {}); });
+canvas.addEventListener('click', () => { if (S.crawl) { endCrawl(); return; } if (!S.playing || !$('modal').hidden) return; if (S.locked) { fire(); return; } if (!isTouch && canvas.requestPointerLock) canvas.requestPointerLock().catch?.(() => {}); });
 document.addEventListener('pointerlockchange', () => { S.locked = document.pointerLockElement === canvas; document.body.classList.toggle('locked', S.locked); if (!S.locked && S.playing && $('modal').hidden && !S.auto) toast(T().clickToPlay); });
 document.addEventListener('mousemove', (e) => { if (S.locked) { P.yaw -= e.movementX * 0.0022; P.pitch = Math.max(-1.3, Math.min(1.3, P.pitch - e.movementY * 0.0022)); } });
 // 드래그 시점 (포인터락 없을 때 / 터치)
@@ -297,7 +285,8 @@ $('btn-e').addEventListener('pointerdown', (e) => { e.preventDefault(); doIntera
 function roomAt(z) { return rooms.find((r) => z <= r.z0 && z > r.z1) || rooms[rooms.length - 1]; }
 function movePlayer(dt) {
   let fx = 0, fz = 0;
-  if (!S.auto) {
+  if (S.crawl) { /* 자막 재생 중엔 멈춤 */ }
+  else if (!S.auto) {
     const f = (keys.KeyW || keys.ArrowUp ? 1 : 0) - (keys.KeyS || keys.ArrowDown ? 1 : 0), s = (keys.KeyD || keys.ArrowRight ? 1 : 0) - (keys.KeyA || keys.ArrowLeft ? 1 : 0);
     fx = s - joy.dx * -1; fz = f + joy.dy * -1; fx = s + joy.dx; fz = f - joy.dy;
     const m = Math.hypot(fx, fz); if (m > 1) { fx /= m; fz /= m; }
@@ -348,12 +337,41 @@ function doInteract() { if (focus && $('modal').hidden) { blip(); focus.action()
 function collectChip(it) { if (!it.obj.visible) return; it.obj.visible = false; S.chips.add(it.id); chime(); toast(T().gotChip(D.skills[it.id].n)); checkRoom(it.r); updateHud(); save(); }
 function collectAch(it) { if (!it.obj.visible) return; it.obj.visible = false; S.ach.add(it.id); chime(); toast(T().gotAch(L(D.achievements[it.id].n))); updateHud(); save(); }
 function reclaimRack(it, rack) { if (S.racks.has(it.id)) return; S.racks.add(it.id); S.servers += 1; rack.idle = false; rack.state.forEach((s) => s.col.setHex(0x39ff6a)); it.lab.visible = false; chime(); toast(T().reclaimed(S.servers)); $('hud-servers-box').hidden = false; updateHud(); save(); }
-function needsText(r) { const n = []; if (!S.cardRead.has(r.st.id)) n.push(T().needCard); const c = r.chips.filter((c) => !S.chips.has(c.id)).length; if (c) n.push(T().needChips(c)); return n.join(' + '); }
-function checkRoom(r) { if (!r.door || r.door.open) return; if (S.cardRead.has(r.st.id) && r.chips.every((c) => S.chips.has(c.id))) openDoor(r, true); }
+function needsText(r) { const n = []; const c = r.chips.filter((c) => !S.chips.has(c.id)).length; if (c) n.push(T().needChips(c)); return n.join(' + '); }
+function checkRoom(r) { if (!r.door || r.door.open) return; if (r.chips.every((c) => S.chips.has(c.id))) openDoor(r, true); }
 function openDoor(r, announce) { r.door.open = true; r.door.lamp.material.color.setHex(0x39ff6a); r.door.lab.visible = false; if (announce) { bigToast(T().clear(r.st.year)); setTimeout(() => toast(T().doorOpen), 1400); chime(true); } showObjective(r); }
-function showObjective(r) { const needs = []; if (r.door && !r.door.open) { if (!S.cardRead.has(r.st.id)) needs.push(T().needCard); const c = r.chips.filter((c) => !S.chips.has(c.id)).length; if (c) needs.push(T().needChips(c)); } const next = rooms[r.i + 1]; $('objective').textContent = r.st.goal ? '🚩 ' + T().portal : T().objective(next ? `${next.st.year} ${L(next.st.title)}` : '', needs); }
-function onEnterRoom(r) { updateHud(); showObjective(r); if (!r.door) return; if (r.door.open) return; checkRoom(r); }
-rooms.forEach((r) => { if (r.door && S.cardRead.has(r.st.id) && r.chips.every((c) => S.chips.has(c.id))) openDoor(r, false); });
+function showObjective(r) { const needs = []; if (r.door && !r.door.open) { const c = r.chips.filter((c) => !S.chips.has(c.id)).length; if (c) needs.push(T().needChips(c)); } const next = rooms[r.i + 1]; $('objective').textContent = r.st.goal ? '🚩 ' + T().portal : T().objective(next ? `${next.st.year} ${L(next.st.title)}` : '', needs); }
+function onEnterRoom(r) { updateHud(); showObjective(r); showCrawl(r); if (!r.door) return; if (r.door.open) return; checkRoom(r); }
+rooms.forEach((r) => { if (r.door && r.chips.every((c) => S.chips.has(c.id))) openDoor(r, false); });
+
+// ---------------------------------------------------------------- 입장 자막 (스타워즈식 크롤)
+let crawlTimer = null, crawlHide = null, crawlRoom = null;
+function crawlLines(st) {
+  const lines = [];
+  if (st.intro) lines.push(L(st.intro));
+  if (st.card) lines.push(...L(st.card).map((p) => p.replace(/<[^>]+>/g, '')).filter((p) => !/명령어|command/i.test(p)));
+  if (st.projects) { lines.push(lang === 'ko' ? '— 주요 프로젝트 —' : '— Key projects —'); st.projects.forEach((p) => lines.push(`${L(p.n)} (${p.p})`)); lines.push(lang === 'ko' ? '자세한 내용은 상단 "경력"에서 볼 수 있습니다.' : 'Details: "CAREER" at the top.'); }
+  if (st.goal) lines.push(T().cards.final);
+  return lines;
+}
+function showCrawl(r) {
+  if (!S.playing || S.cardRead.has(r.st.id) || crawlRoom === r) return;
+  crawlRoom = r; S.crawl = true; $('prompt').hidden = true;
+  const st = r.st; const lines = crawlLines(st);
+  const el = $('crawl-text');
+  el.innerHTML = `<div class="c-ep">STAGE ${r.i + 1} · ${esc(st.year)}</div><h1>${esc(L(st.title))}</h1>` + lines.map((l) => `<p>${esc(l)}</p>`).join('');
+  const dur = Math.min(42, 7 + lines.join('').length * 0.045);
+  el.style.animation = 'none'; void el.offsetWidth; el.style.animation = `crawl ${dur}s linear forwards`;
+  clearTimeout(crawlHide); const c = $('crawl'); c.hidden = false; c.classList.remove('show'); setTimeout(() => c.classList.add('show'), 20);
+  $('crawl-skip').textContent = T().skip;
+  clearTimeout(crawlTimer); crawlTimer = setTimeout(endCrawl, dur * 1000 + 300);
+}
+function endCrawl() {
+  if (!S.crawl) return; clearTimeout(crawlTimer); S.crawl = false;
+  const c = $('crawl'); c.classList.remove('show'); clearTimeout(crawlHide); crawlHide = setTimeout(() => { if (!S.crawl) c.hidden = true; }, 350);
+  const r = crawlRoom; crawlRoom = null; if (r) { S.cardRead.add(r.st.id); save(); checkRoom(r); showObjective(r); }
+}
+$('crawl-skip').onclick = endCrawl; $('crawl').addEventListener('click', endCrawl);
 
 // ---------------------------------------------------------------- 카드
 const modal = $('modal'), modalBody = $('modal-body');
@@ -387,19 +405,18 @@ let auto = null;
 function startAuto() { S.auto = true; $('btn-auto').classList.add('on'); $('btn-auto').textContent = T().autoOn; toast(T().tourOn); if (S.locked) document.exitPointerLock(); auto = { wait: 0 }; }
 function stopAuto() { S.auto = false; $('btn-auto').classList.remove('on'); $('btn-auto').textContent = T().auto; toast(T().tourOff); auto = null; }
 function autoStep(dt) {
-  if (!$('modal').hidden) return { x: 0, z: 0 };
+  if (!$('modal').hidden || S.crawl) return { x: 0, z: 0 };
   if (auto.wait > 0) { auto.wait -= dt; return { x: 0, z: 0 }; }
   const r = roomAt(P.z); const ppos = new THREE.Vector3(P.x, EYE, P.z);
   let target = null; let act = null;
-  const chip = r.chips.find((c) => c.obj.visible); const achs = interact.filter((it) => it.kind === 'ach' && it.r === r && it.obj.visible); const cardIt = interact.find((it) => it.kind === 'card' && it.r === r); const racks = interact.filter((it) => it.kind === 'rack' && it.r === r && !S.racks.has(it.id));
+  const chip = r.chips.find((c) => c.obj.visible); const achs = interact.filter((it) => it.kind === 'ach' && it.r === r && it.obj.visible); const racks = interact.filter((it) => it.kind === 'rack' && it.r === r && !S.racks.has(it.id));
   auto.skip = auto.skip || new Set();
   const ok = (it) => !auto.skip.has(it);
   const chipT = r.chips.find((c) => c.obj.visible && ok(c)), achT = achs.find(ok), rackT = racks.find(ok);
-  if (cardIt && !S.cardRead.has(r.st.id) && ok(cardIt)) { target = cardIt.pos.clone(); act = () => { openStageCard(r); auto.wait = 1; }; auto.cur = cardIt; }
-  else if (chipT) { target = chipT.pos.clone(); auto.cur = chipT; }
+  if (chipT) { target = chipT.pos.clone(); auto.cur = chipT; }
   else if (achT) { target = achT.pos.clone(); auto.cur = achT; }
   else if (rackT) { target = rackT.pos.clone(); act = () => rackT.action(); auto.cur = rackT; }
-  else if (r.door) { target = new THREE.Vector3(0, EYE, r.z1 - 1.2); auto.cur = null; }
+  else if (r.door) { target = new THREE.Vector3(0, EYE, r.z1 - 1.2); auto.cur = r.door; }
   else { const pt = interact.find((it) => it.kind === 'portal'); target = pt.pos.clone(); act = () => { openCard('final'); stopAuto(); }; }
   const to = target.clone().sub(ppos); to.y = 0; const d = to.length();
   if (auto.cur && target) { if (auto.lastD !== undefined && d > auto.lastD - 0.01) { auto.stuck = (auto.stuck || 0) + dt; if (auto.stuck > 1.0 && auto.stuck < 4.5) { if (!auto.side) auto.side = P.x > 0 ? -1 : 1; return { x: auto.side, z: 0.5 }; } if (auto.stuck >= 4.5) { auto.skip.add(auto.cur); (window.__walkSkipped ||= []).push(auto.cur.kind + ':' + (auto.cur.id || auto.cur.r.st.id) + '@' + P.x.toFixed(1) + ',' + P.z.toFixed(1) + '->' + target.x.toFixed(1) + ',' + target.z.toFixed(1)); auto.stuck = 0; auto.side = 0; auto.lastD = undefined; return { x: 0, z: 0 }; } } else { auto.stuck = 0; auto.side = 0; } auto.lastD = d; } else { auto.lastD = undefined; auto.stuck = 0; }
@@ -440,7 +457,7 @@ applyLang();
 // ---------------------------------------------------------------- 시작
 function startGame(tour) {
   $('title').hidden = true; S.playing = true; document.body.classList.add('playing'); if (isTouch) $('touch').hidden = false;
-  updateHud(); showObjective(roomAt(P.z)); S.stage = roomAt(P.z).i;
+  updateHud(); showObjective(roomAt(P.z)); S.stage = roomAt(P.z).i; setTimeout(() => showCrawl(roomAt(P.z)), 300);
   if (tour) startAuto(); else if (!isTouch) { canvas.requestPointerLock?.()?.catch?.(() => {}); }
 }
 $('btn-start').onclick = () => { if (S.savePos) { localStorage.removeItem('walk'); location.reload(); return; } startGame(false); };
@@ -462,7 +479,7 @@ const shotGeo = new THREE.SphereGeometry(0.06, 10, 10), shotMat = glowMat(0x9fef
 const trailGeo = new THREE.CylinderGeometry(0.012, 0.03, 0.5, 6); const trailMat = new THREE.MeshBasicMaterial({ color: 0x7fe7ff, transparent: true, opacity: 0.55, blending: THREE.AdditiveBlending, depthWrite: false });
 let lastFire = 0;
 function fire() {
-  if (!S.playing || tAcc - lastFire < 0.16) return; lastFire = tAcc;
+  if (!S.playing || S.crawl || !$('modal').hidden || tAcc - lastFire < 0.16) return; lastFire = tAcc;
   if (S.auto) stopAuto();
   const dir = camera.getWorldDirection(new THREE.Vector3());
   const start = camera.position.clone().addScaledVector(dir, 0.35).add(new THREE.Vector3(0.09, -0.07, 0).applyQuaternion(camera.quaternion));
@@ -485,7 +502,7 @@ function squash(bug, pos) { if (bug.dead) return; bug.dead = true; bug.g.visible
 function updateShots(dt) {
   for (let i = shots.length - 1; i >= 0; i--) {
     const sh = shots[i]; const prev = sh.m.position.clone(); sh.m.position.addScaledVector(sh.v, dt); sh.life -= dt; sh.tr.position.lerpVectors(prev, sh.m.position, 0.5);
-    const p = sh.m.position; let done = sh.life <= 0 || Math.abs(p.x) > ROOM_W / 2 - 0.05 || p.y < 0.02 || p.y > 3.15 || p.z > -0.05 || p.z < -TOTAL_LEN + 0.05;
+    const p = sh.m.position; let done = sh.life <= 0 || Math.abs(p.x) > ROOM_W / 2 - 0.05 || p.y < 0.02 || p.y > H_ROOM - 0.05 || p.z > -0.05 || p.z < -TOTAL_LEN + 0.05;
     if (!done) {
       for (const b of bugs) if (!b.dead && b.g.visible && b.g.position.distanceTo(p) < 0.42) { squash(b, p.clone()); done = true; break; }
       if (!done) for (const it of interact) {

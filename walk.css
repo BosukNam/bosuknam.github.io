@@ -130,3 +130,17 @@ body.playing #reticle { opacity: .9; }
   .card { padding: 20px 18px; }
   #joy { bottom: 120px; } #btn-e { bottom: 130px; }
 }
+
+/* ---------- 입장 자막 (크롤) ---------- */
+#crawl { position: fixed; inset: 0; z-index: 7; background: radial-gradient(ellipse at 50% 65%, rgba(5,8,20,.62), rgba(5,8,20,.92)); opacity: 0; transition: opacity .35s; overflow: hidden; }
+#crawl.show { opacity: 1; }
+#crawl[hidden] { display: none; }
+.crawl-persp { position: absolute; left: 0; right: 0; top: 0; bottom: 0; perspective: 380px; perspective-origin: 50% 25%; overflow: hidden; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 22%, #000 100%); mask-image: linear-gradient(180deg, transparent 0, #000 22%, #000 100%); }
+.crawl-text { position: absolute; left: 50%; top: 100%; width: min(760px, 86vw); transform-origin: 50% 0; transform: translateX(-50%) rotateX(24deg); color: #f6c400; text-align: center; font-family: var(--sans); text-shadow: 0 0 14px rgba(246,196,0,.25); }
+.crawl-text .c-ep { font-family: var(--mono); font-size: 18px; letter-spacing: 6px; color: #7fe7ff; margin-bottom: 10px; }
+.crawl-text h1 { font-size: 50px; font-weight: 900; margin: 0 0 26px; line-height: 1.15; color: #fff; }
+.crawl-text p { font-size: 29px; line-height: 1.6; margin: 0 0 24px; font-weight: 700; color: #ffd84d; }
+@keyframes crawl { from { transform: translateX(-50%) rotateX(24deg) translateY(0); } to { transform: translateX(-50%) rotateX(24deg) translateY(-160%); } }
+#crawl-skip { position: fixed; right: 24px; bottom: 90px; background: rgba(8,12,24,.75); color: #fff; border: 1px solid rgba(255,255,255,.3); padding: 10px 16px; border-radius: 999px; font-size: 13px; z-index: 8; }
+#crawl-skip:hover { background: var(--accent); }
+@media (max-width: 720px) { .crawl-text h1 { font-size: 30px; } .crawl-text p { font-size: 19px; } #crawl-skip { bottom: 230px; right: 14px; } }
