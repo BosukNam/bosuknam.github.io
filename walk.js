@@ -20,12 +20,12 @@ const UI = {
     sub: 'Backend Developer · Java / Spring · Kakao 인프라개발팀 2022 –', ver: '버전', verWalk: '3D 워크 (1인칭)', verPixel: '2D 픽셀 (이전 버전)',
     nav: { about: '소개', career: '경력', skills: '스킬', contact: '연락처' }, stage: 'STAGE', auto: '🚶 자동 투어', autoOn: '⏸ 투어 중', lang: 'EN', langLink: 'English',
     start: '▶ 시작', cont: '이어하기', tour: '🚶 자동 투어', pdf: '📄 PDF', pixel: '🕹 2D 픽셀 버전(이전 버전)으로 보기', ok: '확인 (Esc)',
-    desc: '연도별로 이어진 10개의 방을 직접 걸어서 지나갑니다. 방에 들어가면 그 시절 이야기가 <b>자막</b>으로 흐르고, 떠 있는 <b>스킬 칩</b>을 모으면 다음 방 문이 열립니다. 클릭하면 <b>커밋을 발사</b>해서 멀리 있는 칩을 맞히거나 날아다니는 <b>🐛 버그</b>를 잡을 수 있어요.',
+    desc: '연도별로 이어진 10개의 방을 직접 걸어서 지나갑니다. 방에 들어가면 그 시절 이야기가 <b>자막</b>으로 흐릅니다. 방마다 <b>미니게임</b>이 있고, 클릭하면 <b>커밋을 발사</b>해 🐛 버그를 잡을 수 있어요. 버그 한 마리·미니게임 하나마다 발사기가 <b>레벨 업</b>하고, 떠 있는 <b>스킬 칩</b>을 먹으면 탄의 색과 성능이 바뀝니다.',
     controls: '<span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 이동</span><span>마우스 시점</span><span><kbd>E</kbd> 상호작용</span><span>클릭 발사</span><span><kbd>Space</kbd> 점프</span><span><kbd>Esc</kbd> 마우스 해제</span>',
     skip: '계속 → 클릭 또는 Space', card: (t) => `카드 읽기 — ${t}`, chip: (n) => `스킬 획득 — ${n}`, ach: (n) => `업적 — ${n}`, door: '다음 방으로', doorLocked: (n) => `잠김 — ${n}`, rack: '유휴 서버 반납 (E)', rackDone: '반납 완료', portal: '다음 스테이지로 (연락처 · PDF)', pc: '486 PC — 명령어 입력',
     needCard: '카드 읽기', needChips: (n) => `⚡ 스킬 칩 ${n}개`, objective: (s, needs) => (needs.length ? `이 방: ${needs.join(' · ')}  |  ` : '') + `다음 → ${s}`, story: '이야기 읽기', mini: '미니게임', weaponUp: (lv, why) => `🔫 COMMIT LAUNCHER Lv.${lv} — ${why}`, wdesc: ['', '싱글 샷', '더블 샷', '트리플 샷 · 연사', '빅 샷 · 최대'],
     clear: (y) => `STAGE CLEAR · ${y}`, doorOpen: '🔓 문이 열렸습니다', jump: '점프', gotChip: (n) => `⚡ ${n} 획득`, gotAch: (n) => `🏆 ${n}`, reclaimed: (n) => `💤 유휴 서버 반납 · 누적 ${n}대`,
-    bug: (n, m) => `🐛 버그 수정! ${n} / ${m}`, clickToPlay: '화면을 클릭하면 마우스로 둘러볼 수 있어요 · 클릭 = 발사', tourOff: '자동 투어 해제', tourOn: '자동 투어 시작 — 아무 키나 누르면 멈춥니다', reset: '처음부터 다시 시작할까요? (진행 상황 삭제)',
+    bug: (n, m) => `🐛 버그 수정 ${n}/${m} → 발사기 레벨 업!`, clickToPlay: '화면을 클릭하면 마우스로 둘러볼 수 있어요 · 클릭 = 발사', tourOff: '자동 투어 해제', tourOn: '자동 투어 시작 — 아무 키나 누르면 멈춥니다', reset: '처음부터 다시 시작할까요? (진행 상황 삭제)',
     cards: { about: '소개', career: '경력', skills: '보유 스킬', contact: '연락처', summary: '요약', edu: '학력 · 자격', ach: '업적', side: '사이드 프로젝트', pdfKo: 'PDF 포트폴리오 (국문)', pdfEn: 'PDF Portfolio (English)', game: '🕹 2D 픽셀 버전', collected: '획득', locked: '아직 못 찾음', final: '여기까지 읽어주셔서 감사합니다. 대규모 인프라를 다루는 백엔드 개발자로서 다음 도전을 준비하고 있습니다.' },
     dosHelp: '명령어: help, dir, whoami, skills, career, contact, cls',
   },
@@ -33,12 +33,12 @@ const UI = {
     sub: 'Backend Developer · Java / Spring · Kakao Infra Dev Team 2022 –', ver: 'Version', verWalk: '3D walk (first person)', verPixel: '2D pixel (previous)',
     nav: { about: 'ABOUT', career: 'CAREER', skills: 'SKILLS', contact: 'CONTACT' }, stage: 'STAGE', auto: '🚶 Auto tour', autoOn: '⏸ Touring', lang: '한국어', langLink: '한국어',
     start: '▶ Start', cont: 'Continue', tour: '🚶 Auto tour', pdf: '📄 PDF', pixel: '🕹 Open the 2D pixel version (previous)', ok: 'OK (Esc)',
-    desc: 'Walk through 10 rooms, one per era. Each room plays its story as a <b>crawl</b> and has a <b>mini-game</b> and floating <b>skill chips</b>. Click to <b>fire a commit</b> at the 🐛 bugs — every 3 bugs or a cleared mini-game <b>upgrades</b> your launcher.',
+    desc: 'Walk through 10 rooms, one per era. Each room plays its story as a <b>crawl</b> and has a <b>mini-game</b>. Click to <b>fire a commit</b> at the 🐛 bugs — each bug or mini-game <b>levels up</b> the launcher, and <b>skill chips</b> change your shots\' color and perks.',
     controls: '<span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> move</span><span>mouse look</span><span><kbd>E</kbd> interact</span><span>click = fire</span><span><kbd>Space</kbd> jump</span><span><kbd>Esc</kbd> release mouse</span>',
     skip: 'Continue → click or Space', card: (t) => `Read card — ${t}`, chip: (n) => `Collect skill — ${n}`, ach: (n) => `Achievement — ${n}`, door: 'Next room', doorLocked: (n) => `Locked — ${n}`, rack: 'Reclaim idle server (E)', rackDone: 'Reclaimed', portal: 'Next stage (contact · PDF)', pc: '486 PC — type a command',
     needCard: 'read the card', needChips: (n) => `⚡ ${n} skill chip${n > 1 ? 's' : ''}`, objective: (s, needs) => (needs.length ? `This room: ${needs.join(' · ')}  |  ` : '') + `Next → ${s}`, story: 'Read the story', mini: 'Mini-game', weaponUp: (lv, why) => `🔫 COMMIT LAUNCHER Lv.${lv} — ${why}`, wdesc: ['', 'single shot', 'double shot', 'triple shot · rapid', 'big shot · max'],
     clear: (y) => `STAGE CLEAR · ${y}`, doorOpen: '🔓 Door unlocked', gotChip: (n) => `⚡ ${n}`, gotAch: (n) => `🏆 ${n}`, reclaimed: (n) => `💤 Idle server reclaimed · total ${n}`,
-    bug: (n, m) => `🐛 Bug fixed! ${n} / ${m}`, clickToPlay: 'Click the screen to look around · click = fire', tourOff: 'Auto tour off', tourOn: 'Auto tour — press any key to stop', reset: 'Restart from the beginning? (progress is deleted)',
+    bug: (n, m) => `🐛 Bug ${n}/${m} fixed → launcher level up!`, clickToPlay: 'Click the screen to look around · click = fire', tourOff: 'Auto tour off', tourOn: 'Auto tour — press any key to stop', reset: 'Restart from the beginning? (progress is deleted)',
     cards: { about: 'About', career: 'Career', skills: 'Skills', contact: 'Contact', summary: 'Summary', edu: 'Education · Certifications', ach: 'Achievements', side: 'Side projects', pdfKo: 'PDF 포트폴리오 (국문)', pdfEn: 'PDF Portfolio (English)', game: '🕹 2D pixel version', collected: 'collected', locked: 'not found yet', final: 'Thanks for reading this far. I am a backend developer who builds systems for large-scale infrastructure, getting ready for the next challenge.' },
     dosHelp: 'Commands: help, dir, whoami, skills, career, contact, cls',
   },
@@ -46,9 +46,9 @@ const UI = {
 const T = () => UI[lang];
 
 // ---------------------------------------------------------------- 상태
-const S = { playing: false, locked: false, auto: false, sound: false, cardRead: new Set(), chips: new Set(), ach: new Set(), racks: new Set(), bugs: new Set(), cleared: new Set(), mini: new Set(), wlv: 1, servers: 0, stage: 0 };
-try { const sv = JSON.parse(localStorage.getItem('walk') || 'null'); if (sv) { S.cardRead = new Set(sv.cardRead); S.chips = new Set(sv.chips); S.ach = new Set(sv.ach); S.racks = new Set(sv.racks || []); S.bugs = new Set(sv.bugs || []); S.cleared = new Set(sv.cleared || []); S.mini = new Set(sv.mini || []); S.wlv = sv.wlv || 1; S.servers = sv.servers || 0; S.savePos = sv.pos; } } catch (e) { /* 저장 없음 */ }
-const save = () => { try { localStorage.setItem('walk', JSON.stringify({ cardRead: [...S.cardRead], chips: [...S.chips], ach: [...S.ach], racks: [...S.racks], bugs: [...S.bugs], cleared: [...S.cleared], mini: [...S.mini], wlv: S.wlv, servers: S.servers, pos: { x: P.x, z: P.z, yaw: P.yaw } })); } catch (e) {} };
+const S = { playing: false, locked: false, auto: false, sound: false, cardRead: new Set(), chips: new Set(), ach: new Set(), racks: new Set(), bugs: new Set(), cleared: new Set(), mini: new Set(), wlv: 1, perks: {}, wcol: 0x9fefff, servers: 0, stage: 0 };
+try { const sv = JSON.parse(localStorage.getItem('walk') || 'null'); if (sv) { S.cardRead = new Set(sv.cardRead); S.chips = new Set(sv.chips); S.ach = new Set(sv.ach); S.racks = new Set(sv.racks || []); S.bugs = new Set(sv.bugs || []); S.cleared = new Set(sv.cleared || []); S.mini = new Set(sv.mini || []); S.wlv = sv.wlv || 1; S.perks = sv.perks || {}; S.wcol = sv.wcol || 0x9fefff; S.servers = sv.servers || 0; S.savePos = sv.pos; } } catch (e) { /* 저장 없음 */ }
+const save = () => { try { localStorage.setItem('walk', JSON.stringify({ cardRead: [...S.cardRead], chips: [...S.chips], ach: [...S.ach], racks: [...S.racks], bugs: [...S.bugs], cleared: [...S.cleared], mini: [...S.mini], wlv: S.wlv, perks: S.perks, wcol: S.wcol, servers: S.servers, pos: { x: P.x, z: P.z, yaw: P.yaw } })); } catch (e) {} };
 
 // ---------------------------------------------------------------- 렌더러 / 장면
 const renderer = new THREE.WebGLRenderer({ antialias: !isSmall, powerPreference: 'high-performance' });
@@ -145,18 +145,18 @@ const STORY = {
   kakao: { ko: ['2022년 3월, 카카오 인프라개발팀.', '서버 23만 대, 사용자 4,000명의 사내 시스템을 맡았습니다.', '쓰지 않는 서버를 사람 대신 시스템이 찾아내도록', '유휴 서버 관리 시스템을 혼자 설계하고 만들었습니다.', '알림에서 조직장 결재로 — 반납은 조직의 결정이 됐습니다.', '요즘은 n8n과 AI 에이전트를 매일의 개발에 녹이고 있습니다.', '💤 표시된 랙을 쏴서 유휴 서버를 반납해 보세요.'], en: ['March 2022: Kakao, Infra Development Team.', 'Internal systems for 230,000 servers and 4,000 users.', 'I built the idle-server system alone,', 'so the system, not people, finds unused servers.', 'From alerts to org-lead approval — returns became a decision.', 'These days I fold n8n and AI agents into daily development.', 'Shoot the 💤 racks to reclaim idle servers.'] },
   goal: { ko: ['여기까지 읽어 주셔서 감사합니다.', '대규모 인프라를 다루는 백엔드 개발자로서', '다음 도전을 준비하고 있습니다.', '포털을 지나면 연락처와 PDF가 있습니다.'], en: ['Thank you for walking this far.', 'A backend developer for large-scale infrastructure,', 'getting ready for the next challenge.', 'Contact and PDF are beyond the portal.'] },
 };
-const NAME_INFO = { ko: ['남보석(藍寶石)은 사파이어를 뜻합니다.', '출애굽기 28장, 대제사장의 흉패에 박힌 열두 보석 가운데 하나에서 따온 이름입니다.', '흔치 않은 이름 덕분에 한 번 들으면 잘 잊히지 않는다고들 합니다.'], en: ['Bosuk (藍寶石) means sapphire.', 'It comes from one of the twelve stones on the high priest\'s breastplate in Exodus 28.', 'People say the unusual name is hard to forget once heard.'] };
+const NAME_INFO = { ko: ['남보석은 사파이어를 뜻하는 말입니다. (성은 남녘 남)', '출애굽기 28장, 대제사장의 흉패에 박힌 열두 보석 가운데 하나에서 따온 이름입니다.', '흔치 않은 이름 덕분에 한 번 들으면 잘 잊히지 않는다고들 합니다.'], en: ['Bosuk means sapphire.', 'It comes from one of the twelve stones on the high priest\'s breastplate in Exodus 28.', 'People say the unusual name is hard to forget once heard.'] };
 function crawlLines(st) { return (STORY[st.id] || {})[lang] || (STORY[st.id] || {}).ko || []; }
 // 방별 미니게임 (퀴즈 / 타이핑 / 유휴 서버 사냥)
 const MINIGAMES = {
-  israel: { kind: 'quiz', title: { ko: '히브리어 한마디', en: 'One word of Hebrew' }, q: { ko: '"שלום"(샬롬)의 뜻은?', en: 'What does "שלום" (shalom) mean?' }, a: { ko: ['안녕 · 평화', '고맙습니다', '맛있다'], en: ['Hello · peace', 'Thank you', 'Delicious'] }, ok: 0 },
-  univ: { kind: 'quiz', title: { ko: '도시계획 OX', en: 'Urban planning quiz' }, q: { ko: '도시계획기사 자격을 딴 해는?', en: 'Which year did I get the urban planner license?' }, a: { ko: ['2014년', '2009년', '2017년'], en: ['2014', '2009', '2017'] }, ok: 0 },
-  kunhwa: { kind: 'quiz', title: { ko: '적성 테스트', en: 'Aptitude test' }, q: { ko: '도시계획부에서 매일 들었던 생각은?', en: 'The thought I had every day as an urban planner?' }, a: { ko: ['"이건 내 적성이 아니다"', '"점심이 너무 늦다"', '"도면이 너무 크다"'], en: ['"This is not what I\'m meant to do"', '"Lunch is too late"', '"The drawings are too big"'] }, ok: 0 },
-  alphago: { kind: 'quiz', title: { ko: '2016년 3월', en: 'March 2016' }, q: { ko: '알파고 vs 이세돌 최종 스코어는?', en: 'Final score, AlphaGo vs Lee Sedol?' }, a: { ko: ['4 : 1', '3 : 2', '5 : 0'], en: ['4 : 1', '3 : 2', '5 : 0'] }, ok: 0 },
+  israel: { kind: 'memory', title: { ko: '히브리어 짝 맞추기', en: 'Hebrew memory match' } },
+  univ: { kind: 'simon', title: { ko: '캠퍼스 길 외우기', en: 'Campus path memory' } },
+  kunhwa: { kind: 'slide', title: { ko: '도시계획도 퍼즐', en: 'City-plan slide puzzle' } },
+  alphago: { kind: 'ttt', title: { ko: '알파고와 삼목(OX)', en: 'Tic-tac-toe vs AlphaGo' } },
   bootcamp: { kind: 'typing', title: { ko: 'hello, world 타이핑', en: 'Type hello, world' }, text: 'printf("hello, world\\n");' },
-  tmax: { kind: 'quiz', title: { ko: '첫 IT 회사', en: 'First IT job' }, q: { ko: '티맥스소프트에서 맡은 일은?', en: 'My job at TmaxSoft?' }, a: { ko: ['미들웨어 기술지원', '프론트엔드 개발', '영업'], en: ['Middleware support', 'Frontend dev', 'Sales'] }, ok: 0 },
-  lgcns: { kind: 'quiz', title: { ko: '장애 대응 퀴즈', en: 'Incident quiz' }, q: { ko: '이모지가 DB에 저장되지 않던 원인은?', en: 'Why did emoji fail to save in the DB?' }, a: { ko: ['utf8 → utf8mb4 문자셋', '디스크 부족', 'JWT 만료'], en: ['utf8 → utf8mb4 charset', 'Disk full', 'JWT expired'] }, ok: 0 },
-  kakao: { kind: 'hunt', title: { ko: '유휴 서버 사냥 45초', en: 'Idle-server hunt · 45s' } },
+  tmax: { kind: 'reaction', title: { ko: '서버 재시작 반응속도', en: 'Server restart reaction' } },
+  lgcns: { kind: 'logs', title: { ko: '로그에서 ERROR 찾기', en: 'Find the ERRORs in the log' } },
+  kakao: { kind: 'whack', title: { ko: '유휴 서버 두더지', en: 'Idle-server whack-a-mole' } },
 };
 const FLOOR_TEX = {};
 function floorTex(kind, base) {
@@ -177,7 +177,7 @@ const FLOOR_KIND = { seoul: 'tile', israel: 'sand', pc: 'carpet', univ: 'grass',
 const CAT_COLOR = { lang: 0xf6c400, back: 0x6db33f, data: 0x4fa3ff, infra: 0xff8c42, ai: 0xd36bff };
 
 const world = new THREE.Group(); scene.add(world);
-const allRacks = []; let hunt = null; const storyPanels = []; const rooms = []; const interact = []; const colliders = []; const spinners = []; const ledSets = []; const bugs = []; const shots = []; const bursts = [];
+const allRacks = []; const storyPanels = []; const rooms = []; const interact = []; const colliders = []; const spinners = []; const ledSets = []; const bugs = []; const shots = []; const bursts = [];
 let z0 = 0, TOTAL_LEN = 0;
 function buildWorld() {
   D.stages.forEach((st, i) => {
@@ -290,9 +290,9 @@ function rackRow(g, r, zStart, count, idleIdx = []) {
     const idle = idleIdx.includes((side + 1) * count + k); const col = idle ? new THREE.Color(0xff3b3b) : new THREE.Color(0x39ff6a);
     for (let u = 0; u < 12; u++) { add(rk, new THREE.BoxGeometry(0.56, 0.115, 0.05), unit, 0, 0.2 + u * 0.16, 0.47); for (let c2 = 0; c2 < 2; c2++) { const lp = new THREE.Vector3(-0.2 + c2 * 0.05, 0.23 + u * 0.16, 0.497).applyMatrix4(rk.matrixWorld.identity().compose(rk.position, rk.quaternion, rk.scale)); m4.makeTranslation(lp.x, lp.y, lp.z); leds.setMatrixAt(li, m4); leds.setColorAt(li, col); state.push({ col, rate: 0.5 + Math.random() * 2, phase: Math.random() * 9, i: li, rack: racks.length }); li++; } }
     colliders.push({ x, z, rad: 0.6, h: 2.2 });
-    const id = `${r.st.id}-${side}-${k}`; const lab = makeLabel('💤 IDLE', { color: '#ff8080', size: 0.75 }); lab.position.set(0, 2.5, 0); rk.add(lab);
-    const rackObj = { g: rk, id, idle: idle && !S.racks.has(id), state: [], x, z, side, lab }; racks.push(rackObj); lab.visible = rackObj.idle;
-    const it = { kind: 'rack', id, r, obj: rk, lab, pos: new THREE.Vector3(x, 1.2, z), rad: 2.4, label: () => (rackObj.idle ? '💤 ' + T().rack : '✅ ' + T().rackDone), action: () => reclaimRack(it, rackObj) }; interact.push(it); rackObj.it = it; it.rack = rackObj;
+    const id = `${r.st.id}-${side}-${k}`; const lab = makeLabel('💤 IDLE', { color: '#ff8080', size: 0.75 }); lab.position.set(0, 2.5, 0); rk.add(lab); const labOk = makeLabel('✅ NORMAL', { color: '#9fefb0', size: 0.7 }); labOk.position.set(0, 2.5, 0); rk.add(labOk); labOk.visible = false;
+    const rackObj = { g: rk, id, idle: idle && !S.racks.has(id), state: [], x, z, side, lab, labOk }; racks.push(rackObj); lab.visible = rackObj.idle; labOk.visible = idle && S.racks.has(id);
+    const it = { kind: 'rack', id, r, obj: rk, lab, pos: new THREE.Vector3(x, 1.2, z), rad: 2.4, label: () => (rackObj.idle ? '💤 ' + T().rack : '✅ ' + T().rackDone), action: () => reclaimRack(it, rackObj) }; if (!rackObj.idle && S.racks.has(id)) it.lab = labOk; interact.push(it); rackObj.it = it; it.rack = rackObj;
   }
   leds.count = li; leds.instanceMatrix.needsUpdate = true; leds.instanceColor.needsUpdate = true; g.add(leds);
   state.forEach((s) => racks[s.rack].state.push(s)); racks.forEach((rk) => { rk.state.forEach((s) => s.col.setHex(rk.idle ? 0xff3b3b : 0x39ff6a)); });
@@ -369,7 +369,7 @@ const PROPS = {
   bootcamp(g, r, th) { const zc = (r.z0 + r.z1) / 2;
     for (const z of [zc - 2.5, zc - 0.3, zc + 1.9]) for (const x of [-2.6, 2.6]) workstation(g, x, z, Math.PI, true);
     const wb = canvasTex(1024, 512, (c, w, h) => { c.fillStyle = '#fbfbf6'; c.fillRect(0, 0, w, h); c.fillStyle = '#1c1f26'; c.font = 'bold 40px "IBM Plex Mono", monospace'; ['#include <stdio.h>', 'int main() {', '  printf("hello, world\\n");', '  return 0;', '}', '', 'C/C++ → 자료구조 → Java → Android → Spring'].forEach((l, i) => c.fillText(l, 40, 70 + i * 56)); c.fillStyle = '#c0392b'; c.font = 'bold 36px "Noto Sans KR", sans-serif'; c.fillText('프로그래밍은 언어보다 수학에 가깝다', 40, 470); });
-    add(g, new THREE.PlaneGeometry(5, 2.5), new THREE.MeshBasicMaterial({ map: wb }), 0, 2.0, r.z1 + 0.16); add(g, new THREE.BoxGeometry(5.2, 2.7, 0.06), mat(0x6b6b6b), 0, 2.0, r.z1 + 0.12);
+    add(g, new THREE.PlaneGeometry(5, 2.5), new THREE.MeshBasicMaterial({ map: wb }), -r.w / 2 + 0.08, 2.1, zc - 1, [0, Math.PI / 2, 0]); add(g, new THREE.BoxGeometry(0.06, 2.7, 5.2), mat(0x6b6b6b), -r.w / 2 + 0.04, 2.1, zc - 1);
     M(g, 'coatRackStanding', 3.6, r.z0 - 5.5, { h: 1.8 }); M(g, 'trashcan', -3.6, r.z0 - 5.5, { h: 0.6 }); M(g, 'bookcaseOpen', -3.6, zc + 4.5, { h: 1.9, ry: Math.PI / 2 }); station(g, r, 0, zc + 4.3, Math.PI); },
   office(g, r, th) { const zc = (r.z0 + r.z1) / 2;
     for (const [x, z] of [[-2.8, zc - 2], [-2.8, zc + 1], [2.8, zc - 2], [2.8, zc + 1]]) workstation(g, x, z, x < 0 ? Math.PI / 2 : -Math.PI / 2);
@@ -476,29 +476,96 @@ function findFocus() {
   for (const it of interact) if (it.near && it.obj.visible && it.pos.distanceTo(ppos) < it.near + 0.3) it.action();
 }
 function doInteract() { if (focus && $('modal').hidden) { blip(); focus.action(); } }
-function collectChip(it) { if (!it.obj.visible) return; it.obj.visible = false; S.chips.add(it.id); chime(); toast(T().gotChip(D.skills[it.id].n)); checkRoom(it.r); updateHud(); save(); }
+const PERK = { lang: { ko: '탄속 +2', en: 'shot speed +2' }, back: { ko: '동시 발사 +1 (2개마다)', en: '+1 shot per 2 chips' }, data: { ko: '탄 크기 +', en: 'bigger shots' }, infra: { ko: '연사 속도 +', en: 'faster fire' }, ai: { ko: '유도탄 (버그를 따라감)', en: 'homing shots' } };
+function collectChip(it) { if (!it.obj.visible) return; it.obj.visible = false; S.chips.add(it.id); const sk = D.skills[it.id]; S.perks[sk.cat] = (S.perks[sk.cat] || 0) + 1; S.wcol = CAT_COLOR[sk.cat]; applyWeaponLook(); chime(); toast(`⚡ ${sk.n} — ${L(PERK[sk.cat])}`); checkRoom(it.r); updateHud(); save(); }
+function wstats() { const lv = S.wlv, pk = S.perks; return { n: Math.min(5, 1 + (lv >= 3 ? 1 : 0) + (lv >= 7 ? 1 : 0) + Math.floor((pk.back || 0) / 2)), rate: Math.max(0.06, 0.16 - (lv - 1) * 0.006 - (pk.infra || 0) * 0.012), speed: 26 + (lv - 1) * 1.2 + (pk.lang || 0) * 2, size: 1 + (lv - 1) * 0.05 + (pk.data || 0) * 0.15, homing: (pk.ai || 0) > 0 || lv >= 10 }; }
+function applyWeaponLook() { if (!window.weapon) return; weapon.emitter.material.color.setHex(S.wcol); weapon.scale.setScalar(Math.min(0.95, 0.72 + (S.wlv - 1) * 0.015)); }
 function collectAch(it) { if (!it.obj.visible) return; it.obj.visible = false; S.ach.add(it.id); chime(); toast(T().gotAch(L(D.achievements[it.id].n))); updateHud(); save(); }
-function reclaimRack(it, rack) { if (!rack.idle) { toast(lang === 'ko' ? '✅ 정상 가동 중인 서버입니다' : '✅ This server is healthy'); return; } S.racks.add(it.id); S.servers += 1; rack.idle = false; rack.lab.visible = false; rack.state.forEach((s) => s.col.setHex(0x39ff6a)); chime(); if (hunt) { hunt.score++; toast(`💤 ${hunt.score}  ·  ⏱ ${Math.ceil(hunt.t)}s`); } else toast(T().reclaimed(S.servers)); $('hud-servers-box').hidden = false; updateHud(); save(); }
-function setIdle(rack) { rack.idle = true; rack.lab.visible = true; rack.state.forEach((s) => s.col.setHex(0xff3b3b)); }
-// ---------------------------------------------------------------- 미니게임 실행
+function reclaimRack(it, rack) { if (!rack.idle) { toast(lang === 'ko' ? '✅ 정상 가동 중인 서버입니다' : '✅ This server is healthy'); return; } S.racks.add(it.id); S.servers += 1; rack.idle = false; rack.lab.visible = false; rack.labOk.visible = true; it.lab = rack.labOk; rack.state.forEach((s) => s.col.setHex(0x39ff6a)); chime(); burst(new THREE.Vector3(rack.x, 2.3, rack.z), 0x9fefb0, 12, 2); toast(T().reclaimed(S.servers)); $('hud-servers-box').hidden = false; updateHud(); save(); }
+
+// ---------------------------------------------------------------- 미니게임 (각각 별도 창에서 집중해서 플레이)
+const K = () => lang === 'ko';
+function miniShell(r, mg, body, sub) { show(`<h2>🎮 ${esc(L(mg.title))}</h2><div class="sub">${esc(sub || (K() ? '클리어하면 발사기가 업그레이드됩니다' : 'Clear it to upgrade your launcher'))}</div><div class="mini" id="mini">${body}</div><p class="sub" id="mini-msg"></p>`); pendingRoom = null; return $('mini'); }
+function miniMsg(t) { const m = $('mini-msg'); if (m) m.textContent = t; }
+function miniWin(r, t) { miniMsg(t); finishMini(r); }
 function startMini(r) {
-  const mg = MINIGAMES[r.st.id]; if (!mg) return; pendingRoom = null;
-  if (mg.kind === 'quiz') {
-    show(`<h2>🎮 ${esc(L(mg.title))}</h2><div class="sub">${lang === 'ko' ? '정답을 고르면 무기가 업그레이드됩니다' : 'Answer right to upgrade your launcher'}</div><p><b>${esc(L(mg.q))}</b></p><div class="links" id="quiz">${L(mg.a).map((a, i) => `<a href="#" data-i="${i}">${esc(a)}</a>`).join('')}</div><p class="sub" id="quiz-msg"></p>`);
-    $('quiz').querySelectorAll('a').forEach((a) => { a.onclick = (e) => { e.preventDefault(); if (+a.dataset.i === mg.ok) { a.style.background = '#2f8f4e'; $('quiz-msg').textContent = lang === 'ko' ? '정답! 🎉' : 'Correct! 🎉'; finishMini(r); } else { a.style.background = '#c0392b'; $('quiz-msg').textContent = lang === 'ko' ? '다시 생각해 보세요' : 'Try again'; tone(150, 0, 0.15, 'sawtooth', 0.04); } }; });
-  } else if (mg.kind === 'typing') {
-    show(`<h2>🎮 ${esc(L(mg.title))}</h2><div class="sub">${lang === 'ko' ? '아래 코드를 그대로 입력하세요 (Enter)' : 'Type the code exactly (Enter)'}</div><pre style="background:#000;color:#9fc0ff;font-family:var(--mono);font-size:16px;padding:12px">${esc(mg.text)}</pre><input id="type-in" style="width:100%;font-family:var(--mono);font-size:15px;padding:8px;border:2px solid var(--navy)" autocomplete="off" spellcheck="false"><p class="sub" id="type-msg"></p>`);
-    const inp = $('type-in'); const t0 = performance.now(); setTimeout(() => inp.focus(), 50);
-    inp.addEventListener('keydown', (e) => { e.stopPropagation(); if (e.key === 'Escape') { closeCard(); return; } if (e.key !== 'Enter') return; if (inp.value.trim() === mg.text) { const sec = ((performance.now() - t0) / 1000).toFixed(1); $('type-msg').textContent = (lang === 'ko' ? `컴파일 성공! ${sec}초 🎉` : `Compiled! ${sec}s 🎉`); finishMini(r); } else { $('type-msg').textContent = lang === 'ko' ? '컴파일 에러 — 오타를 확인하세요' : 'Compile error — check typos'; tone(150, 0, 0.15, 'sawtooth', 0.04); } });
-  } else if (mg.kind === 'hunt') {
-    if (hunt) return; const racks = allRacks.filter((k) => k.g.parent === r.g || true); hunt = { t: 45, score: 0, spawn: 0, r }; toast(lang === 'ko' ? '💤 45초 동안 빨간 랙을 최대한 많이 반납하세요!' : '💤 Reclaim as many red racks as you can in 45s!'); chime();
-  }
+  const mg = MINIGAMES[r.st.id]; if (!mg) return;
+  const G = { typing: miniTyping, ttt: miniTTT, memory: miniMemory, simon: miniSimon, slide: miniSlide, reaction: miniReaction, logs: miniLogs, whack: miniWhack }[mg.kind];
+  if (G) G(r, mg);
 }
-function finishMini(r) { if (S.mini.has(r.st.id)) return; S.mini.add(r.st.id); chime(true); setTimeout(() => weaponUp(lang === 'ko' ? '미니게임 클리어' : 'mini-game cleared'), 600); showObjective(r); save(); }
-function updateHunt(dt) {
-  if (!hunt) return; hunt.t -= dt; hunt.spawn -= dt; $('objective').textContent = `💤 ${lang === 'ko' ? '유휴 서버 사냥' : 'Idle hunt'} · ${hunt.score} · ⏱ ${Math.ceil(hunt.t)}s`;
-  if (hunt.spawn <= 0) { hunt.spawn = 1.4; const healthy = allRacks.filter((k) => !k.idle); const idleN = allRacks.length - healthy.length; if (healthy.length && idleN < 4) setIdle(healthy[Math.floor(Math.random() * healthy.length)]); }
-  if (hunt.t <= 0) { const sc = hunt.score; const r = hunt.r; hunt = null; allRacks.forEach((k) => { if (k.idle && !k.it) {} }); bigToast(`💤 ${sc}${lang === 'ko' ? '대 반납' : ' reclaimed'}`); if (sc >= 8) finishMini(r); else toast(lang === 'ko' ? '8대 이상이면 무기 업그레이드! 다시 도전해 보세요' : 'Reclaim 8+ for an upgrade — try again'); showObjective(r); }
+function finishMini(r) { if (S.mini.has(r.st.id)) { toast(K() ? '이미 클리어한 미니게임이에요 (재도전 환영)' : 'Already cleared — play again anyway'); return; } S.mini.add(r.st.id); chime(true); setTimeout(() => weaponUp(K() ? '미니게임 클리어' : 'mini-game cleared'), 600); showObjective(r); save(); }
+// 타이핑
+function miniTyping(r, mg) {
+  miniShell(r, mg, `<pre class="code">${esc(mg.text)}</pre><input id="type-in" class="minput" autocomplete="off" spellcheck="false" placeholder="${K() ? '여기에 입력 후 Enter' : 'type here, then Enter'}">`, K() ? '아래 코드를 그대로 입력하세요' : 'Type the code exactly');
+  const inp = $('type-in'); const t0 = performance.now(); setTimeout(() => inp.focus(), 50);
+  inp.addEventListener('keydown', (e) => { e.stopPropagation(); if (e.key === 'Escape') { closeCard(); return; } if (e.key !== 'Enter') return; if (inp.value.trim() === mg.text) { miniWin(r, (K() ? `컴파일 성공! ${((performance.now() - t0) / 1000).toFixed(1)}초 🎉` : `Compiled in ${((performance.now() - t0) / 1000).toFixed(1)}s 🎉`)); } else { miniMsg(K() ? '컴파일 에러 — 오타를 확인하세요' : 'Compile error — check typos'); tone(150, 0, 0.15, 'sawtooth', 0.04); } });
+}
+// 삼목: 내가 X, 알파고 O (미니맥스, 가끔 실수)
+function miniTTT(r, mg) {
+  const el = miniShell(r, mg, `<div class="grid3" id="ttt">${Array.from({ length: 9 }, (_, i) => `<button data-i="${i}"></button>`).join('')}</div><div class="mrow"><button class="pbtn" id="ttt-reset">${K() ? '다시' : 'Reset'}</button></div>`, K() ? '당신은 X, 알파고는 O. 이기면 클리어' : 'You are X, AlphaGo is O. Win to clear');
+  let b = Array(9).fill(''); let over = false; const cells = [...el.querySelectorAll('#ttt button')];
+  const lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+  const win = (bd, p) => lines.some((l) => l.every((i) => bd[i] === p));
+  const minimax = (bd, p) => { if (win(bd, 'O')) return { s: 1 }; if (win(bd, 'X')) return { s: -1 }; if (!bd.includes('')) return { s: 0 }; let best = { s: p === 'O' ? -2 : 2 }; bd.forEach((c, i) => { if (c) return; bd[i] = p; const sc = minimax(bd, p === 'O' ? 'X' : 'O').s; bd[i] = ''; if (p === 'O' ? sc > best.s : sc < best.s) best = { s: sc, i }; }); return best; };
+  const draw = () => cells.forEach((c, i) => { c.textContent = b[i]; c.className = b[i] ? 'on ' + b[i] : ''; });
+  const end = (t, w) => { over = true; if (w) miniWin(r, t); else miniMsg(t); };
+  cells.forEach((c) => { c.onclick = () => { const i = +c.dataset.i; if (over || b[i]) return; b[i] = 'X'; blip(); if (win(b, 'X')) { draw(); return end(K() ? '이겼습니다! 알파고도 가끔은 집니다 🎉' : 'You win! 🎉', true); } if (!b.includes('')) { draw(); return end(K() ? '무승부 — 다시 해 보세요' : 'Draw — try again'); }
+    const easy = Math.random() < 0.35; const free = b.map((v, k) => v ? -1 : k).filter((k) => k >= 0); const mv = easy ? free[Math.floor(Math.random() * free.length)] : minimax(b.slice(), 'O').i; b[mv] = 'O'; draw();
+    if (win(b, 'O')) end(K() ? '알파고 승 — 다시 도전!' : 'AlphaGo wins — again!'); else if (!b.includes('')) end(K() ? '무승부 — 다시 해 보세요' : 'Draw — try again'); }; });
+  $('ttt-reset').onclick = () => { b = Array(9).fill(''); over = false; draw(); miniMsg(''); }; draw();
+}
+// 짝 맞추기 (히브리어 글자)
+function miniMemory(r, mg) {
+  const letters = ['א', 'ב', 'ג', 'ד', 'ה', 'ו']; const deck = [...letters, ...letters].sort(() => Math.random() - 0.5);
+  const el = miniShell(r, mg, `<div class="grid4" id="mem">${deck.map((l, i) => `<button data-i="${i}" data-l="${l}">?</button>`).join('')}</div>`, K() ? '같은 히브리어 글자 두 장을 찾으세요 (6쌍)' : 'Find the matching Hebrew letters (6 pairs)');
+  const cards = [...el.querySelectorAll('button')]; let open = []; let lock = false; let found = 0; let moves = 0;
+  cards.forEach((c) => { c.onclick = () => { if (lock || c.classList.contains('ok') || open.includes(c)) return; c.textContent = c.dataset.l; c.classList.add('flip'); open.push(c); blip(); if (open.length === 2) { moves++; lock = true; const [a, b2] = open; setTimeout(() => { if (a.dataset.l === b2.dataset.l) { a.classList.add('ok'); b2.classList.add('ok'); found++; if (found === 6) miniWin(r, K() ? `완료! ${moves}번 만에 🎉  (שלום = 안녕·평화)` : `Done in ${moves} moves 🎉`); } else { a.textContent = '?'; b2.textContent = '?'; a.classList.remove('flip'); b2.classList.remove('flip'); } open = []; lock = false; }, 650); } }; });
+}
+// 순서 기억 (사이먼)
+function miniSimon(r, mg) {
+  const el = miniShell(r, mg, `<div class="grid2" id="simon">${['🏫', '📚', '🌳', '☕'].map((e, i) => `<button class="pad p${i}" data-i="${i}">${e}</button>`).join('')}</div><div class="mrow"><button class="pbtn primary" id="simon-go">${K() ? '시작' : 'Start'}</button></div>`, K() ? '길 순서를 보고 그대로 따라 누르세요 (5단계)' : 'Watch the path, repeat it (5 rounds)');
+  const pads = [...el.querySelectorAll('.pad')]; let seq = [], idx = 0, showing = false;
+  const flash = (i, d = 420) => new Promise((res) => { pads[i].classList.add('lit'); tone(300 + i * 120, 0, 0.25, 'triangle', 0.05); setTimeout(() => { pads[i].classList.remove('lit'); setTimeout(res, 140); }, d); });
+  const play = async () => { showing = true; idx = 0; miniMsg(K() ? `${seq.length}단계 — 보세요` : `Round ${seq.length} — watch`); for (const i of seq) await flash(i); showing = false; miniMsg(K() ? '따라 누르세요' : 'Your turn'); };
+  const next = () => { seq.push(Math.floor(Math.random() * 4)); play(); };
+  $('simon-go').onclick = () => { seq = []; next(); };
+  pads.forEach((p) => { p.onclick = () => { if (showing || !seq.length) return; const i = +p.dataset.i; flash(i, 160); if (i !== seq[idx]) { miniMsg(K() ? '틀렸어요 — 시작을 눌러 다시' : 'Wrong — press Start'); seq = []; tone(150, 0, 0.2, 'sawtooth', 0.05); return; } idx++; if (idx === seq.length) { if (seq.length >= 5) miniWin(r, K() ? '길을 다 외웠습니다 🎉' : 'Path memorized 🎉'); else setTimeout(next, 700); } }; });
+}
+// 3x3 슬라이드 퍼즐
+function miniSlide(r, mg) {
+  let t = [1, 2, 3, 4, 5, 6, 7, 8, 0]; const nb = (i) => [i - 3, i + 3, i % 3 ? i - 1 : -1, i % 3 !== 2 ? i + 1 : -1].filter((k) => k >= 0 && k < 9);
+  for (let k = 0; k < 60; k++) { const e = t.indexOf(0); const c = nb(e); const m = c[Math.floor(Math.random() * c.length)]; [t[e], t[m]] = [t[m], t[e]]; }
+  miniShell(r, mg, `<div class="grid3 slide" id="slide"></div>`, K() ? '타일을 밀어 1~8 순서로 맞추세요' : 'Slide the tiles into 1–8 order');
+  const box = $('slide'); let moves = 0;
+  const draw = () => { box.innerHTML = t.map((v, i) => `<button data-i="${i}" class="${v ? 'tile t' + v : 'hole'}">${v || ''}</button>`).join(''); box.querySelectorAll('button').forEach((bt) => { bt.onclick = () => { const i = +bt.dataset.i; const e = t.indexOf(0); if (!nb(e).includes(i)) return; [t[e], t[i]] = [t[i], t[e]]; moves++; blip(); draw(); if (t.join() === '1,2,3,4,5,6,7,8,0') miniWin(r, K() ? `도시계획도 완성! ${moves}수 🎉` : `Plan complete in ${moves} moves 🎉`); }; }); };
+  draw();
+}
+// 반응속도
+function miniReaction(r, mg) {
+  miniShell(r, mg, `<button id="react" class="react">${K() ? '클릭해서 시작' : 'Click to start'}</button>`, K() ? '서버가 초록불이 되는 순간 클릭! (3번 평균 400ms 이하)' : 'Click the moment it turns green (avg ≤ 400ms over 3 tries)');
+  const b = $('react'); let state = 'idle', t0 = 0, times = [], timer = null;
+  const arm = () => { state = 'wait'; b.className = 'react wait'; b.textContent = K() ? '재시작 중… 기다리세요' : 'Restarting… wait'; timer = setTimeout(() => { if (!document.getElementById('react')) return; state = 'go'; b.className = 'react go'; b.textContent = K() ? '지금 클릭!' : 'CLICK!'; t0 = performance.now(); tone(880, 0, 0.1, 'square', 0.04); }, 1000 + Math.random() * 2200); };
+  b.onclick = () => { if (state === 'idle') return arm(); if (state === 'wait') { clearTimeout(timer); state = 'idle'; b.className = 'react bad'; b.textContent = K() ? '너무 빨라요! 클릭해서 다시' : 'Too early! click to retry'; tone(150, 0, 0.2, 'sawtooth', 0.05); return; } if (state === 'go') { const ms = Math.round(performance.now() - t0); times.push(ms); state = 'idle'; b.className = 'react'; b.textContent = `${ms} ms` + (times.length < 3 ? (K() ? ' · 클릭해서 계속' : ' · click to continue') : ''); if (times.length === 3) { const avg = Math.round(times.reduce((a, c) => a + c) / 3); if (avg <= 400) miniWin(r, K() ? `평균 ${avg}ms — 서버 정상 기동 🎉` : `Average ${avg}ms — server up 🎉`); else { miniMsg(K() ? `평균 ${avg}ms — 조금 더 빠르게! 클릭해서 재도전` : `Average ${avg}ms — faster! click to retry`); times = []; } } } };
+}
+// 로그에서 ERROR 찾기
+function miniLogs(r, mg) {
+  const base = ['INFO  batch idle-check started', 'INFO  metric sync 230,114 hosts', 'DEBUG cache hit 98.7%', 'WARN  retry #2 node-red webhook', 'INFO  approval queue 12 pending', 'INFO  kafka lag 0 group=infra', 'DEBUG envers revision written', 'INFO  jwt issued for api-key', 'WARN  slow query 1.2s servers', 'INFO  argocd sync Synced'];
+  const errs = ['ERROR utf8mb4 incorrect string value', 'ERROR NullPointerException at ServerMapper', 'ERROR connection refused redis:6379', 'ERROR batch step failed step=reclaim', 'ERROR 502 upstream timeout /servers'];
+  const lines = [...base, ...base.slice(0, 5), ...errs].sort(() => Math.random() - 0.5);
+  const el = miniShell(r, mg, `<div class="logs" id="logs">${lines.map((l, i) => `<div data-e="${l.startsWith('ERROR') ? 1 : 0}" data-i="${i}">${esc(l)}</div>`).join('')}</div><div class="mrow"><span id="logs-t" class="sub"></span></div>`, K() ? 'ERROR 5줄을 모두 클릭하세요 (20초)' : 'Click all 5 ERROR lines (20s)');
+  let left = 5, t = 20, over = false; const show_t = () => { const e = $('logs-t'); if (e) e.textContent = `⏱ ${t}s · ${K() ? '남은 ERROR' : 'left'} ${left}`; };
+  const tm = setInterval(() => { if (!document.getElementById('logs') || over) return clearInterval(tm); t--; show_t(); if (t <= 0) { over = true; clearInterval(tm); miniMsg(K() ? '시간 초과 — 다시 열어 재도전' : 'Time up — reopen to retry'); } }, 1000); show_t();
+  el.querySelectorAll('#logs div').forEach((d) => { d.onclick = () => { if (over || d.classList.contains('hit')) return; if (d.dataset.e === '1') { d.classList.add('hit'); left--; blip(); show_t(); if (left === 0) { over = true; clearInterval(tm); miniWin(r, K() ? `장애 원인 5건 모두 발견 🎉 (${t}초 남음)` : `All 5 errors found 🎉`); } } else { d.classList.add('miss'); t -= 2; show_t(); tone(150, 0, 0.15, 'sawtooth', 0.04); } }; });
+}
+// 유휴 서버 두더지
+function miniWhack(r, mg) {
+  const el = miniShell(r, mg, `<div class="grid4 whack" id="whack">${Array.from({ length: 12 }, (_, i) => `<button data-i="${i}"><span class="led"></span>SRV-${String(i + 1).padStart(2, '0')}</button>`).join('')}</div><div class="mrow"><button class="pbtn primary" id="whack-go">${K() ? '시작 (30초)' : 'Start (30s)'}</button><span id="whack-t" class="sub"></span></div>`, K() ? '💤 로 바뀌는 서버를 재빨리 클릭해 반납하세요 — 15대 이상이면 클리어' : 'Click servers the moment they go 💤 — 15+ to clear');
+  const cells = [...el.querySelectorAll('#whack button')]; let score = 0, t = 30, run = false, timers = [];
+  const alive = () => !!document.getElementById('whack');
+  const spawn = () => { if (!run || !alive()) return; const free = cells.filter((c) => !c.classList.contains('idle') && !c.classList.contains('ok')); if (free.length) { const c = free[Math.floor(Math.random() * free.length)]; c.classList.add('idle'); c.querySelector('.led').textContent = '💤'; timers.push(setTimeout(() => { c.classList.remove('idle'); c.querySelector('.led').textContent = ''; }, 900 + Math.random() * 600)); } timers.push(setTimeout(spawn, 450 + Math.random() * 350)); };
+  const hud = () => { const e = $('whack-t'); if (e) e.textContent = `⏱ ${t}s · 💤 ${score}`; };
+  $('whack-go').onclick = () => { if (run) return; run = true; score = 0; t = 30; hud(); cells.forEach((c) => { c.classList.remove('idle', 'ok'); c.querySelector('.led').textContent = ''; }); spawn(); const tick = setInterval(() => { if (!alive()) { clearInterval(tick); run = false; timers.forEach(clearTimeout); return; } t--; hud(); if (t <= 0) { clearInterval(tick); run = false; timers.forEach(clearTimeout); cells.forEach((c) => { c.classList.remove('idle'); c.querySelector('.led').textContent = ''; }); S.servers += score; updateHud(); save(); if (score >= 15) miniWin(r, K() ? `${score}대 반납 — 비용 절감 성공 🎉` : `${score} reclaimed 🎉`); else miniMsg(K() ? `${score}대 — 15대 이상이면 클리어, 다시 시작!` : `${score} — need 15+, try again!`); } }, 1000); };
+  cells.forEach((c) => { c.onclick = () => { if (!run || !c.classList.contains('idle')) return; c.classList.remove('idle'); c.classList.add('ok'); c.querySelector('.led').textContent = '✅'; score++; hud(); tone(880, 0, 0.05, 'square', 0.03); setTimeout(() => { c.classList.remove('ok'); c.querySelector('.led').textContent = ''; }, 500); }; });
 }
 function needsText(r) { const n = []; const c = r.chips.filter((c) => !S.chips.has(c.id)).length; if (c) n.push(T().needChips(c)); return n.join(' + '); }
 function checkRoom(r) { if (!r.chips.length || S.cleared.has(r.st.id)) return; if (r.chips.every((c) => S.chips.has(c.id))) { S.cleared.add(r.st.id); bigToast(T().clear(r.st.year)); chime(true); weaponUp(lang === 'ko' ? '방의 스킬 칩을 모두 모음' : 'all chips in the room'); save(); } }
@@ -663,21 +730,22 @@ const weapon = new THREE.Group(); camera.add(weapon); weapon.position.set(0.3, -
   weapon.emitter = add(weapon, new THREE.SphereGeometry(0.02, 10, 10), glowMat(0x7fe7ff), 0, 0.01, -0.34);
   add(weapon, new THREE.PlaneGeometry(0.07, 0.025), new THREE.MeshBasicMaterial({ map: textTex(['COMMIT'], { bg: '#0b1020', fg: '#7fe7ff', font: 'bold 60px "IBM Plex Mono", monospace', w: 256, h: 96 }), toneMapped: false }), 0, 0.046, -0.02, [-Math.PI / 2, 0, 0]);
 }
-const shotGeo = new THREE.SphereGeometry(0.06, 10, 10), shotMat = glowMat(0x9fefff);
+window.weapon = weapon; applyWeaponLook();
+const shotGeo = new THREE.SphereGeometry(0.06, 10, 10); const SHOT_MATS = {}, TRAIL_MATS = {}; const shotMatFor = (c) => SHOT_MATS[c] || (SHOT_MATS[c] = glowMat(c)); const trailMatFor = (c) => TRAIL_MATS[c] || (TRAIL_MATS[c] = new THREE.MeshBasicMaterial({ color: c, transparent: true, opacity: 0.55, blending: THREE.AdditiveBlending, depthWrite: false }));
 const trailGeo = new THREE.CylinderGeometry(0.012, 0.03, 0.5, 6); const trailMat = new THREE.MeshBasicMaterial({ color: 0x7fe7ff, transparent: true, opacity: 0.55, blending: THREE.AdditiveBlending, depthWrite: false });
 let lastFire = 0;
 function fire() {
-  if (!S.playing || S.crawl || !$('modal').hidden || tAcc - lastFire < (S.wlv >= 3 ? 0.11 : 0.16)) return; lastFire = tAcc;
+  const st = wstats(); if (!S.playing || S.crawl || !$('modal').hidden || tAcc - lastFire < st.rate) return; lastFire = tAcc;
   if (S.auto) stopAuto();
   const dir = camera.getWorldDirection(new THREE.Vector3());
   const start = camera.position.clone().addScaledVector(dir, 0.35).add(new THREE.Vector3(0.09, -0.07, 0).applyQuaternion(camera.quaternion));
   const aim = camera.position.clone().addScaledVector(dir, 40); dir.copy(aim.sub(start).normalize()); // 조준점으로 수렴
-  const n = S.wlv >= 3 ? 3 : S.wlv >= 2 ? 2 : 1; const right = new THREE.Vector3(1, 0, 0).applyQuaternion(camera.quaternion);
+  const n = st.n; const right = new THREE.Vector3(1, 0, 0).applyQuaternion(camera.quaternion); const sm = shotMatFor(S.wcol);
   for (let i = 0; i < n; i++) {
     const off = n === 1 ? 0 : (i - (n - 1) / 2) * 0.07; const d2 = dir.clone().addScaledVector(right, off).normalize();
-    const m = new THREE.Mesh(shotGeo, shotMat); m.position.copy(start); m.scale.setScalar(S.wlv >= 4 ? 1.7 : 1); scene.add(m);
-    const tr = new THREE.Mesh(trailGeo, trailMat); tr.position.copy(start); tr.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), d2.clone().negate()); scene.add(tr);
-    shots.push({ m, tr, v: d2.multiplyScalar(26), life: 1.1, hit: false, big: S.wlv >= 4 });
+    const m = new THREE.Mesh(shotGeo, sm); m.position.copy(start); m.scale.setScalar(st.size); scene.add(m);
+    const tr = new THREE.Mesh(trailGeo, trailMatFor(S.wcol)); tr.position.copy(start); tr.scale.set(st.size, 1, st.size); tr.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), d2.clone().negate()); scene.add(tr);
+    shots.push({ m, tr, v: d2.multiplyScalar(st.speed), life: 1.1, hit: false, size: st.size, homing: st.homing, speed: st.speed });
   }
   weapon.position.z = -0.47; muzzle.position.copy(start); muzzle.intensity = 6;
   tone(1320, 0, 0.05, 'square', 0.03); tone(660, 0.02, 0.08, 'sawtooth', 0.02);
@@ -690,14 +758,15 @@ function burst(pos, color = 0x7fe7ff, n = 14, speed = 3) {
   const pts = new THREE.Points(geo, new THREE.PointsMaterial({ color, size: 0.09, transparent: true, opacity: 1, depthWrite: false, blending: THREE.AdditiveBlending })); scene.add(pts);
   bursts.push({ pts, vel, life: 0.55, n });
 }
-function squash(bug, pos) { if (bug.dead) return; bug.dead = true; bug.g.visible = false; S.bugs.add(bug.id); burst(pos, 0xff5050, 18, 4); tone(220, 0, 0.12, 'sawtooth', 0.05); tone(110, 0.05, 0.15, 'square', 0.04); toast(T().bug(S.bugs.size, bugs.length)); if (S.bugs.size % 3 === 0) weaponUp(lang === 'ko' ? `버그 ${S.bugs.size}마리 수정` : `${S.bugs.size} bugs fixed`); updateHud(); save(); }
-function weaponUp(why) { if (S.wlv >= 4) { toast(lang === 'ko' ? '🔫 이미 최대 레벨' : '🔫 already max level'); return; } S.wlv++; const d = T().wdesc[S.wlv]; setTimeout(() => { bigToast(T().weaponUp(S.wlv, d)); chime(true); }, 400); toast(why); weapon.emitter.material.color.setHex([0, 0x7fe7ff, 0x9fefb0, 0xffd84d, 0xff8ac8][S.wlv]); weapon.scale.setScalar(0.72 + S.wlv * 0.03); updateHud(); save(); }
+function squash(bug, pos) { if (bug.dead) return; bug.dead = true; bug.g.visible = false; S.bugs.add(bug.id); burst(pos, 0xff5050, 18, 4); tone(220, 0, 0.12, 'sawtooth', 0.05); tone(110, 0.05, 0.15, 'square', 0.04); weaponUp(T().bug(S.bugs.size, bugs.length)); updateHud(); save(); }
+function weaponUp(why) { if (S.wlv >= 20) { toast(why); return; } S.wlv++; const st = wstats(); const d = `${st.n}${lang === 'ko' ? '연발' : 'x'} · ${Math.round(1 / st.rate)}${lang === 'ko' ? '발/초' : '/s'}${st.homing ? (lang === 'ko' ? ' · 유도' : ' · homing') : ''}`; toast(why); setTimeout(() => { bigToast(T().weaponUp(S.wlv, d)); chime(true); }, 350); applyWeaponLook(); updateHud(); save(); }
 function updateShots(dt) {
   for (let i = shots.length - 1; i >= 0; i--) {
-    const sh = shots[i]; const prev = sh.m.position.clone(); sh.m.position.addScaledVector(sh.v, dt); sh.life -= dt; sh.tr.position.lerpVectors(prev, sh.m.position, 0.5);
+    const sh = shots[i]; if (sh.homing) { let best = null, bd = 6; for (const b of bugs) { if (b.dead || !b.g.visible) continue; const d = b.g.position.distanceTo(sh.m.position); if (d < bd) { bd = d; best = b; } } if (best) { const want = best.g.position.clone().sub(sh.m.position).normalize().multiplyScalar(sh.speed); sh.v.lerp(want, Math.min(1, dt * 6)); } }
+    const prev = sh.m.position.clone(); sh.m.position.addScaledVector(sh.v, dt); sh.life -= dt; sh.tr.position.lerpVectors(prev, sh.m.position, 0.5);
     const p = sh.m.position; let done = sh.life <= 0 || Math.abs(p.x) > ROOM_W / 2 - 0.05 || p.y < 0.02 || p.y > H_ROOM - 0.05 || p.z > -0.05 || p.z < -TOTAL_LEN + 0.05;
     if (!done) {
-      for (const b of bugs) if (!b.dead && b.g.visible && b.g.position.distanceTo(p) < (sh.big ? 0.7 : 0.42)) { squash(b, p.clone()); done = true; break; }
+      for (const b of bugs) if (!b.dead && b.g.visible && b.g.position.distanceTo(p) < 0.42 * (sh.size || 1)) { squash(b, p.clone()); done = true; break; }
       if (!done) for (const it of interact) {
         if (!it.obj.visible) continue; const hitR = it.kind === 'door' ? 1.3 : (it.kind === 'mini' || it.kind === 'story' || it.kind === 'pc') ? 0.8 : it.kind === 'rack' ? 0.6 : 0.55;
         if (it.pos.distanceTo(p) < hitR) { if (it.kind === 'door') { if (!it.r.door.open) { burst(p, 0xff6060, 10, 2); toast('🔒 ' + T().doorLocked(needsText(it.r))); } else done = false; } else { burst(p, 0xffffff, 12, 2.5); it.action(); } if (!(it.kind === 'door' && it.r.door.open)) { done = true; break; } }
@@ -726,7 +795,7 @@ addEventListener('resize', resize);
 function update(dt, render = true) {
   tAcc += dt; const t = tAcc;
   if (S.playing) movePlayer(dt); else { camera.position.set(0, EYE, -0.9 + Math.sin(t * 0.3) * 0.2); camera.rotation.set(0, Math.sin(t * 0.2) * 0.08, 0); }
-  updateLights(); updateBugs(t, dt); updateShots(dt); updateHunt(dt);
+  updateLights(); updateBugs(t, dt); updateShots(dt);
   for (const s of spinners) { if (!s.m.parent?.visible && !s.m.visible) continue; s.m.rotation.y += dt * s.spin; s.m.position.y = s.bob + Math.sin(t * 2 + s.bob) * 0.06; }
   for (const r of rooms) if (r.chevrons && r.g.visible) r.chevrons.forEach((c, k) => { c.material.opacity = (r.door && r.door.open ? 0.3 : 0.12) + 0.3 * Math.max(0, Math.sin(t * 2.5 - k * 0.9)); });
   for (const r of rooms) if (r.door) { const want = r.door.open ? 2.55 : 0; r.door.panel.position.y += (1.3 + want - r.door.panel.position.y) * Math.min(1, dt * 3); }
@@ -738,4 +807,4 @@ function update(dt, render = true) {
 function frame() { requestAnimationFrame(frame); update(Math.min(clock.getDelta(), 0.05)); }
 Promise.allSettled(pendingModels).then(() => $('loading').classList.add('done')); setTimeout(() => $('loading').classList.add('done'), 6000);
 frame();
-window.__walk = { P, S, rooms, bugs, shots, fire, allRacks, hunt: () => hunt, auto: () => auto, tick: (n = 1, dt = 1 / 60, render = true) => { for (let i = 0; i < n; i++) update(dt, render && i === n - 1); }, startGame, openCard, keys };
+window.__walk = { P, S, rooms, bugs, shots, fire, allRacks, startMini, auto: () => auto, tick: (n = 1, dt = 1 / 60, render = true) => { for (let i = 0; i < n; i++) update(dt, render && i === n - 1); }, startGame, openCard, keys };

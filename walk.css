@@ -146,3 +146,29 @@ body.playing #reticle { opacity: .9; }
 #crawl-skip:hover { background: var(--accent); }
 #crawl.done #crawl-skip { opacity: 1; animation: pulse 1.4s ease-in-out infinite; }
 @media (max-width: 720px) { .crawl-text { font-size: .62em; } #crawl-skip { bottom: 230px; } }
+
+/* ---------- 미니게임 창 ---------- */
+.mini { margin-top: 10px; }
+.mini .code { background: #000; color: #9fc0ff; font-family: var(--mono); font-size: 16px; padding: 12px; }
+.minput { width: 100%; font-family: var(--mono); font-size: 15px; padding: 10px; border: 2px solid var(--navy); margin-top: 8px; }
+.mrow { display: flex; gap: 10px; align-items: center; margin-top: 12px; }
+.grid3, .grid4, .grid2 { display: grid; gap: 8px; }
+.grid3 { grid-template-columns: repeat(3, 1fr); max-width: 300px; margin: 0 auto; }
+.grid4 { grid-template-columns: repeat(4, 1fr); }
+.grid2 { grid-template-columns: repeat(2, 1fr); max-width: 320px; margin: 0 auto; }
+.grid3 button, .grid4 button, .grid2 button { aspect-ratio: 1; border: 3px solid var(--navy); background: #fff; font: 900 34px var(--sans); color: var(--navy); cursor: pointer; border-radius: 6px; box-shadow: 3px 3px 0 var(--navy); }
+.grid3 button:active, .grid4 button:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--navy); }
+#ttt button.X { color: var(--accent); } #ttt button.O { color: #c0392b; }
+#mem button { font-size: 30px; background: var(--navy); color: #fff; } #mem button.flip { background: #fff; color: var(--navy); } #mem button.ok { background: #2f8f4e; color: #fff; border-color: #2f8f4e; }
+.pad { font-size: 40px; opacity: .55; transition: .12s; } .pad.lit { opacity: 1; transform: scale(1.06); box-shadow: 0 0 0 4px var(--yellow), 3px 3px 0 var(--navy); }
+.pad.p0 { background: #cfe3ff; } .pad.p1 { background: #ffe8a8; } .pad.p2 { background: #cdeec9; } .pad.p3 { background: #f6d2c0; }
+.slide .tile { background: linear-gradient(135deg, #e6efe0, #c6d9a8); color: #1c1f26; } .slide .hole { background: #e9ebf0; border-style: dashed; box-shadow: none; }
+.react { width: 100%; padding: 46px 10px; font: 900 22px var(--sans); border: 3px solid var(--navy); border-radius: 10px; cursor: pointer; background: #fff; color: var(--navy); }
+.react.wait { background: #c0392b; color: #fff; } .react.go { background: #2f8f4e; color: #fff; } .react.bad { background: #ffe0a8; }
+.logs { background: #0b0f1c; color: #9fc0ff; font-family: var(--mono); font-size: 12.5px; padding: 8px; max-height: 300px; overflow: auto; }
+.logs div { padding: 3px 6px; cursor: pointer; border-left: 3px solid transparent; } .logs div:hover { background: #141b2e; }
+.logs div.hit { background: #1f5f3a; color: #fff; border-left-color: #39ff6a; } .logs div.miss { color: #ff8080; border-left-color: #ff4d4d; }
+.whack button { font: 700 12px var(--mono); aspect-ratio: 1.1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; background: #1a1e29; color: #9aa0ad; border-color: #2a2f3c; box-shadow: none; }
+.whack button .led { font-size: 24px; height: 28px; }
+.whack button.idle { background: #3a1114; border-color: #ff4d4d; color: #fff; box-shadow: 0 0 14px rgba(255,77,77,.5); }
+.whack button.ok { background: #143a22; border-color: #39ff6a; color: #fff; }
