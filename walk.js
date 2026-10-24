@@ -21,10 +21,10 @@ const UI = {
     nav: { about: '소개', career: '경력', skills: '스킬', contact: '연락처' }, stage: 'STAGE', auto: '🚶 자동 투어', autoOn: '⏸ 투어 중', lang: 'EN', langLink: 'English',
     start: '▶ 시작', cont: '이어하기', tour: '🚶 자동 투어', pdf: '📄 PDF', pixel: '🕹 2D 픽셀 버전(이전 버전)으로 보기', ok: '확인 (Esc)',
     desc: '연도별로 이어진 10개의 방을 직접 걸어서 지나갑니다. 방에 들어가면 그 시절 이야기가 <b>자막</b>으로 흐르고, 떠 있는 <b>스킬 칩</b>을 모으면 다음 방 문이 열립니다. 클릭하면 <b>커밋을 발사</b>해서 멀리 있는 칩을 맞히거나 날아다니는 <b>🐛 버그</b>를 잡을 수 있어요.',
-    controls: '<span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 이동</span><span>마우스 시점</span><span><kbd>E</kbd> 상호작용</span><span>클릭 발사</span><span><kbd>Esc</kbd> 마우스 해제</span>',
+    controls: '<span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 이동</span><span>마우스 시점</span><span><kbd>E</kbd> 상호작용</span><span>클릭 발사</span><span><kbd>Space</kbd> 점프</span><span><kbd>Esc</kbd> 마우스 해제</span>',
     skip: '계속 → 클릭 또는 Space', card: (t) => `카드 읽기 — ${t}`, chip: (n) => `스킬 획득 — ${n}`, ach: (n) => `업적 — ${n}`, door: '다음 방으로', doorLocked: (n) => `잠김 — ${n}`, rack: '유휴 서버 반납 (E)', rackDone: '반납 완료', portal: '다음 스테이지로 (연락처 · PDF)', pc: '486 PC — 명령어 입력',
-    needCard: '카드 읽기', needChips: (n) => `스킬 칩 ${n}개`, objective: (s, needs) => needs.length ? `목표: ${needs.join(' + ')} → 문이 열립니다` : `문이 열렸습니다 → ${s}`,
-    clear: (y) => `STAGE CLEAR · ${y}`, doorOpen: '🔓 문이 열렸습니다', gotChip: (n) => `⚡ ${n} 획득`, gotAch: (n) => `🏆 ${n}`, reclaimed: (n) => `💤 유휴 서버 반납 · 누적 ${n}대`,
+    needCard: '카드 읽기', needChips: (n) => `⚡ 스킬 칩 ${n}개`, objective: (s, needs) => (needs.length ? `이 방: ${needs.join(' · ')}  |  ` : '') + `다음 → ${s}`, story: '이야기 읽기', mini: '미니게임', weaponUp: (lv, why) => `🔫 COMMIT LAUNCHER Lv.${lv} — ${why}`, wdesc: ['', '싱글 샷', '더블 샷', '트리플 샷 · 연사', '빅 샷 · 최대'],
+    clear: (y) => `STAGE CLEAR · ${y}`, doorOpen: '🔓 문이 열렸습니다', jump: '점프', gotChip: (n) => `⚡ ${n} 획득`, gotAch: (n) => `🏆 ${n}`, reclaimed: (n) => `💤 유휴 서버 반납 · 누적 ${n}대`,
     bug: (n, m) => `🐛 버그 수정! ${n} / ${m}`, clickToPlay: '화면을 클릭하면 마우스로 둘러볼 수 있어요 · 클릭 = 발사', tourOff: '자동 투어 해제', tourOn: '자동 투어 시작 — 아무 키나 누르면 멈춥니다', reset: '처음부터 다시 시작할까요? (진행 상황 삭제)',
     cards: { about: '소개', career: '경력', skills: '보유 스킬', contact: '연락처', summary: '요약', edu: '학력 · 자격', ach: '업적', side: '사이드 프로젝트', pdfKo: 'PDF 포트폴리오 (국문)', pdfEn: 'PDF Portfolio (English)', game: '🕹 2D 픽셀 버전', collected: '획득', locked: '아직 못 찾음', final: '여기까지 읽어주셔서 감사합니다. 대규모 인프라를 다루는 백엔드 개발자로서 다음 도전을 준비하고 있습니다.' },
     dosHelp: '명령어: help, dir, whoami, skills, career, contact, cls',
@@ -33,10 +33,10 @@ const UI = {
     sub: 'Backend Developer · Java / Spring · Kakao Infra Dev Team 2022 –', ver: 'Version', verWalk: '3D walk (first person)', verPixel: '2D pixel (previous)',
     nav: { about: 'ABOUT', career: 'CAREER', skills: 'SKILLS', contact: 'CONTACT' }, stage: 'STAGE', auto: '🚶 Auto tour', autoOn: '⏸ Touring', lang: '한국어', langLink: '한국어',
     start: '▶ Start', cont: 'Continue', tour: '🚶 Auto tour', pdf: '📄 PDF', pixel: '🕹 Open the 2D pixel version (previous)', ok: 'OK (Esc)',
-    desc: 'Walk through 10 rooms, one per era. Each room plays its story as a <b>crawl</b>; collect the floating <b>skill chips</b> to unlock the next door. Click to <b>fire a commit</b> at far chips or at the flying <b>🐛 bugs</b>.',
-    controls: '<span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> move</span><span>mouse look</span><span><kbd>E</kbd> interact</span><span>click = fire</span><span><kbd>Esc</kbd> release mouse</span>',
+    desc: 'Walk through 10 rooms, one per era. Each room plays its story as a <b>crawl</b> and has a <b>mini-game</b> and floating <b>skill chips</b>. Click to <b>fire a commit</b> at the 🐛 bugs — every 3 bugs or a cleared mini-game <b>upgrades</b> your launcher.',
+    controls: '<span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> move</span><span>mouse look</span><span><kbd>E</kbd> interact</span><span>click = fire</span><span><kbd>Space</kbd> jump</span><span><kbd>Esc</kbd> release mouse</span>',
     skip: 'Continue → click or Space', card: (t) => `Read card — ${t}`, chip: (n) => `Collect skill — ${n}`, ach: (n) => `Achievement — ${n}`, door: 'Next room', doorLocked: (n) => `Locked — ${n}`, rack: 'Reclaim idle server (E)', rackDone: 'Reclaimed', portal: 'Next stage (contact · PDF)', pc: '486 PC — type a command',
-    needCard: 'read the card', needChips: (n) => `${n} skill chip${n > 1 ? 's' : ''}`, objective: (s, needs) => needs.length ? `Goal: ${needs.join(' + ')} → door opens` : `Door open → ${s}`,
+    needCard: 'read the card', needChips: (n) => `⚡ ${n} skill chip${n > 1 ? 's' : ''}`, objective: (s, needs) => (needs.length ? `This room: ${needs.join(' · ')}  |  ` : '') + `Next → ${s}`, story: 'Read the story', mini: 'Mini-game', weaponUp: (lv, why) => `🔫 COMMIT LAUNCHER Lv.${lv} — ${why}`, wdesc: ['', 'single shot', 'double shot', 'triple shot · rapid', 'big shot · max'],
     clear: (y) => `STAGE CLEAR · ${y}`, doorOpen: '🔓 Door unlocked', gotChip: (n) => `⚡ ${n}`, gotAch: (n) => `🏆 ${n}`, reclaimed: (n) => `💤 Idle server reclaimed · total ${n}`,
     bug: (n, m) => `🐛 Bug fixed! ${n} / ${m}`, clickToPlay: 'Click the screen to look around · click = fire', tourOff: 'Auto tour off', tourOn: 'Auto tour — press any key to stop', reset: 'Restart from the beginning? (progress is deleted)',
     cards: { about: 'About', career: 'Career', skills: 'Skills', contact: 'Contact', summary: 'Summary', edu: 'Education · Certifications', ach: 'Achievements', side: 'Side projects', pdfKo: 'PDF 포트폴리오 (국문)', pdfEn: 'PDF Portfolio (English)', game: '🕹 2D pixel version', collected: 'collected', locked: 'not found yet', final: 'Thanks for reading this far. I am a backend developer who builds systems for large-scale infrastructure, getting ready for the next challenge.' },
@@ -46,9 +46,9 @@ const UI = {
 const T = () => UI[lang];
 
 // ---------------------------------------------------------------- 상태
-const S = { playing: false, locked: false, auto: false, sound: false, cardRead: new Set(), chips: new Set(), ach: new Set(), racks: new Set(), bugs: new Set(), servers: 0, stage: 0 };
-try { const sv = JSON.parse(localStorage.getItem('walk') || 'null'); if (sv) { S.cardRead = new Set(sv.cardRead); S.chips = new Set(sv.chips); S.ach = new Set(sv.ach); S.racks = new Set(sv.racks || []); S.bugs = new Set(sv.bugs || []); S.servers = sv.servers || 0; S.savePos = sv.pos; } } catch (e) { /* 저장 없음 */ }
-const save = () => { try { localStorage.setItem('walk', JSON.stringify({ cardRead: [...S.cardRead], chips: [...S.chips], ach: [...S.ach], racks: [...S.racks], bugs: [...S.bugs], servers: S.servers, pos: { x: P.x, z: P.z, yaw: P.yaw } })); } catch (e) {} };
+const S = { playing: false, locked: false, auto: false, sound: false, cardRead: new Set(), chips: new Set(), ach: new Set(), racks: new Set(), bugs: new Set(), cleared: new Set(), mini: new Set(), wlv: 1, servers: 0, stage: 0 };
+try { const sv = JSON.parse(localStorage.getItem('walk') || 'null'); if (sv) { S.cardRead = new Set(sv.cardRead); S.chips = new Set(sv.chips); S.ach = new Set(sv.ach); S.racks = new Set(sv.racks || []); S.bugs = new Set(sv.bugs || []); S.cleared = new Set(sv.cleared || []); S.mini = new Set(sv.mini || []); S.wlv = sv.wlv || 1; S.servers = sv.servers || 0; S.savePos = sv.pos; } } catch (e) { /* 저장 없음 */ }
+const save = () => { try { localStorage.setItem('walk', JSON.stringify({ cardRead: [...S.cardRead], chips: [...S.chips], ach: [...S.ach], racks: [...S.racks], bugs: [...S.bugs], cleared: [...S.cleared], mini: [...S.mini], wlv: S.wlv, servers: S.servers, pos: { x: P.x, z: P.z, yaw: P.yaw } })); } catch (e) {} };
 
 // ---------------------------------------------------------------- 렌더러 / 장면
 const renderer = new THREE.WebGLRenderer({ antialias: !isSmall, powerPreference: 'high-performance' });
@@ -114,6 +114,14 @@ const THEMES = {
 };
 let CHEV_TEX = null;
 function chevronTex() { if (CHEV_TEX) return CHEV_TEX; CHEV_TEX = canvasTex(128, 96, (g, w, h) => { g.clearRect(0, 0, w, h); g.strokeStyle = '#fff'; g.lineWidth = 16; g.lineCap = 'round'; g.lineJoin = 'round'; g.beginPath(); g.moveTo(16, 70); g.lineTo(64, 22); g.lineTo(112, 70); g.stroke(); }); return CHEV_TEX; }
+function frameTex(r) {
+  return canvasTex(512, 372, (g, w, h) => {
+    g.fillStyle = '#f4efe2'; g.fillRect(0, 0, w, h); g.fillStyle = '#14213d'; g.fillRect(22, 22, w - 44, h - 44);
+    g.fillStyle = '#7fe7ff'; g.font = '600 22px "IBM Plex Mono", monospace'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(`STAGE ${r.i + 1} · ${r.st.year}`, w / 2, 70);
+    g.fillStyle = '#fff'; let fs = 40; g.font = `900 ${fs}px "Noto Sans KR", sans-serif`; const t = L(r.st.title); const tw = g.measureText(t).width; if (tw > w - 80) { fs = Math.floor(fs * (w - 80) / tw); g.font = `900 ${fs}px "Noto Sans KR", sans-serif`; } g.fillText(t, w / 2, h / 2 - 10);
+    g.fillStyle = '#ffd84d'; g.font = '700 24px "Noto Sans KR", sans-serif'; g.fillText(lang === 'ko' ? '📖 눌러서 이야기 읽기' : '📖 Press to read the story', w / 2, h - 72);
+  });
+}
 function storyTex(r) {
   const lines = crawlLines(r.st); return canvasTex(1152, 640, (g, w, h) => {
     g.fillStyle = '#0e1630'; g.fillRect(0, 0, w, h); g.fillStyle = '#f6c400'; g.fillRect(0, 0, w, 10);
@@ -125,7 +133,7 @@ function storyTex(r) {
 }
 // 방별 스토리 자막 (한 문장 = 한 줄)
 const STORY = {
-  seoul: { ko: ['1990년, 서울의 한 병원에서 태어났습니다.', '네 살이 되던 해, 아버지의 유학길을 따라', '가족 모두 낯선 나라로 떠나게 됩니다.'], en: ['Born in Seoul in 1990.', "At four, my father's studies took us abroad —", 'the whole family, to an unfamiliar country.'] },
+  seoul: { ko: ['1990년, 서울에서 태어났습니다.', '이름은 남보석 — 보석처럼 흔치 않은 이름입니다.', 'ⓘ 이름의 뜻은 문 옆 액자에서 볼 수 있습니다.'], en: ['Born in Seoul, 1990.', 'My name is Bosuk Nam — bosuk means "jewel".', 'ⓘ The story behind the name is in the frame by the door.'] },
   israel: { ko: ['이스라엘에서의 4년.', '말이 통하지 않아 놀림도 받았지만', '11개월 만에 히브리어로 농담을 하게 됐습니다.', '그때 배운 끈기가 지금도 남아 있습니다.', 'שלום — 지금도 인사 정도는 합니다.'], en: ['Four years in Israel.', 'Teased at first for not understanding a word,', 'within 11 months I was joking in Hebrew.', 'That stubbornness never left me.', 'שלום — I can still say hello.'] },
   pc: { ko: ['다섯 살, 처음 만진 486 컴퓨터.', 'C:\\> 프롬프트에서 시작해 Windows 3.1까지.', '초등학생 때는 플래시로 애니메이션을 만들며', '컴퓨터로 무언가를 만드는 일에 빠졌습니다.', '책상 위 PC에 명령어를 입력해 보세요.'], en: ['Age five: my first 486 PC.', 'From the C:\\> prompt to Windows 3.1.', 'In elementary school I made Flash animations', 'and fell for making things with a computer.', 'Try typing a command on the desk PC.'] },
   univ: { ko: ['2009년, 한양대학교 도시공학과에 입학했습니다.', '도시를 설계하는 법을 배우고, 군 복무를 마치고,', '2014년 도시계획기사 자격을 땄습니다.', '아직 개발자는 아니었습니다.'], en: ['2009: Urban Planning at Hanyang University.', 'I learned to design cities, served in the army,', "and earned the urban planner's license in 2014.", 'Not a developer yet.'] },
@@ -137,7 +145,19 @@ const STORY = {
   kakao: { ko: ['2022년 3월, 카카오 인프라개발팀.', '서버 23만 대, 사용자 4,000명의 사내 시스템을 맡았습니다.', '쓰지 않는 서버를 사람 대신 시스템이 찾아내도록', '유휴 서버 관리 시스템을 혼자 설계하고 만들었습니다.', '알림에서 조직장 결재로 — 반납은 조직의 결정이 됐습니다.', '요즘은 n8n과 AI 에이전트를 매일의 개발에 녹이고 있습니다.', '💤 표시된 랙을 쏴서 유휴 서버를 반납해 보세요.'], en: ['March 2022: Kakao, Infra Development Team.', 'Internal systems for 230,000 servers and 4,000 users.', 'I built the idle-server system alone,', 'so the system, not people, finds unused servers.', 'From alerts to org-lead approval — returns became a decision.', 'These days I fold n8n and AI agents into daily development.', 'Shoot the 💤 racks to reclaim idle servers.'] },
   goal: { ko: ['여기까지 읽어 주셔서 감사합니다.', '대규모 인프라를 다루는 백엔드 개발자로서', '다음 도전을 준비하고 있습니다.', '포털을 지나면 연락처와 PDF가 있습니다.'], en: ['Thank you for walking this far.', 'A backend developer for large-scale infrastructure,', 'getting ready for the next challenge.', 'Contact and PDF are beyond the portal.'] },
 };
+const NAME_INFO = { ko: ['남보석(藍寶石)은 사파이어를 뜻합니다.', '출애굽기 28장, 대제사장의 흉패에 박힌 열두 보석 가운데 하나에서 따온 이름입니다.', '흔치 않은 이름 덕분에 한 번 들으면 잘 잊히지 않는다고들 합니다.'], en: ['Bosuk (藍寶石) means sapphire.', 'It comes from one of the twelve stones on the high priest\'s breastplate in Exodus 28.', 'People say the unusual name is hard to forget once heard.'] };
 function crawlLines(st) { return (STORY[st.id] || {})[lang] || (STORY[st.id] || {}).ko || []; }
+// 방별 미니게임 (퀴즈 / 타이핑 / 유휴 서버 사냥)
+const MINIGAMES = {
+  israel: { kind: 'quiz', title: { ko: '히브리어 한마디', en: 'One word of Hebrew' }, q: { ko: '"שלום"(샬롬)의 뜻은?', en: 'What does "שלום" (shalom) mean?' }, a: { ko: ['안녕 · 평화', '고맙습니다', '맛있다'], en: ['Hello · peace', 'Thank you', 'Delicious'] }, ok: 0 },
+  univ: { kind: 'quiz', title: { ko: '도시계획 OX', en: 'Urban planning quiz' }, q: { ko: '도시계획기사 자격을 딴 해는?', en: 'Which year did I get the urban planner license?' }, a: { ko: ['2014년', '2009년', '2017년'], en: ['2014', '2009', '2017'] }, ok: 0 },
+  kunhwa: { kind: 'quiz', title: { ko: '적성 테스트', en: 'Aptitude test' }, q: { ko: '도시계획부에서 매일 들었던 생각은?', en: 'The thought I had every day as an urban planner?' }, a: { ko: ['"이건 내 적성이 아니다"', '"점심이 너무 늦다"', '"도면이 너무 크다"'], en: ['"This is not what I\'m meant to do"', '"Lunch is too late"', '"The drawings are too big"'] }, ok: 0 },
+  alphago: { kind: 'quiz', title: { ko: '2016년 3월', en: 'March 2016' }, q: { ko: '알파고 vs 이세돌 최종 스코어는?', en: 'Final score, AlphaGo vs Lee Sedol?' }, a: { ko: ['4 : 1', '3 : 2', '5 : 0'], en: ['4 : 1', '3 : 2', '5 : 0'] }, ok: 0 },
+  bootcamp: { kind: 'typing', title: { ko: 'hello, world 타이핑', en: 'Type hello, world' }, text: 'printf("hello, world\\n");' },
+  tmax: { kind: 'quiz', title: { ko: '첫 IT 회사', en: 'First IT job' }, q: { ko: '티맥스소프트에서 맡은 일은?', en: 'My job at TmaxSoft?' }, a: { ko: ['미들웨어 기술지원', '프론트엔드 개발', '영업'], en: ['Middleware support', 'Frontend dev', 'Sales'] }, ok: 0 },
+  lgcns: { kind: 'quiz', title: { ko: '장애 대응 퀴즈', en: 'Incident quiz' }, q: { ko: '이모지가 DB에 저장되지 않던 원인은?', en: 'Why did emoji fail to save in the DB?' }, a: { ko: ['utf8 → utf8mb4 문자셋', '디스크 부족', 'JWT 만료'], en: ['utf8 → utf8mb4 charset', 'Disk full', 'JWT expired'] }, ok: 0 },
+  kakao: { kind: 'hunt', title: { ko: '유휴 서버 사냥 45초', en: 'Idle-server hunt · 45s' } },
+};
 const FLOOR_TEX = {};
 function floorTex(kind, base) {
   if (FLOOR_TEX[kind]) return FLOOR_TEX[kind];
@@ -157,7 +177,7 @@ const FLOOR_KIND = { seoul: 'tile', israel: 'sand', pc: 'carpet', univ: 'grass',
 const CAT_COLOR = { lang: 0xf6c400, back: 0x6db33f, data: 0x4fa3ff, infra: 0xff8c42, ai: 0xd36bff };
 
 const world = new THREE.Group(); scene.add(world);
-const storyPanels = []; const rooms = []; const interact = []; const colliders = []; const spinners = []; const ledSets = []; const bugs = []; const shots = []; const bursts = [];
+const allRacks = []; let hunt = null; const storyPanels = []; const rooms = []; const interact = []; const colliders = []; const spinners = []; const ledSets = []; const bugs = []; const shots = []; const bursts = [];
 let z0 = 0, TOTAL_LEN = 0;
 function buildWorld() {
   D.stages.forEach((st, i) => {
@@ -188,24 +208,28 @@ function buildRoom(r) {
   for (const sx of [-1.4, 1.4]) add(g, new THREE.CylinderGeometry(0.015, 0.015, 0.5, 6), mat(0x888), sx, H - 0.25, sz - 0.1);
   // 천장 조명 바
   for (const sx of [-1.6, 1.6]) add(g, new THREE.BoxGeometry(0.14, 0.04, r.len - 3), new THREE.MeshStandardMaterial({ color: th.light, emissive: th.light, emissiveIntensity: 0.7 }), sx, H - 0.03, zc);
+  if (r.st.goal) add(g, new THREE.PlaneGeometry(W, H), wm, 0, H / 2, r.z1 + 0.02);
   // 진행 방향 표시: 바닥 화살표(문 쪽으로 흐름)
   if (!r.st.goal) { const chevMat = new THREE.MeshBasicMaterial({ map: chevronTex(), transparent: true, opacity: 0.35, depthWrite: false, color: 0x7fe7ff }); r.chevrons = []; for (let z = r.z0 - 2.5; z > r.z1 + 2.5; z -= 2.6) { const c = add(g, new THREE.PlaneGeometry(0.7, 0.5), chevMat.clone(), 0, 0.012, z, [-Math.PI / 2, 0, 0]); r.chevrons.push(c); } }
   // 스토리 패널 (자막 내용을 벽에 적어 둠) — 오른쪽 벽, 입구 근처
-  { const panel = add(g, new THREE.PlaneGeometry(3.6, 2.0), new THREE.MeshBasicMaterial({ map: storyTex(r), toneMapped: false }), W / 2 - 0.03, 2.05, r.z0 - 6.2, [0, -Math.PI / 2, 0]); add(g, new THREE.BoxGeometry(3.75, 2.15, 0.05), mat(0x0b1020), W / 2 - 0.0, 2.05, r.z0 - 6.2, [0, -Math.PI / 2, 0]); storyPanels.push({ r, panel }); }
+  { const fz = r.z1 + 0.2, fx = -3.0; const fr = new THREE.Group(); fr.position.set(fx, 1.75, fz); g.add(fr);
+    add(fr, new THREE.BoxGeometry(1.25, 0.95, 0.06), mat(0x6b4a2b, { roughness: 0.6 }), 0, 0, 0); const pic = add(fr, new THREE.PlaneGeometry(1.1, 0.8), new THREE.MeshBasicMaterial({ map: frameTex(r), toneMapped: false }), 0, 0, 0.035);
+    const lab = makeLabel('📖 STORY', { color: '#ffd84d', size: 0.8 }); lab.position.set(0, 0.8, 0.1); fr.add(lab); storyPanels.push({ r, panel: pic });
+    interact.push({ kind: 'story', r, obj: fr, lab, pos: new THREE.Vector3(fx, 1.75, fz), rad: 3.8, label: () => '📖 ' + T().story, action: () => openStoryCard(r) }); }
   // 테마 소품
   (PROPS[r.st.id] || PROPS.office)(g, r, th);
   // 스킬 칩
   const coins = [...(r.st.coins || []), ...(EXTRA_COINS[r.st.id] || [])];
   coins.forEach((id, k) => {
     const sk = D.skills[id]; const n = coins.length; let x, z;
-    if (n > 4) { const sp = (r.len - 7) / Math.ceil(n / 2); x = k % 2 ? 2.4 : -2.4; z = r.z0 - 3.8 - Math.floor(k / 2) * sp; }
+    if (n > 4) { const sp = (r.len - 7) / Math.ceil(n / 2); x = k % 2 ? 2.7 : -2.7; z = r.z0 - 3.8 - Math.floor(k / 2) * sp; }
     else { const ang = (k / n) * Math.PI * 2; x = Math.cos(ang) * 1.5; z = zc - 1.2 + Math.sin(ang) * 1.5; }
     const chip = new THREE.Group(); chip.position.set(x, 0, z); g.add(chip);
     const col = CAT_COLOR[sk.cat] || 0xffffff;
     const core = add(chip, new THREE.OctahedronGeometry(0.22, 0), new THREE.MeshStandardMaterial({ color: col, emissive: col, emissiveIntensity: 0.9, roughness: 0.3 }), 0, 1.2, 0);
     add(chip, new THREE.TorusGeometry(0.34, 0.02, 8, 32), glowMat(col), 0, 1.2, 0, [Math.PI / 2, 0, 0]);
     add(chip, new THREE.CircleGeometry(0.35, 24), new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: 0.25 }), 0, 0.01, 0, [-Math.PI / 2, 0, 0]);
-    const lab = makeLabel(`${sk.ic} ${sk.n}`, { color: '#' + col.toString(16).padStart(6, '0'), size: 0.85 }); lab.position.set(0, 1.85, 0); chip.add(lab);
+    const lab = makeLabel(`${sk.ic} ${sk.n}`, { color: '#' + col.toString(16).padStart(6, '0'), size: r.st.id === 'kakao' ? 0.65 : 0.85 }); lab.position.set(0, 1.85, 0); chip.add(lab);
     spinners.push({ m: core, bob: 1.2, spin: 1.6 });
     const it = { kind: 'chip', id, r, obj: chip, mesh: core, lab, pos: new THREE.Vector3(x, 1.2, z), rad: 2.2, near: 1.0, label: () => '⚡ ' + T().chip(sk.n), action: () => collectChip(it) };
     interact.push(it); r.chips.push(it); r.needs.push(id);
@@ -224,14 +248,14 @@ function buildRoom(r) {
     if (S.ach.has(id)) tr.visible = false;
   });
   // 버그 (쏴서 잡는 표적)
-  if (!r.st.goal) for (let k = 0; k < 4; k++) {
+  if (!r.st.goal) for (let k = 0; k < (r.len > 14 ? 2 : 1); k++) {
     const id = `${r.st.id}-${k}`; const b = new THREE.Group(); g.add(b);
     const body = add(b, new THREE.SphereGeometry(0.13, 10, 8), new THREE.MeshStandardMaterial({ color: 0xff3b3b, emissive: 0xff2020, emissiveIntensity: 0.9, roughness: 0.4 }), 0, 0, 0); body.scale.set(1, 0.8, 1.3);
     add(b, new THREE.SphereGeometry(0.07, 8, 6), new THREE.MeshStandardMaterial({ color: 0x220000, emissive: 0x550000 }), 0, 0.03, 0.15);
     const wingMat = new THREE.MeshBasicMaterial({ color: 0xffd6d6, transparent: true, opacity: 0.55, side: THREE.DoubleSide });
     const w1 = add(b, new THREE.PlaneGeometry(0.22, 0.12), wingMat, -0.14, 0.08, 0, [-Math.PI / 2, 0, 0.3]), w2 = add(b, new THREE.PlaneGeometry(0.22, 0.12), wingMat, 0.14, 0.08, 0, [-Math.PI / 2, 0, -0.3]);
     for (const sx of [-1, 1]) for (let l = 0; l < 3; l++) add(b, new THREE.CylinderGeometry(0.008, 0.008, 0.14, 4), mat(0x330000), sx * 0.12, -0.08, -0.06 + l * 0.06, [0, 0, sx * 0.9]);
-    const bug = { id, r, g: b, w1, w2, cx: (k % 2 ? 1.3 : -1.3) + Math.random() * 0.8, cz: zc + (k - 1.5) * (r.len / 6), a: 0.6 + Math.random() * 0.5, b: 0.4 + Math.random() * 0.4, c: 1 + Math.random(), ph: Math.random() * 9, dead: S.bugs.has(id) };
+    const bug = { id, r, g: b, w1, w2, cx: (k % 2 ? 1.3 : -1.3) + Math.random() * 0.8, cz: zc + (k - 0.5) * (r.len / 4), a: 0.6 + Math.random() * 0.5, b: 0.4 + Math.random() * 0.4, c: 1 + Math.random(), ph: Math.random() * 9, dead: S.bugs.has(id) };
     b.visible = !bug.dead; bugs.push(bug);
   }
   // 문 (방 끝). 마지막 방은 포털
@@ -245,9 +269,9 @@ function buildRoom(r) {
     const panel = add(door, new THREE.BoxGeometry(2.5, 2.6, 0.1), mat(0x27304a, { metalness: 0.6, roughness: 0.35 }), 0, 1.3, 0);
     const lamp = add(door, new THREE.BoxGeometry(0.5, 0.08, 0.06), glowMat(0xff4d4d), 0, 2.78, 0.22);
     add(door, new THREE.PlaneGeometry(1.2, 0.34), new THREE.MeshBasicMaterial({ map: textTex([`${rooms[r.i + 1] ? rooms[r.i + 1].st.year : ''} ▶`], { bg: '#0b1020', fg: '#7fe7ff', font: 'bold 70px "IBM Plex Mono", monospace', w: 512, h: 144 }), toneMapped: false }), 0, 3.15, 0.22);
-    const lab = makeLabel('🔒', { color: '#ff8080' }); lab.position.set(0, 2.1, 0.3); door.add(lab);
-    r.door = { g: door, panel, lamp, lab, open: false, t: 0 };
-    interact.push({ kind: 'door', r, obj: door, lab, pos: new THREE.Vector3(0, 1.3, dz), rad: 3.0, label: () => r.door.open ? '🚪 ' + T().door : '🔒 ' + T().doorLocked(needsText(r)), action: () => { if (!r.door.open) { toast('🔒 ' + T().doorLocked(needsText(r))); showObjective(r); } } });
+    const lab = makeLabel('🚪', { color: '#9fefb0', size: 0.7 }); lab.position.set(0, 2.1, 0.3); door.add(lab); lab.visible = false;
+    r.door = { g: door, panel, lamp, lab, open: true, t: 0 }; lamp.material.color.setHex(0x39ff6a); panel.position.y = 1.3 + 2.55;
+    interact.push({ kind: 'door', r, obj: door, lab, pos: new THREE.Vector3(0, 1.3, dz), rad: 3.0, label: () => '🚪 ' + T().door, action: () => {} });
   }
 }
 
@@ -265,12 +289,14 @@ function rackRow(g, r, zStart, count, idleIdx = []) {
     add(rk, new THREE.BoxGeometry(0.62, 2.15, 0.9), frame, 0, 1.075, 0);
     const idle = idleIdx.includes((side + 1) * count + k); const col = idle ? new THREE.Color(0xff3b3b) : new THREE.Color(0x39ff6a);
     for (let u = 0; u < 12; u++) { add(rk, new THREE.BoxGeometry(0.56, 0.115, 0.05), unit, 0, 0.2 + u * 0.16, 0.47); for (let c2 = 0; c2 < 2; c2++) { const lp = new THREE.Vector3(-0.2 + c2 * 0.05, 0.23 + u * 0.16, 0.497).applyMatrix4(rk.matrixWorld.identity().compose(rk.position, rk.quaternion, rk.scale)); m4.makeTranslation(lp.x, lp.y, lp.z); leds.setMatrixAt(li, m4); leds.setColorAt(li, col); state.push({ col, rate: 0.5 + Math.random() * 2, phase: Math.random() * 9, i: li, rack: racks.length }); li++; } }
-    colliders.push({ x, z, rad: 0.6 });
-    const rackObj = { g: rk, idle, state: [], x, z, side }; racks.push(rackObj);
-    if (idle) { const lab = makeLabel('💤 IDLE', { color: '#ff8080', size: 0.8 }); lab.position.set(0, 2.5, 0); rk.add(lab); const id = `${r.st.id}-${side}-${k}`; const it = { kind: 'rack', id, r, obj: rk, lab, pos: new THREE.Vector3(x, 1.2, z), rad: 2.4, label: () => (S.racks.has(id) ? '✅ ' + T().rackDone : '💤 ' + T().rack), action: () => reclaimRack(it, rackObj) }; interact.push(it); if (S.racks.has(id)) { rackObj.idle = false; lab.visible = false; } }
+    colliders.push({ x, z, rad: 0.6, h: 2.2 });
+    const id = `${r.st.id}-${side}-${k}`; const lab = makeLabel('💤 IDLE', { color: '#ff8080', size: 0.75 }); lab.position.set(0, 2.5, 0); rk.add(lab);
+    const rackObj = { g: rk, id, idle: idle && !S.racks.has(id), state: [], x, z, side, lab }; racks.push(rackObj); lab.visible = rackObj.idle;
+    const it = { kind: 'rack', id, r, obj: rk, lab, pos: new THREE.Vector3(x, 1.2, z), rad: 2.4, label: () => (rackObj.idle ? '💤 ' + T().rack : '✅ ' + T().rackDone), action: () => reclaimRack(it, rackObj) }; interact.push(it); rackObj.it = it; it.rack = rackObj;
   }
   leds.count = li; leds.instanceMatrix.needsUpdate = true; leds.instanceColor.needsUpdate = true; g.add(leds);
-  state.forEach((s) => racks[s.rack].state.push(s)); racks.forEach((rk) => { if (!rk.idle) rk.state.forEach((s) => s.col.setHex(0x39ff6a)); });
+  state.forEach((s) => racks[s.rack].state.push(s)); racks.forEach((rk) => { rk.state.forEach((s) => s.col.setHex(rk.idle ? 0xff3b3b : 0x39ff6a)); });
+  allRacks.push(...racks);
   ledSets.push({ leds, state });
 }
 // ---------------------------------------------------------------- GLB 모델 (Kenney CC0, assets/models)
@@ -286,10 +312,18 @@ function M(g, name, x, z, o = {}) {
     const m = src.clone(true); const box = new THREE.Box3().setFromObject(m); const size = box.getSize(new THREE.Vector3());
     const k = o.h ? o.h / size.y : o.w ? o.w / Math.max(size.x, size.z) : 1; m.scale.setScalar(k);
     m.position.set(-(box.min.x + size.x / 2) * k, -box.min.y * k, -(box.min.z + size.z / 2) * k); holder.add(m);
-    if (o.col !== false) colliders.push({ x, z, rad: o.col || Math.max(size.x, size.z) * k * 0.45 });
+    if (o.col !== false) colliders.push({ x, z, rad: o.col || Math.max(size.x, size.z) * k * 0.45, h: (o.y || 0) + size.y * k });
     holder.userData.size = size.multiplyScalar(k);
   }).catch(() => {});
   pendingModels.push(pr); return holder;
+}
+// 미니게임 스테이션: 사이드테이블 + 노트북 + 라벨
+function station(g, r, x, z, ry = 0) {
+  const mg = MINIGAMES[r.st.id]; if (!mg) return; const st = new THREE.Group(); st.position.set(x, 0, z); g.add(st);
+  M(st, 'sideTable', 0, 0, { h: 0.75, col: 0.45 }); M(st, 'laptop', 0, 0, { w: 0.42, y: 0.75, ry, col: false });
+  const lab = makeLabel('🎮 ' + L(mg.title), { color: '#ff9ad5', size: 0.85 }); lab.position.set(0, 1.5, 0); st.add(lab);
+  colliders.push({ x, z, rad: 0.45, h: 0.75 });
+  interact.push({ kind: 'mini', r, obj: st, lab, pos: new THREE.Vector3(x, 1.0, z), rad: 2.6, label: () => '🎮 ' + T().mini + ' — ' + L(mg.title) + (S.mini.has(r.st.id) ? ' ✅' : ''), action: () => startMini(r) });
 }
 // 사무실 세트: 책상 + 의자 + 모니터/키보드/마우스
 function workstation(g, x, z, ry = 0, laptop = false) {
@@ -297,7 +331,7 @@ function workstation(g, x, z, ry = 0, laptop = false) {
   const d = M(ws, 'desk', 0, 0, { w: 1.5, col: false });
   M(ws, 'chairDesk', 0, 0.75, { h: 0.95, ry: Math.PI, col: false });
   loadModel('desk').then(() => { const top = d.userData.size?.y || 0.75; if (laptop) M(ws, 'laptop', 0, -0.05, { w: 0.42, y: top, col: false }); else { M(ws, 'computerScreen', 0, -0.2, { h: 0.45, y: top, col: false }); M(ws, 'computerKeyboard', 0, 0.15, { w: 0.42, y: top, col: false }); M(ws, 'computerMouse', 0.35, 0.15, { w: 0.08, y: top, col: false }); } });
-  colliders.push({ x, z, rad: 0.85 }); return ws;
+  colliders.push({ x, z, rad: 0.85, h: 0.8 }); return ws;
 }
 const PROPS = {
   seoul(g, r, th) { const zc = (r.z0 + r.z1) / 2;
@@ -308,7 +342,7 @@ const PROPS = {
     [['tree_palmDetailedTall', -3.3, zc - 3.5, 3.8], ['tree_palmBend', 3.2, zc + 2, 3.2], ['tree_palmDetailedShort', -3.0, zc + 3.8, 2.6], ['tree_palmDetailedTall', 3.4, zc - 4.5, 3.9]].forEach(([n, x, z, h]) => M(g, n, x, z, { h, col: 0.35 }));
     [['cactus_tall', 2.6, zc - 1, 1.4], ['cactus_short', -2.4, zc + 1.2, 0.8], ['cactus_short', 3.3, zc + 4.5, 0.9]].forEach(([n, x, z, h]) => M(g, n, x, z, { h, col: 0.3 }));
     [['rock_largeA', -2.6, zc - 0.5, 1.0], ['rock_largeC', 2.8, zc + 3.6, 0.8], ['rock_smallA', -1.2, zc + 4.6, 0.4], ['stone_largeB', 1.6, zc - 5, 0.7]].forEach(([n, x, z, h]) => M(g, n, x, z, { h }));
-    add(g, new THREE.SphereGeometry(0.5, 16, 16), glowMat(0xfff1b8), 0, 3.6, zc - 2); M(g, 'sign', 1.6, zc + 1.5, { h: 1.2 });
+    add(g, new THREE.SphereGeometry(0.5, 16, 16), glowMat(0xfff1b8), 0, 3.6, zc - 2); M(g, 'sign', 1.6, zc + 1.5, { h: 1.2 }); station(g, r, 0.8, zc - 2.5, 0.3);
     wallText(g, r, 1, ['שלום', 'Israel · 1994'], { bg: '#3b7dd8', fg: '#ffffff', font: 'bold 92px "Noto Sans KR", sans-serif' }, 1.3, 3.4, 1.4, 1); },
   pc(g, r, th) { const zc = (r.z0 + r.z1) / 2;
     const d = M(g, 'desk', 0, r.z0 - 7.2, { w: 1.5, col: 0.8 }); M(g, 'chairDesk', 0, r.z0 - 6.3, { h: 0.95, ry: Math.PI, col: false });
@@ -320,26 +354,26 @@ const PROPS = {
   univ(g, r, th) { const zc = (r.z0 + r.z1) / 2;
     [['tree_oak', -3.3, zc - 3.5, 3.6], ['tree_detailed', 3.3, zc - 1, 3.4], ['tree_default', -3.2, zc + 3, 3.0], ['tree_pineRoundA', 3.2, zc + 4.2, 3.2]].forEach(([n, x, z, h]) => M(g, n, x, z, { h, col: 0.4 }));
     [['plant_bushDetailed', -2.2, zc - 1.2, 0.8], ['plant_bushDetailed', 2.4, zc + 2.5, 0.7], ['flower_redA', -1.6, zc + 1.5, 0.4], ['flower_yellowA', 1.8, zc - 3.5, 0.4], ['grass_large', 0.8, zc + 4, 0.35], ['rock_smallA', -2.8, zc + 5, 0.4]].forEach(([n, x, z, h]) => M(g, n, x, z, { h, col: false }));
-    M(g, 'bench', 2.6, zc + 1, { w: 1.6, ry: -Math.PI / 2 }); M(g, 'bench', -2.6, zc + 5, { w: 1.6, ry: Math.PI / 2 }); lampPost(g, 0.9, zc - 5);
+    M(g, 'bench', 2.6, zc + 1, { w: 1.6, ry: -Math.PI / 2 }); M(g, 'bench', -2.6, zc + 5, { w: 1.6, ry: Math.PI / 2 }); lampPost(g, 0.9, zc - 5); station(g, r, -1.0, zc - 3.5);
     wallText(g, r, -1, ['HANYANG UNIVERSITY', '도시공학과 · 2009 – 2015'], { bg: '#1b3f8f', fg: '#ffffff', font: 'bold 64px "Noto Sans KR", sans-serif' }, 1.3, 5, 1.5, -1); },
   kunhwa(g, r, th) { const zc = (r.z0 + r.z1) / 2;
     for (const [x, z] of [[-2.8, zc - 2.5], [-2.8, zc + 0.5], [2.8, zc - 2.5], [2.8, zc + 0.5]]) workstation(g, x, z, x < 0 ? Math.PI / 2 : -Math.PI / 2);
-    M(g, 'bookcaseClosedWide', 2.8, zc + 4.2, { h: 1.9, ry: -Math.PI / 2 }); M(g, 'pottedPlant', -3.3, zc + 4, { h: 1.1 }); M(g, 'trashcan', -2.0, zc - 4.6, { h: 0.6 }); M(g, 'kitchenCoffeeMachine', 3.3, zc - 5, { h: 0.45, y: 0.75, col: false }); M(g, 'sideTable', 3.3, zc - 5, { h: 0.75 });
+    M(g, 'bookcaseClosedWide', 2.8, zc + 4.2, { h: 1.9, ry: -Math.PI / 2 }); M(g, 'pottedPlant', -3.3, zc + 4, { h: 1.1 }); M(g, 'trashcan', -2.0, zc - 4.6, { h: 0.6 }); M(g, 'kitchenCoffeeMachine', 3.3, zc - 5, { h: 0.45, y: 0.75, col: false }); M(g, 'sideTable', 3.3, zc - 5, { h: 0.75 }); station(g, r, 0, zc + 3.5);
     const map = canvasTex(1024, 768, (c, w, h) => { c.fillStyle = '#eef1e6'; c.fillRect(0, 0, w, h); c.strokeStyle = '#8a94a6'; c.lineWidth = 6; for (let x = 60; x < w; x += 140) { c.beginPath(); c.moveTo(x, 0); c.lineTo(x + 40, h); c.stroke(); } for (let y = 60; y < h; y += 120) { c.beginPath(); c.moveTo(0, y); c.lineTo(w, y + 30); c.stroke(); } c.fillStyle = '#c6d9a8'; for (let i = 0; i < 14; i++) c.fillRect(Math.random() * w, Math.random() * h, 90, 60); c.fillStyle = '#1c1f26'; c.font = 'bold 54px "Noto Sans KR", sans-serif'; c.fillText('파주운정3지구 택지개발 · 도시계획도', 40, 70); });
     add(g, new THREE.PlaneGeometry(5, 3.75 * 0.75), new THREE.MeshBasicMaterial({ map }), -r.w / 2 + 0.03, 2.2, zc, [0, Math.PI / 2, 0]);
     wallText(g, r, 1, ['(주)건화', '도시계획부 · 2015 – 2016'], { bg: '#8a94a6', fg: '#1c1f26', font: 'bold 72px "Noto Sans KR", sans-serif' }, 2.3, 4, 1.4, -1); },
   alphago(g, r, th) { const zc = (r.z0 + r.z1) / 2;
     const tv = canvasTex(1024, 640, (c, w, h) => { c.fillStyle = '#0a0d14'; c.fillRect(0, 0, w, h); c.fillStyle = '#d9b36a'; c.fillRect(60, 60, 520, 520); c.strokeStyle = '#1c1f26'; c.lineWidth = 2; for (let i = 0; i < 19; i++) { const p = 80 + i * 26.6; c.beginPath(); c.moveTo(p, 80); c.lineTo(p, 560); c.stroke(); c.beginPath(); c.moveTo(80, p); c.lineTo(560, p); c.stroke(); } for (let i = 0; i < 120; i++) { c.fillStyle = i % 2 ? '#111' : '#f3f3f3'; c.beginPath(); c.arc(80 + Math.floor(Math.random() * 19) * 26.6, 80 + Math.floor(Math.random() * 19) * 26.6, 11, 0, 7); c.fill(); } c.fillStyle = '#fff'; c.font = 'bold 60px "Noto Sans KR", sans-serif'; c.fillText('AlphaGo  4 : 1  이세돌', 620, 200); c.font = '40px "IBM Plex Mono", monospace'; c.fillStyle = '#9fc0ff'; c.fillText('2016.03.15 · BREAKING', 620, 270); c.fillStyle = '#f6c400'; c.font = 'bold 44px "Noto Sans KR", sans-serif'; c.fillText('"개발자가 돼야겠네요."', 620, 400); });
     add(g, new THREE.BoxGeometry(4.2, 2.7, 0.15), mat(0x111), r.w / 2 - 0.12, 2.0, zc, [0, -Math.PI / 2, 0]); add(g, new THREE.PlaneGeometry(4, 2.5), new THREE.MeshBasicMaterial({ map: tv, toneMapped: false }), r.w / 2 - 0.2, 2.0, zc, [0, -Math.PI / 2, 0]);
-    M(g, 'cabinetTelevision', r.w / 2 - 0.5, zc, { w: 2.0, ry: -Math.PI / 2 }); M(g, 'loungeSofa', 0.6, zc, { w: 2.2, ry: -Math.PI / 2 }); M(g, 'tableCoffee', 1.9, zc, { w: 1.0, ry: Math.PI / 2 }); M(g, 'rugRound', 1.4, zc, { w: 3.0, col: false }); M(g, 'lampRoundTable', -1.0, zc - 2.5, { h: 0.6, y: 0.5, col: false }); M(g, 'sideTable', -1.0, zc - 2.5, { h: 0.5 }); M(g, 'pottedPlant', -3.3, zc + 3, { h: 1.2 }); M(g, 'kitchenCoffeeMachine', -3.2, zc - 3.5, { h: 0.45, y: 0.75, col: false }); M(g, 'table', -3.2, zc - 3.5, { w: 1.2 }); M(g, 'radio', -3.0, zc - 3.3, { w: 0.35, y: 0.75, col: false }); },
+    M(g, 'cabinetTelevision', r.w / 2 - 0.5, zc, { w: 2.0, ry: -Math.PI / 2 }); M(g, 'loungeSofa', 0.6, zc, { w: 2.2, ry: -Math.PI / 2 }); M(g, 'tableCoffee', 1.9, zc, { w: 1.0, ry: Math.PI / 2 }); M(g, 'rugRound', 1.4, zc, { w: 3.0, col: false }); M(g, 'lampRoundTable', -1.0, zc - 2.5, { h: 0.6, y: 0.5, col: false }); M(g, 'sideTable', -1.0, zc - 2.5, { h: 0.5 }); M(g, 'pottedPlant', -3.3, zc + 3, { h: 1.2 }); M(g, 'kitchenCoffeeMachine', -3.2, zc - 3.5, { h: 0.45, y: 0.75, col: false }); M(g, 'table', -3.2, zc - 3.5, { w: 1.2 }); M(g, 'radio', -3.0, zc - 3.3, { w: 0.35, y: 0.75, col: false }); station(g, r, -1.6, zc + 3, 0.4); },
   bootcamp(g, r, th) { const zc = (r.z0 + r.z1) / 2;
     for (const z of [zc - 2.5, zc - 0.3, zc + 1.9]) for (const x of [-2.6, 2.6]) workstation(g, x, z, Math.PI, true);
     const wb = canvasTex(1024, 512, (c, w, h) => { c.fillStyle = '#fbfbf6'; c.fillRect(0, 0, w, h); c.fillStyle = '#1c1f26'; c.font = 'bold 40px "IBM Plex Mono", monospace'; ['#include <stdio.h>', 'int main() {', '  printf("hello, world\\n");', '  return 0;', '}', '', 'C/C++ → 자료구조 → Java → Android → Spring'].forEach((l, i) => c.fillText(l, 40, 70 + i * 56)); c.fillStyle = '#c0392b'; c.font = 'bold 36px "Noto Sans KR", sans-serif'; c.fillText('프로그래밍은 언어보다 수학에 가깝다', 40, 470); });
     add(g, new THREE.PlaneGeometry(5, 2.5), new THREE.MeshBasicMaterial({ map: wb }), 0, 2.0, r.z1 + 0.16); add(g, new THREE.BoxGeometry(5.2, 2.7, 0.06), mat(0x6b6b6b), 0, 2.0, r.z1 + 0.12);
-    M(g, 'coatRackStanding', 3.6, r.z0 - 5.5, { h: 1.8 }); M(g, 'trashcan', -3.6, r.z0 - 5.5, { h: 0.6 }); M(g, 'bookcaseOpen', -3.6, zc + 4.5, { h: 1.9, ry: Math.PI / 2 }); },
+    M(g, 'coatRackStanding', 3.6, r.z0 - 5.5, { h: 1.8 }); M(g, 'trashcan', -3.6, r.z0 - 5.5, { h: 0.6 }); M(g, 'bookcaseOpen', -3.6, zc + 4.5, { h: 1.9, ry: Math.PI / 2 }); station(g, r, 0, zc + 4.3, Math.PI); },
   office(g, r, th) { const zc = (r.z0 + r.z1) / 2;
     for (const [x, z] of [[-2.8, zc - 2], [-2.8, zc + 1], [2.8, zc - 2], [2.8, zc + 1]]) workstation(g, x, z, x < 0 ? Math.PI / 2 : -Math.PI / 2);
-    M(g, 'bookcaseClosedWide', -2.8, zc + 4.2, { h: 1.9, ry: Math.PI / 2 }); M(g, 'pottedPlant', 3.3, zc + 4, { h: 1.1 }); M(g, 'kitchenCoffeeMachine', 3.3, zc - 5, { h: 0.45, y: 0.75, col: false }); M(g, 'sideTable', 3.3, zc - 5, { h: 0.75 });
+    M(g, 'bookcaseClosedWide', -2.8, zc + 4.2, { h: 1.9, ry: Math.PI / 2 }); M(g, 'pottedPlant', 3.3, zc + 4, { h: 1.1 }); M(g, 'kitchenCoffeeMachine', 3.3, zc - 5, { h: 0.45, y: 0.75, col: false }); M(g, 'sideTable', 3.3, zc - 5, { h: 0.75 }); station(g, r, 0, zc + 3.8);
     const o = r.st.objects?.[0] || {}; wallText(g, r, 1, [o.sign || L(r.st.title), L(r.st.title)], { bg: o.color || '#3b6fd6', fg: '#fff', font: 'bold 80px "Noto Sans KR", sans-serif' }, 2.3, 4.5, 1.4, -1); },
   lgcns(g, r, th) { const zc = (r.z0 + r.z1) / 2;
     add(g, rbox(2.6, 1.0, 0.7, 0.04), mat(0xc8323c, { roughness: 0.5 }), 0, 0.5, r.z0 - 4); add(g, new THREE.PlaneGeometry(2.4, 0.6), new THREE.MeshBasicMaterial({ map: textTex(['LG CNS'], { bg: '#c8323c', fg: '#fff', font: 'bold 120px "Noto Sans KR", sans-serif', w: 800, h: 200 }), toneMapped: false }), 0, 0.55, r.z0 - 3.64); colliders.push({ x: 0, z: r.z0 - 4, rad: 1.4 });
@@ -347,12 +381,12 @@ const PROPS = {
     const dia = canvasTex(1280, 640, (c, w, h) => { c.fillStyle = '#fbfbf6'; c.fillRect(0, 0, w, h); const box = (x, y, t, col = '#2456c4') => { c.fillStyle = col; c.fillRect(x, y, 240, 90); c.fillStyle = '#fff'; c.font = 'bold 34px "IBM Plex Mono", monospace'; c.textAlign = 'center'; c.fillText(t, x + 120, y + 56); }; const arrow = (x1, y1, x2, y2) => { c.strokeStyle = '#1c1f26'; c.lineWidth = 5; c.beginPath(); c.moveTo(x1, y1); c.lineTo(x2, y2); c.stroke(); }; box(60, 60, 'SOL App', '#1b4f9c'); box(60, 420, 'KB E-Wallet', '#f6c400'); box(520, 240, 'DevOn Boot F/W', '#c8323c'); box(980, 60, 'Redis'); box(980, 240, 'Kafka'); box(980, 420, 'K8S / AWS'); arrow(300, 105, 520, 270); arrow(300, 465, 520, 300); arrow(760, 270, 980, 105); arrow(760, 285, 980, 285); arrow(760, 300, 980, 465); c.fillStyle = '#1c1f26'; c.textAlign = 'left'; c.font = 'bold 40px "Noto Sans KR", sans-serif'; c.fillText('금융권 MSA · 프레임워크 개발자 2017 – 2022', 60, 600); });
     add(g, new THREE.PlaneGeometry(6, 3), new THREE.MeshBasicMaterial({ map: dia }), -r.w / 2 + 0.03, 2.2, zc - 1, [0, Math.PI / 2, 0]);
     wallText(g, r, 1, ['신한은행 SOL · KB국민은행 · DevOn', 'Java 사내강사 · 신입 프로젝트 대상'], { bg: '#9a2a33', fg: '#fff', font: 'bold 56px "Noto Sans KR", sans-serif' }, 2.3, 6, 1.6, -1);
-    M(g, 'loungeDesignSofa', 3.4, zc + 2.5, { w: 1.8, ry: -Math.PI / 2 }); M(g, 'tableCoffee', 2.4, zc + 2.5, { w: 0.8 }); M(g, 'loungeDesignSofa', 3.4, zc + 5, { w: 1.8, ry: -Math.PI / 2 }); for (const z of [zc + 2.5, zc + 5]) workstation(g, -3.3, z, Math.PI / 2); },
+    station(g, r, 0, zc + 1.0); M(g, 'loungeDesignSofa', 3.4, zc + 2.5, { w: 1.8, ry: -Math.PI / 2 }); M(g, 'tableCoffee', 2.4, zc + 2.5, { w: 0.8 }); M(g, 'loungeDesignSofa', 3.4, zc + 5, { w: 1.8, ry: -Math.PI / 2 }); for (const z of [zc + 2.5, zc + 5]) workstation(g, -3.3, z, Math.PI / 2); },
   kakao(g, r, th) { const zc = (r.z0 + r.z1) / 2;
     rackRow(g, r, r.z0 - 3.5, 9, [1, 4, 7, 19, 22, 25]);
     wallText(g, r, 1, ['kakao', '인프라개발팀 · 2022 –'], { bg: '#f6c400', fg: '#1c1f26', font: 'bold 110px "Noto Sans KR", sans-serif' }, 3.4, 3.2, 1.0, 7.5);
     add(g, new THREE.PlaneGeometry(3.2, 1.0), new THREE.MeshBasicMaterial({ map: textTex(['230,000 SERVERS', '4,000+ USERS'], { bg: '#0b0f1c', fg: '#39ff6a', font: 'bold 70px "IBM Plex Mono", monospace', w: 1024, h: 320 }), toneMapped: false }), 0, 3.3, r.z1 + 0.2);
-    workstation(g, 0, r.z1 + 3.4, Math.PI, true); M(g, 'kitchenCoffeeMachine', 1.6, r.z1 + 3.4, { h: 0.45, y: 0.75, col: false }); M(g, 'sideTable', 1.6, r.z1 + 3.4, { h: 0.75 }); M(g, 'cardboardBoxClosed', -1.8, r.z1 + 3.6, { h: 0.5 }); M(g, 'cardboardBoxOpen', -2.3, r.z1 + 2.9, { h: 0.45 }); },
+    station(g, r, 0, zc + 0.5, Math.PI); M(g, 'kitchenCoffeeMachine', 1.6, r.z1 + 3.4, { h: 0.45, y: 0.75, col: false }); M(g, 'sideTable', 1.6, r.z1 + 3.4, { h: 0.75 }); M(g, 'cardboardBoxClosed', -1.8, r.z1 + 3.6, { h: 0.5 }); M(g, 'cardboardBoxOpen', -2.3, r.z1 + 2.9, { h: 0.45 }); },
   goal(g, r, th) { const zc = (r.z0 + r.z1) / 2; const portal = new THREE.Group(); portal.position.set(0, 0, r.z1 + 1.0); g.add(portal); add(portal, new THREE.TorusGeometry(1.3, 0.08, 12, 48), glowMat(0xf6c400), 0, 1.5, 0); add(portal, new THREE.CircleGeometry(1.25, 48), new THREE.MeshBasicMaterial({ color: 0xfff3c4, transparent: true, opacity: 0.85, toneMapped: false }), 0, 1.5, 0); const lab = makeLabel('🚩 2026 · NEXT STAGE', { color: '#f6c400' }); lab.position.set(0, 3.0, 0); portal.add(lab); for (let i = 0; i < 6; i++) { const col = Object.values(CAT_COLOR)[i % 5]; const p = add(g, new THREE.OctahedronGeometry(0.12, 0), glowMat(col), Math.cos(i) * 2.5, 1.0 + i * 0.3, zc + Math.sin(i * 2) * 2); spinners.push({ m: p, bob: p.position.y, spin: 1 + i * 0.2 }); } M(g, 'pottedPlant', -3.2, zc, { h: 1.3 }); M(g, 'pottedPlant', 3.2, zc, { h: 1.3 }); interact.push({ kind: 'portal', r, obj: portal, lab, pos: new THREE.Vector3(0, 1.5, r.z1 + 1.0), rad: 3.0, label: () => '🚩 ' + T().portal, action: () => openCard('final') }); },
 };
 PROPS.tmax = PROPS.office;
@@ -360,11 +394,11 @@ let dos = null;
 buildWorld();
 
 // ---------------------------------------------------------------- 플레이어
-const P = { x: 0, z: -0.9, yaw: 0, pitch: 0, vx: 0, vz: 0, bob: 0 };
+const P = { x: 0, z: -0.9, y: 0, vy: 0, yaw: 0, pitch: 0, vx: 0, vz: 0, bob: 0 };
 if (S.savePos) { P.x = S.savePos.x; P.z = S.savePos.z; P.yaw = S.savePos.yaw || 0; }
 const EYE = 1.6, SPEED = 3.0, RADIUS = 0.35;
 const keys = {};
-addEventListener('keydown', (e) => { if (e.repeat) return; keys[e.code] = true; if (S.crawl && ['Space', 'Enter', 'KeyE', 'Escape'].includes(e.code)) { e.preventDefault(); endCrawl(); return; } if (S.auto && !['Escape', 'KeyE'].includes(e.code)) stopAuto(); if (e.code === 'KeyE' || e.code === 'Enter') { if (!$('modal').hidden) closeCard(); else if (S.playing) doInteract(); } if (e.code === 'Escape') { if (!$('modal').hidden) closeCard(); } if (e.code === 'KeyR' && e.shiftKey) resetAll(); });
+addEventListener('keydown', (e) => { if (e.repeat) return; keys[e.code] = true; if (S.crawl && ['Space', 'Enter', 'KeyE', 'Escape'].includes(e.code)) { e.preventDefault(); endCrawl(); return; } if (e.code === 'Space' && S.playing && $('modal').hidden) { e.preventDefault(); jump(); } if (S.auto && !['Escape', 'KeyE'].includes(e.code)) stopAuto(); if (e.code === 'KeyE' || e.code === 'Enter') { if (!$('modal').hidden) closeCard(); else if (S.playing) doInteract(); } if (e.code === 'Escape') { if (!$('modal').hidden) closeCard(); } if (e.code === 'KeyR' && e.shiftKey) resetAll(); });
 addEventListener('keyup', (e) => { keys[e.code] = false; });
 const canvas = renderer.domElement;
 canvas.addEventListener('click', () => { if (S.crawl) { endCrawl(); return; } if (!S.playing || !$('modal').hidden) return; if (S.locked) { fire(); return; } if (!isTouch && canvas.requestPointerLock) canvas.requestPointerLock().catch?.(() => {}); });
@@ -386,6 +420,7 @@ joyEl.addEventListener('pointerup', joyEnd); joyEl.addEventListener('pointercanc
 function joyMove(e) { const r = joyEl.getBoundingClientRect(); let dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2), dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2); const m = Math.hypot(dx, dy); if (m > 1) { dx /= m; dy /= m; } joy.dx = dx; joy.dy = dy; knob.style.transform = `translate(${dx * 36}px, ${dy * 36}px)`; if (S.auto) stopAuto(); }
 $('btn-e').addEventListener('pointerdown', (e) => { e.preventDefault(); doInteract(); });
 
+function jump() { if (P.y <= 0.001 && P.vy === 0) { P.vy = 5.6; tone(260, 0, 0.06, 'triangle', 0.02); } }
 function roomAt(z) { return rooms.find((r) => z <= r.z0 && z > r.z1) || rooms[rooms.length - 1]; }
 function movePlayer(dt) {
   let fx = 0, fz = 0;
@@ -407,12 +442,15 @@ function movePlayer(dt) {
   for (const r of rooms) { if (!r.door) continue; const dz = r.z1; const crossing = (P.z > dz && nz <= dz + RADIUS) || (P.z <= dz && nz > dz - RADIUS); const inGap = Math.abs(nx) < 1.1; if (crossing && (!r.door.open || !inGap)) { nz = P.z > dz ? dz + RADIUS + 0.01 : dz - RADIUS - 0.01; P.vz = 0; } else if (Math.abs(nz - dz) < RADIUS + 0.2 && !inGap) { nz = P.z > dz ? Math.max(nz, dz + RADIUS + 0.21) : Math.min(nz, dz - RADIUS - 0.21); P.vz = 0; } }
   nz = Math.min(-0.6, Math.max(-TOTAL_LEN + 0.8, nz));
   // 소품 충돌
-  for (const c of colliders) { const dx = nx - c.x, dz = nz - c.z, d = Math.hypot(dx, dz), min = c.rad + RADIUS; if (d < min && d > 0.0001) { nx = c.x + dx / d * min; nz = c.z + dz / d * min; } }
+  for (const c of colliders) { if (P.y > (c.h ?? 3.5) - 0.05) continue; const dx = nx - c.x, dz = nz - c.z, d = Math.hypot(dx, dz), min = c.rad + RADIUS; if (d < min && d > 0.0001) { nx = c.x + dx / d * min; nz = c.z + dz / d * min; } }
   P.x = nx; P.z = nz;
+  // 점프 / 중력: 낮은 가구 위에 올라설 수 있다
+  if (P.y > 0 || P.vy !== 0) { P.vy -= 16 * dt; P.y += P.vy * dt; let floor = 0; for (const c of colliders) { const h = c.h ?? 3.5; if (h < 1.3 && Math.hypot(P.x - c.x, P.z - c.z) < c.rad + RADIUS * 0.6) floor = Math.max(floor, h); } if (P.y <= floor) { P.y = floor; P.vy = 0; } }
+  else { let floor = 0; for (const c of colliders) { const h = c.h ?? 3.5; if (h < 1.3 && Math.hypot(P.x - c.x, P.z - c.z) < c.rad + RADIUS * 0.6) floor = Math.max(floor, h); } if (P.y < floor - 0.01) P.y = floor; else if (P.y > 0 && floor === 0) P.vy = -0.01; }
   const speed = Math.hypot(P.vx, P.vz), moving = speed > 0.3; P.bob += dt * (moving ? 8 + speed : 2);
   const lat = P.vx * Math.cos(P.yaw) + P.vz * Math.sin(P.yaw); // 좌우 속도 → 살짝 기울임
   P.roll = (P.roll || 0) + ((reduceMotion ? 0 : -lat * 0.012) - (P.roll || 0)) * Math.min(1, dt * 6);
-  camera.position.set(P.x, EYE + (moving && !reduceMotion ? Math.sin(P.bob) * 0.03 : 0), P.z);
+  camera.position.set(P.x, EYE + P.y + (moving && !reduceMotion && P.vy === 0 ? Math.sin(P.bob) * 0.03 : 0), P.z);
   camera.rotation.set(0, 0, 0); camera.rotateY(P.yaw); camera.rotateX(P.pitch); camera.rotateZ(P.roll);
   const wantFov = (isSmall ? 80 : 72) + (keys.ShiftLeft && moving ? 6 : 0); if (Math.abs(camera.fov - wantFov) > 0.05) { camera.fov += (wantFov - camera.fov) * Math.min(1, dt * 6); camera.updateProjectionMatrix(); }
   if (moving) { P.step = (P.step || 0) + dt * speed; if (P.step > 1.9) { P.step = 0; tone(90 + Math.random() * 30, 0, 0.05, 'sine', 0.035); } }
@@ -440,13 +478,33 @@ function findFocus() {
 function doInteract() { if (focus && $('modal').hidden) { blip(); focus.action(); } }
 function collectChip(it) { if (!it.obj.visible) return; it.obj.visible = false; S.chips.add(it.id); chime(); toast(T().gotChip(D.skills[it.id].n)); checkRoom(it.r); updateHud(); save(); }
 function collectAch(it) { if (!it.obj.visible) return; it.obj.visible = false; S.ach.add(it.id); chime(); toast(T().gotAch(L(D.achievements[it.id].n))); updateHud(); save(); }
-function reclaimRack(it, rack) { if (S.racks.has(it.id)) return; S.racks.add(it.id); S.servers += 1; rack.idle = false; rack.state.forEach((s) => s.col.setHex(0x39ff6a)); it.lab.visible = false; chime(); toast(T().reclaimed(S.servers)); $('hud-servers-box').hidden = false; updateHud(); save(); }
+function reclaimRack(it, rack) { if (!rack.idle) { toast(lang === 'ko' ? '✅ 정상 가동 중인 서버입니다' : '✅ This server is healthy'); return; } S.racks.add(it.id); S.servers += 1; rack.idle = false; rack.lab.visible = false; rack.state.forEach((s) => s.col.setHex(0x39ff6a)); chime(); if (hunt) { hunt.score++; toast(`💤 ${hunt.score}  ·  ⏱ ${Math.ceil(hunt.t)}s`); } else toast(T().reclaimed(S.servers)); $('hud-servers-box').hidden = false; updateHud(); save(); }
+function setIdle(rack) { rack.idle = true; rack.lab.visible = true; rack.state.forEach((s) => s.col.setHex(0xff3b3b)); }
+// ---------------------------------------------------------------- 미니게임 실행
+function startMini(r) {
+  const mg = MINIGAMES[r.st.id]; if (!mg) return; pendingRoom = null;
+  if (mg.kind === 'quiz') {
+    show(`<h2>🎮 ${esc(L(mg.title))}</h2><div class="sub">${lang === 'ko' ? '정답을 고르면 무기가 업그레이드됩니다' : 'Answer right to upgrade your launcher'}</div><p><b>${esc(L(mg.q))}</b></p><div class="links" id="quiz">${L(mg.a).map((a, i) => `<a href="#" data-i="${i}">${esc(a)}</a>`).join('')}</div><p class="sub" id="quiz-msg"></p>`);
+    $('quiz').querySelectorAll('a').forEach((a) => { a.onclick = (e) => { e.preventDefault(); if (+a.dataset.i === mg.ok) { a.style.background = '#2f8f4e'; $('quiz-msg').textContent = lang === 'ko' ? '정답! 🎉' : 'Correct! 🎉'; finishMini(r); } else { a.style.background = '#c0392b'; $('quiz-msg').textContent = lang === 'ko' ? '다시 생각해 보세요' : 'Try again'; tone(150, 0, 0.15, 'sawtooth', 0.04); } }; });
+  } else if (mg.kind === 'typing') {
+    show(`<h2>🎮 ${esc(L(mg.title))}</h2><div class="sub">${lang === 'ko' ? '아래 코드를 그대로 입력하세요 (Enter)' : 'Type the code exactly (Enter)'}</div><pre style="background:#000;color:#9fc0ff;font-family:var(--mono);font-size:16px;padding:12px">${esc(mg.text)}</pre><input id="type-in" style="width:100%;font-family:var(--mono);font-size:15px;padding:8px;border:2px solid var(--navy)" autocomplete="off" spellcheck="false"><p class="sub" id="type-msg"></p>`);
+    const inp = $('type-in'); const t0 = performance.now(); setTimeout(() => inp.focus(), 50);
+    inp.addEventListener('keydown', (e) => { e.stopPropagation(); if (e.key === 'Escape') { closeCard(); return; } if (e.key !== 'Enter') return; if (inp.value.trim() === mg.text) { const sec = ((performance.now() - t0) / 1000).toFixed(1); $('type-msg').textContent = (lang === 'ko' ? `컴파일 성공! ${sec}초 🎉` : `Compiled! ${sec}s 🎉`); finishMini(r); } else { $('type-msg').textContent = lang === 'ko' ? '컴파일 에러 — 오타를 확인하세요' : 'Compile error — check typos'; tone(150, 0, 0.15, 'sawtooth', 0.04); } });
+  } else if (mg.kind === 'hunt') {
+    if (hunt) return; const racks = allRacks.filter((k) => k.g.parent === r.g || true); hunt = { t: 45, score: 0, spawn: 0, r }; toast(lang === 'ko' ? '💤 45초 동안 빨간 랙을 최대한 많이 반납하세요!' : '💤 Reclaim as many red racks as you can in 45s!'); chime();
+  }
+}
+function finishMini(r) { if (S.mini.has(r.st.id)) return; S.mini.add(r.st.id); chime(true); setTimeout(() => weaponUp(lang === 'ko' ? '미니게임 클리어' : 'mini-game cleared'), 600); showObjective(r); save(); }
+function updateHunt(dt) {
+  if (!hunt) return; hunt.t -= dt; hunt.spawn -= dt; $('objective').textContent = `💤 ${lang === 'ko' ? '유휴 서버 사냥' : 'Idle hunt'} · ${hunt.score} · ⏱ ${Math.ceil(hunt.t)}s`;
+  if (hunt.spawn <= 0) { hunt.spawn = 1.4; const healthy = allRacks.filter((k) => !k.idle); const idleN = allRacks.length - healthy.length; if (healthy.length && idleN < 4) setIdle(healthy[Math.floor(Math.random() * healthy.length)]); }
+  if (hunt.t <= 0) { const sc = hunt.score; const r = hunt.r; hunt = null; allRacks.forEach((k) => { if (k.idle && !k.it) {} }); bigToast(`💤 ${sc}${lang === 'ko' ? '대 반납' : ' reclaimed'}`); if (sc >= 8) finishMini(r); else toast(lang === 'ko' ? '8대 이상이면 무기 업그레이드! 다시 도전해 보세요' : 'Reclaim 8+ for an upgrade — try again'); showObjective(r); }
+}
 function needsText(r) { const n = []; const c = r.chips.filter((c) => !S.chips.has(c.id)).length; if (c) n.push(T().needChips(c)); return n.join(' + '); }
-function checkRoom(r) { if (!r.door || r.door.open) return; if (r.chips.every((c) => S.chips.has(c.id))) openDoor(r, true); }
+function checkRoom(r) { if (!r.chips.length || S.cleared.has(r.st.id)) return; if (r.chips.every((c) => S.chips.has(c.id))) { S.cleared.add(r.st.id); bigToast(T().clear(r.st.year)); chime(true); weaponUp(lang === 'ko' ? '방의 스킬 칩을 모두 모음' : 'all chips in the room'); save(); } }
 function openDoor(r, announce) { r.door.open = true; r.door.lamp.material.color.setHex(0x39ff6a); r.door.lab.visible = false; if (announce) { bigToast(T().clear(r.st.year)); setTimeout(() => toast(T().doorOpen), 1400); chime(true); } showObjective(r); }
-function showObjective(r) { const needs = []; if (r.door && !r.door.open) { const c = r.chips.filter((c) => !S.chips.has(c.id)).length; if (c) needs.push(T().needChips(c)); } const next = rooms[r.i + 1]; $('objective').textContent = r.st.goal ? '🚩 ' + T().portal : T().objective(next ? `${next.st.year} ${L(next.st.title)}` : '', needs); }
-function onEnterRoom(r) { updateHud(); showObjective(r); showCrawl(r); if (!r.door) return; if (r.door.open) return; checkRoom(r); }
-rooms.forEach((r) => { if (r.door && r.chips.every((c) => S.chips.has(c.id))) openDoor(r, false); });
+function showObjective(r) { const needs = []; const c = r.chips.filter((c) => !S.chips.has(c.id)).length; if (c) needs.push(T().needChips(c)); const mg = MINIGAMES[r.st.id]; if (mg && !S.mini.has(r.st.id)) needs.push('🎮 ' + L(mg.title)); const next = rooms[r.i + 1]; $('objective').textContent = r.st.goal ? '🚩 ' + T().portal : T().objective(next ? `${next.st.year} ${L(next.st.title)}` : '', needs); }
+function onEnterRoom(r) { updateHud(); showObjective(r); showCrawl(r); }
 
 // ---------------------------------------------------------------- 입장 자막 (스타워즈식 크롤)
 let crawlTimer = null, crawlHide = null, crawlRoom = null;
@@ -487,7 +545,14 @@ function openStageCard(r) {
   if (coins.length) html += `<div class="cat">${T().cards.skills.toUpperCase()} · ${lang === 'ko' ? '이 방에서 모을 수 있는 칩' : 'chips in this room'}</div><div class="chips">${coins.map((id) => `<span class="chip ${S.chips.has(id) ? '' : 'off'}">${D.skills[id].ic} ${esc(D.skills[id].n)}</span>`).join('')}</div>`;
   show(html);
 }
-function openDos(r) { pendingRoom = r; show(`<h2>C:\\&gt; 486 · DOS</h2><div class="sub">1995</div><pre id="dos-out" style="background:#000;color:#9fc0ff;font-family:var(--mono);font-size:13px;padding:12px;min-height:160px;max-height:40vh;overflow:auto;white-space:pre-wrap">${esc(T().dosHelp)}\n</pre><input id="dos-in" style="width:100%;font-family:var(--mono);font-size:14px;padding:8px;border:2px solid var(--navy)" placeholder="C:\\> help" autocomplete="off">`); const inp = $('dos-in'), out = $('dos-out'); setTimeout(() => inp.focus(), 50); inp.addEventListener('keydown', (e) => { e.stopPropagation(); if (e.key !== 'Enter') return; const c = inp.value.trim().toLowerCase(); inp.value = ''; const say = (t) => { out.textContent += `C:\\> ${c}\n${t}\n`; out.scrollTop = 1e9; }; if (c === 'help') say(T().dosHelp); else if (c === 'dir') say(D.stages.map((s) => `${s.year}  ${L(s.title)}`).join('\n')); else if (c === 'whoami') say(`${L(D.meta.name)} — ${L(D.meta.title)}`); else if (c === 'skills') say(Object.values(D.skills).map((s) => `${s.n} ${'*'.repeat(s.lv)}`).join('\n')); else if (c === 'career') say(D.stages.filter((s) => s.company).map((s) => `${L(s.title)} (${L(s.period)})`).join('\n')); else if (c === 'contact') say(`${D.meta.email}\n${D.meta.github}`); else if (c === 'cls') out.textContent = ''; else if (c) say(`'${c}' is not recognized`); }); }
+function openStoryCard(r) {
+  const lines = crawlLines(r.st); let html = `<h2>${esc(L(r.st.title))}</h2><div class="sub">STAGE ${r.i + 1} · ${esc(r.st.year)}</div>` + lines.filter((l) => !l.startsWith('ⓘ')).map((l) => `<p>${esc(l)}</p>`).join('');
+  if (r.st.id === 'seoul') html += `<div class="cat">ⓘ ${lang === 'ko' ? '이름의 뜻' : 'About the name'}</div>` + NAME_INFO[lang].map((l) => `<p>${esc(l)}</p>`).join('');
+  if (r.st.projects) html += `<div class="cat">${lang === 'ko' ? '주요 프로젝트' : 'Key projects'}</div><ul>` + r.st.projects.map((p) => `<li><b style="display:inline">${esc(L(p.n))}</b> <span style="color:var(--muted)">(${esc(p.p)})</span></li>`).join('') + `</ul><p class="sub">${lang === 'ko' ? '자세한 내용은 상단 "경력"에서' : 'Details: "CAREER" at the top'}</p>`;
+  if (!S.cardRead.has(r.st.id)) { S.cardRead.add(r.st.id); save(); }
+  pendingRoom = null; show(html);
+}
+function openDos(r) { pendingRoom = r; show(`<h2>C:\\&gt; 486 · DOS</h2><div class="sub">1995</div><pre id="dos-out" style="background:#000;color:#9fc0ff;font-family:var(--mono);font-size:13px;padding:12px;min-height:160px;max-height:40vh;overflow:auto;white-space:pre-wrap">${esc(T().dosHelp)}\n</pre><input id="dos-in" style="width:100%;font-family:var(--mono);font-size:14px;padding:8px;border:2px solid var(--navy)" placeholder="C:\\> help" autocomplete="off">`); const inp = $('dos-in'), out = $('dos-out'); setTimeout(() => inp.focus(), 50); inp.addEventListener('keydown', (e) => { e.stopPropagation(); if (e.key === 'Escape') { closeCard(); return; } if (e.key !== 'Enter') return; const c = inp.value.trim().toLowerCase(); inp.value = ''; const say = (t) => { out.textContent += `C:\\> ${c}\n${t}\n`; out.scrollTop = 1e9; }; if (c === 'help') say(T().dosHelp); else if (c === 'dir') say(D.stages.map((s) => `${s.year}  ${L(s.title)}`).join('\n')); else if (c === 'whoami') say(`${L(D.meta.name)} — ${L(D.meta.title)}`); else if (c === 'skills') say(Object.values(D.skills).map((s) => `${s.n} ${'*'.repeat(s.lv)}`).join('\n')); else if (c === 'career') say(D.stages.filter((s) => s.company).map((s) => `${L(s.title)} (${L(s.period)})`).join('\n')); else if (c === 'contact') say(`${D.meta.email}\n${D.meta.github}`); else if (c === 'cls') out.textContent = ''; else if (c) say(`'${c}' is not recognized`); }); }
 function openCard(kind) {
   const c = T().cards; let html = '';
   if (kind === 'about') html = `<h2>${esc(L(D.meta.name))}</h2><div class="sub">${esc(L(D.meta.title))} · Kakao Infra Dev Team · 2022 –</div>` + L(D.summary).map((p) => `<p>${esc(p)}</p>`).join('') + `<div class="cat">${c.ach}</div><ul>` + Object.entries(D.achievements).map(([id, a]) => `<li>${a.ic} ${esc(L(a.n))} — ${esc(L(a.d))} ${S.ach.has(id) ? `<span class="chip">${c.collected}</span>` : ''}</li>`).join('') + `</ul><div class="cat">${c.edu}</div><ul>` + L(D.education).map((e) => `<li>${esc(e)}</li>`).join('') + `</ul>`;
@@ -509,7 +574,7 @@ function autoStep(dt) {
   if (auto.wait > 0) { auto.wait -= dt; return { x: 0, z: 0 }; }
   const r = roomAt(P.z); const ppos = new THREE.Vector3(P.x, EYE, P.z);
   let target = null; let act = null;
-  const achs = interact.filter((it) => it.kind === 'ach' && it.r === r && it.obj.visible); const racks = interact.filter((it) => it.kind === 'rack' && it.r === r && !S.racks.has(it.id));
+  const achs = interact.filter((it) => it.kind === 'ach' && it.r === r && it.obj.visible); const racks = interact.filter((it) => it.kind === 'rack' && it.r === r && it.rack && it.rack.idle);
   auto.skip = auto.skip || new Set();
   const ok = (it) => !auto.skip.has(it);
   const chipT = r.chips.find((c) => c.obj.visible && ok(c)), achT = achs.find(ok), rackT = racks.find(ok);
@@ -551,7 +616,7 @@ function autoStep(dt) {
 $('btn-auto').onclick = () => (S.auto ? stopAuto() : startAuto());
 
 // ---------------------------------------------------------------- HUD / 토스트 / 사운드 / 언어
-function updateHud() { const r = roomAt(P.z); $('hud-stage').textContent = r.i + 1; $('hud-stage-n').textContent = D.stages.length; $('hud-year').textContent = r.st.year; $('hud-skills').textContent = S.chips.size; $('hud-skills-n').textContent = Object.keys(D.skills).length; $('hud-ach').textContent = S.ach.size; $('hud-ach-n').textContent = Object.keys(D.achievements).length; $('hud-servers').textContent = S.servers; $('hud-bugs').textContent = S.bugs.size; $('hud-bugs-n').textContent = bugs.length; if (S.servers) $('hud-servers-box').hidden = false; }
+function updateHud() { const r = roomAt(P.z); $('hud-stage').textContent = r.i + 1; $('hud-stage-n').textContent = D.stages.length; $('hud-year').textContent = r.st.year; $('hud-skills').textContent = S.chips.size; $('hud-skills-n').textContent = Object.keys(D.skills).length; $('hud-ach').textContent = S.ach.size; $('hud-ach-n').textContent = Object.keys(D.achievements).length; $('hud-servers').textContent = S.servers; $('hud-wlv').textContent = S.wlv; $('hud-bugs').textContent = S.bugs.size; $('hud-bugs-n').textContent = bugs.length; if (S.servers) $('hud-servers-box').hidden = false; }
 { const marks = $('progress-marks'); marks.innerHTML = ''; rooms.forEach((r) => { const i = document.createElement('i'); i.style.left = (-r.z0 / TOTAL_LEN * 100) + '%'; i.dataset.y = r.st.year; marks.appendChild(i); }); }
 let toastT; function toast(msg) { const t = $('toast'); t.className = ''; t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 2400); }
 function bigToast(msg) { const t = $('toast'); t.className = 'big'; t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 2200); }
@@ -569,7 +634,7 @@ function applyLang() {
   $('title-name').textContent = L(D.meta.name); $('title-sub').textContent = L(D.meta.title); $('title-desc').innerHTML = t.desc; $('title-controls').innerHTML = t.controls;
   $('btn-start').textContent = t.start; $('btn-continue').textContent = t.cont; $('btn-tour').textContent = t.tour; $('btn-pdf').textContent = t.pdf; $('btn-pdf').href = D.meta.pdf[lang]; $('btn-pixel').textContent = t.pixel; $('btn-lang2').textContent = t.langLink; $('modal-ok').textContent = t.ok;
   updateHud(); if (S.playing) showObjective(roomAt(P.z));
-  for (const { r, panel } of storyPanels) { panel.material.map?.dispose(); panel.material.map = storyTex(r); panel.material.needsUpdate = true; }
+  for (const { r, panel } of storyPanels) { panel.material.map?.dispose(); panel.material.map = frameTex(r); panel.material.needsUpdate = true; }
 }
 $('btn-lang').onclick = $('btn-lang2').onclick = () => { lang = lang === 'ko' ? 'en' : 'ko'; applyLang(); };
 $('ver').onchange = (e) => { if (e.target.value === 'pixel') location.href = 'game.html'; };
@@ -602,14 +667,18 @@ const shotGeo = new THREE.SphereGeometry(0.06, 10, 10), shotMat = glowMat(0x9fef
 const trailGeo = new THREE.CylinderGeometry(0.012, 0.03, 0.5, 6); const trailMat = new THREE.MeshBasicMaterial({ color: 0x7fe7ff, transparent: true, opacity: 0.55, blending: THREE.AdditiveBlending, depthWrite: false });
 let lastFire = 0;
 function fire() {
-  if (!S.playing || S.crawl || !$('modal').hidden || tAcc - lastFire < 0.16) return; lastFire = tAcc;
+  if (!S.playing || S.crawl || !$('modal').hidden || tAcc - lastFire < (S.wlv >= 3 ? 0.11 : 0.16)) return; lastFire = tAcc;
   if (S.auto) stopAuto();
   const dir = camera.getWorldDirection(new THREE.Vector3());
   const start = camera.position.clone().addScaledVector(dir, 0.35).add(new THREE.Vector3(0.09, -0.07, 0).applyQuaternion(camera.quaternion));
   const aim = camera.position.clone().addScaledVector(dir, 40); dir.copy(aim.sub(start).normalize()); // 조준점으로 수렴
-  const m = new THREE.Mesh(shotGeo, shotMat); m.position.copy(start); scene.add(m);
-  const tr = new THREE.Mesh(trailGeo, trailMat); tr.position.copy(start); tr.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.clone().negate()); scene.add(tr);
-  shots.push({ m, tr, v: dir.clone().multiplyScalar(26), life: 1.1, hit: false });
+  const n = S.wlv >= 3 ? 3 : S.wlv >= 2 ? 2 : 1; const right = new THREE.Vector3(1, 0, 0).applyQuaternion(camera.quaternion);
+  for (let i = 0; i < n; i++) {
+    const off = n === 1 ? 0 : (i - (n - 1) / 2) * 0.07; const d2 = dir.clone().addScaledVector(right, off).normalize();
+    const m = new THREE.Mesh(shotGeo, shotMat); m.position.copy(start); m.scale.setScalar(S.wlv >= 4 ? 1.7 : 1); scene.add(m);
+    const tr = new THREE.Mesh(trailGeo, trailMat); tr.position.copy(start); tr.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), d2.clone().negate()); scene.add(tr);
+    shots.push({ m, tr, v: d2.multiplyScalar(26), life: 1.1, hit: false, big: S.wlv >= 4 });
+  }
   weapon.position.z = -0.47; muzzle.position.copy(start); muzzle.intensity = 6;
   tone(1320, 0, 0.05, 'square', 0.03); tone(660, 0.02, 0.08, 'sawtooth', 0.02);
   if (focus && focus.kind !== 'door') { /* 조준 중인 대상은 즉시 반응 */ }
@@ -621,15 +690,16 @@ function burst(pos, color = 0x7fe7ff, n = 14, speed = 3) {
   const pts = new THREE.Points(geo, new THREE.PointsMaterial({ color, size: 0.09, transparent: true, opacity: 1, depthWrite: false, blending: THREE.AdditiveBlending })); scene.add(pts);
   bursts.push({ pts, vel, life: 0.55, n });
 }
-function squash(bug, pos) { if (bug.dead) return; bug.dead = true; bug.g.visible = false; S.bugs.add(bug.id); burst(pos, 0xff5050, 18, 4); tone(220, 0, 0.12, 'sawtooth', 0.05); tone(110, 0.05, 0.15, 'square', 0.04); toast(T().bug(S.bugs.size, bugs.length)); updateHud(); save(); }
+function squash(bug, pos) { if (bug.dead) return; bug.dead = true; bug.g.visible = false; S.bugs.add(bug.id); burst(pos, 0xff5050, 18, 4); tone(220, 0, 0.12, 'sawtooth', 0.05); tone(110, 0.05, 0.15, 'square', 0.04); toast(T().bug(S.bugs.size, bugs.length)); if (S.bugs.size % 3 === 0) weaponUp(lang === 'ko' ? `버그 ${S.bugs.size}마리 수정` : `${S.bugs.size} bugs fixed`); updateHud(); save(); }
+function weaponUp(why) { if (S.wlv >= 4) { toast(lang === 'ko' ? '🔫 이미 최대 레벨' : '🔫 already max level'); return; } S.wlv++; const d = T().wdesc[S.wlv]; setTimeout(() => { bigToast(T().weaponUp(S.wlv, d)); chime(true); }, 400); toast(why); weapon.emitter.material.color.setHex([0, 0x7fe7ff, 0x9fefb0, 0xffd84d, 0xff8ac8][S.wlv]); weapon.scale.setScalar(0.72 + S.wlv * 0.03); updateHud(); save(); }
 function updateShots(dt) {
   for (let i = shots.length - 1; i >= 0; i--) {
     const sh = shots[i]; const prev = sh.m.position.clone(); sh.m.position.addScaledVector(sh.v, dt); sh.life -= dt; sh.tr.position.lerpVectors(prev, sh.m.position, 0.5);
     const p = sh.m.position; let done = sh.life <= 0 || Math.abs(p.x) > ROOM_W / 2 - 0.05 || p.y < 0.02 || p.y > H_ROOM - 0.05 || p.z > -0.05 || p.z < -TOTAL_LEN + 0.05;
     if (!done) {
-      for (const b of bugs) if (!b.dead && b.g.visible && b.g.position.distanceTo(p) < 0.42) { squash(b, p.clone()); done = true; break; }
+      for (const b of bugs) if (!b.dead && b.g.visible && b.g.position.distanceTo(p) < (sh.big ? 0.7 : 0.42)) { squash(b, p.clone()); done = true; break; }
       if (!done) for (const it of interact) {
-        if (!it.obj.visible) continue; const hitR = it.kind === 'door' ? 1.3 : it.kind === 'card' ? 0.75 : it.kind === 'rack' ? 0.6 : 0.55;
+        if (!it.obj.visible) continue; const hitR = it.kind === 'door' ? 1.3 : (it.kind === 'mini' || it.kind === 'story' || it.kind === 'pc') ? 0.8 : it.kind === 'rack' ? 0.6 : 0.55;
         if (it.pos.distanceTo(p) < hitR) { if (it.kind === 'door') { if (!it.r.door.open) { burst(p, 0xff6060, 10, 2); toast('🔒 ' + T().doorLocked(needsText(it.r))); } else done = false; } else { burst(p, 0xffffff, 12, 2.5); it.action(); } if (!(it.kind === 'door' && it.r.door.open)) { done = true; break; } }
       }
       if (!done) for (const r of rooms) if (r.door && !r.door.open && prev.z > r.z1 && p.z <= r.z1) { burst(new THREE.Vector3(p.x, p.y, r.z1 + 0.2), 0xff6060, 10, 2); done = true; break; }
@@ -656,7 +726,7 @@ addEventListener('resize', resize);
 function update(dt, render = true) {
   tAcc += dt; const t = tAcc;
   if (S.playing) movePlayer(dt); else { camera.position.set(0, EYE, -0.9 + Math.sin(t * 0.3) * 0.2); camera.rotation.set(0, Math.sin(t * 0.2) * 0.08, 0); }
-  updateLights(); updateBugs(t, dt); updateShots(dt);
+  updateLights(); updateBugs(t, dt); updateShots(dt); updateHunt(dt);
   for (const s of spinners) { if (!s.m.parent?.visible && !s.m.visible) continue; s.m.rotation.y += dt * s.spin; s.m.position.y = s.bob + Math.sin(t * 2 + s.bob) * 0.06; }
   for (const r of rooms) if (r.chevrons && r.g.visible) r.chevrons.forEach((c, k) => { c.material.opacity = (r.door && r.door.open ? 0.3 : 0.12) + 0.3 * Math.max(0, Math.sin(t * 2.5 - k * 0.9)); });
   for (const r of rooms) if (r.door) { const want = r.door.open ? 2.55 : 0; r.door.panel.position.y += (1.3 + want - r.door.panel.position.y) * Math.min(1, dt * 3); }
@@ -668,4 +738,4 @@ function update(dt, render = true) {
 function frame() { requestAnimationFrame(frame); update(Math.min(clock.getDelta(), 0.05)); }
 Promise.allSettled(pendingModels).then(() => $('loading').classList.add('done')); setTimeout(() => $('loading').classList.add('done'), 6000);
 frame();
-window.__walk = { P, S, rooms, bugs, shots, fire, auto: () => auto, tick: (n = 1, dt = 1 / 60, render = true) => { for (let i = 0; i < n; i++) update(dt, render && i === n - 1); }, startGame, openCard, keys };
+window.__walk = { P, S, rooms, bugs, shots, fire, allRacks, hunt: () => hunt, auto: () => auto, tick: (n = 1, dt = 1 / 60, render = true) => { for (let i = 0; i < n; i++) update(dt, render && i === n - 1); }, startGame, openCard, keys };
